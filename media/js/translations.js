@@ -11,7 +11,7 @@ var lang = {
 	},
 	"en": {
 		"0": "WINE LIST",
-		"1": "drink well ∙ often laugh ∙ live long",
+		"slogan": "drink well ∙ often laugh ∙ live long",
 		"2": "Rating",
 		"3": "CHOSEN WINES",
 		"4": "DO YOU KNOW?",

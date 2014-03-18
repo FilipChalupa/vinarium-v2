@@ -3,7 +3,8 @@ $(function () {
 		language = 'cs',
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
-		$views = $('#views .view');
+		$views = $('#views .view'),
+		$goHome = $('#go-home');
 	function replaceDots(){
 		$slogans.each(function(){
 			var $this = $(this);
@@ -32,6 +33,7 @@ $(function () {
 					var $this = $(this);
 					$this.toggleClass('show',$this.data('name') === param);
 				});
+				$goHome.toggleClass('show',param !== 'home');
 				break;
 			default:
 				alert(name + ' - ' + param);
