@@ -52,6 +52,15 @@ a:hover {
 * {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+.f-left {
+	float: left;
+}
+.f-right {
+	float: right;
+}
+.clearer {
+	clear: both;
+}
 body {
 	text-align: center;
 	background-color: gray;
@@ -85,4 +94,30 @@ body {
 }
 #go-home.show {
 	display: inline-block;
+}
+.logo {
+	background-image: url(../images/logo.png);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.logo.max {
+	height: 177px;
+}
+.button.frame {
+	display: inline-block;
+	border: 1px solid #666666;
+	box-shadow: #666666 0px 0px 1px 1px;
+	padding: 0.5em;
+	margin: 0.25em;
+	color: #333333;
+}
+.nav .button {
+	font-size: 21px;
+	width: 200px;
+	margin: 10px 0.25em;
+}
+.nav {
+	width: 530px;
+	margin: 0 auto;	
 }
