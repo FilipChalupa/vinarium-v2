@@ -4,7 +4,16 @@ $(function () {
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
 		$views = $('#views .view'),
-		$goHome = $('#go-home');
+		$goHome = $('#go-home'),
+		$languages = $('#languages .button'),
+		$window = $(window);
+	function onWindowResize() {
+		
+	}
+	$window.resize(function(){
+		onWindowResize();
+	});
+	onWindowResize();
 	function replaceDots(){
 		$slogans.each(function(){
 			var $this = $(this);
@@ -23,6 +32,10 @@ $(function () {
 		switch (name) {
 			case 'language':
 				language = param;
+				$languages.each(function(){
+					var $this = $(this);
+					$this.toggleClass('selected',$this.data('value') === language);
+				});
 				$.each(lang[language], function(key, val) {
 					$('*[data-trans='+key+']').text(val);
 				});

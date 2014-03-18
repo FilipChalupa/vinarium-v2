@@ -66,9 +66,23 @@ body {
 	background-color: gray;
 	position: relative;
 	background-image: url(../images/background.png);
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 }
 .button:hover {
 	cursor: pointer;
+}
+.slogan {
+	font-style: italic;
+	position: relative;
+	font-family: Arial;
+	text-shadow: 1px 1px 1px rgba(51, 51, 51, 0.2);
+	font-size: 19px;
+}
+.slogan.at-home {
+	position: absolute;
+		bottom: 20px;
+		left: 0;
+		right: 0;
 }
 .slogan .dot {
 	display: inline-block;
@@ -79,6 +93,11 @@ body {
 }
 .view {
 	display: none;
+	position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 }
 .view.show {
 	display: block;
@@ -102,6 +121,7 @@ body {
 	background-repeat: no-repeat;
 }
 .logo.max {
+	margin: 50px 0 80px 0;
 	height: 177px;
 }
 .button.frame {
@@ -120,4 +140,24 @@ body {
 .nav {
 	width: 530px;
 	margin: 0 auto;	
+}
+#languages {
+	position: absolute;
+		top: 60px;
+		right: 30px;
+	box-shadow: #666666 0px 0px 1px 1px;
+}
+#languages .button {
+	height: 31px;
+	min-width: 45px;
+	padding: 0 5px;
+	line-height: 31px;
+	color: #292929;
+	font-size: 21px;
+	border: 1px solid #333333;
+	float: left;
+}
+#languages .button.selected {
+	background-color: #333333;
+	color: white;
 }
