@@ -6,9 +6,14 @@ $(function () {
 		$views = $('#views .view'),
 		$goHome = $('#go-home'),
 		$languages = $('#languages .button'),
-		$window = $(window);
+		$window = $(window),
+		$liveButtons = $('.live-buttons'),
+		$eventsList = $('#events .list'),
+		$eventsListUpcoming = $eventsList.find('.upcoming'),
+		$eventsListPast = $eventsList.find('.past'),
+		$eventDetail = $('#events .detail');
 	function onWindowResize() {
-		
+
 	}
 	$window.resize(function(){
 		onWindowResize();
@@ -21,13 +26,20 @@ $(function () {
 		});
 	}
 	replaceDots();
+
+	$liveButtons.on('click','.button',function(){
+		buttonPress($(this));
+	});
 	$buttons.click(function(){
-		var actions = $(this).data('action').split(';');
+		buttonPress($(this));
+	});
+	function buttonPress($this) {
+		var actions = $this.data('action').split(';');
 		$.each(actions,function(key,val){
 			var data = val.split('-');
 			action(data[0],data[1]);
 		});
-	});
+	}
 	function action(name,param) {
 		switch (name) {
 			case 'language':
@@ -46,13 +58,22 @@ $(function () {
 					var $this = $(this);
 					$this.toggleClass('show',$this.data('name') === param);
 				});
+				if (param === 'events') {
+					$eventsList.find('.button:first').trigger('click');
+				}
 				$goHome.toggleClass('show',param !== 'home');
+				break;
+			case 'event':
+				$eventDetail.find('.title').text('Nadpis ' + param);
+				$eventDetail.find('.date').text('datum');
+				$eventDetail.find('.wrapper').html('popis');
+				$eventDetail.find('.photos').html('fotky');
 				break;
 			default:
 				alert(name + ' - ' + param);
 		}
 	}
-	action('view','home');
+	action('view','events');
 	action('language',language);
 
 });

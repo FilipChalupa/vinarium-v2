@@ -6,7 +6,16 @@ var lang = {
 		2: "AKCE",
 		3: "DNEŠNÍ SPECIALITY",
 		4: "O NÁS",
-		5: "ZPĚTNÁ VAZBA"
+		5: "ZPĚTNÁ VAZBA",
+		6: "NADCHÁZEJÍCÍ AKCE:",
+		7: "PROBĚHLÉ AKCE:",
+		8: "GASTRONOMICKÉ AKCE",
+
+
+
+		100: "ZPĚTNÁ VAZBA",
+		105: "ZPĚTNÁ VAZBA",
+		115: "ZPĚTNÁ VAZBA"
 
 	},
 	"en": {
