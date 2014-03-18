@@ -10,6 +10,9 @@ var lang = {
 		6: "NADCHÁZEJÍCÍ AKCE:",
 		7: "PROBĚHLÉ AKCE:",
 		8: "GASTRONOMICKÉ AKCE",
+		9: "VIDEA",
+		10: "ČLÁNKY",
+		11: "RADY A DOPORUČENÍ",
 
 
 

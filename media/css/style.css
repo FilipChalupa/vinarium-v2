@@ -64,6 +64,7 @@ a:hover {
 body {
 	text-align: center;
 	background-color: gray;
+	color: #333333;
 	position: relative;
 	background-image: url(../images/background.png);
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
@@ -78,7 +79,8 @@ body {
 	text-shadow: 1px 1px 1px rgba(51, 51, 51, 0.2);
 	font-size: 19px;
 }
-.slogan.at-home {
+#home .slogan,
+#aboutus .slogan {
 	position: absolute;
 		bottom: 20px;
 		left: 0;
@@ -120,7 +122,7 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 }
-.logo.max {
+#home .logo {
 	margin: 50px 0 80px 0;
 	height: 177px;
 }
@@ -261,4 +263,96 @@ body {
 	height: 40px;
 	line-height: 40px;
 	text-align: left;
+}
+#aboutus .logo {
+	margin: 30px 0 40px 0;
+	height: 150px;
+}
+#aboutus .options {
+	max-width: 900px;
+	margin: 0 auto;
+}
+#aboutus .options .button {
+	float: left;
+	width: 30%;
+	margin: 0 2%;
+	background-color: #333333;
+	color: white;
+	padding: 5px 0;
+	font-size: 16px;
+	box-shadow: #666666 2px 2px 4px 0px;
+}
+#aboutus .options .mid {
+	margin: 0 1%;
+}
+#aboutus .options .selected {
+	color: #333333;
+	background-color: #BAC405;
+}
+#aboutus .detail {
+	position: absolute;
+		top: 300px;
+		bottom: 60px;
+		left: 5px;
+		right: 5px;
+	max-width: 1024px;
+	margin: 0 auto;
+}
+#aboutus .title {
+	position: absolute;
+		top: 0;
+		left: 142px;
+		right: 142px;
+	height: 50px;
+	line-height: 50px;
+	text-align: left;
+	color: #333333;
+	background-color: #BAC405; 
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 21px;
+	padding: 0 17px;
+}
+#aboutus .wrapper > div {
+	background-image: url(../images/light_pattern.png);
+	position: absolute;
+		top: 55px;
+		bottom: 0;
+}
+#aboutus .wrapper > .button {
+	width: 135px;
+}
+#aboutus .wrapper > .button .preview {
+	position: absolute;
+		left: 10px;
+		right: 10px;
+		bottom: 50%;
+	text-decoration: underline;
+}
+#aboutus .wrapper .prev {
+		left: 0;
+}
+#aboutus .wrapper .next {
+		right: 0;
+}
+#aboutus .wrapper > .button:after {
+	content: '';
+	position: absolute;
+		top: 60%;
+		left: 50%;
+	margin-left: -10px;
+	width: 20px;
+	height: 32px;
+	background-repeat: none;
+}
+#aboutus .wrapper .prev:after {
+		background-image: url(../images/about_arrow_prev.png);
+}
+#aboutus .wrapper .next:after {
+		background-image: url(../images/about_arrow_next.png);
+}
+#aboutus .wrapper .content {
+		right: 142px;
+		left: 142px;
 }

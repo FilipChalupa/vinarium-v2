@@ -12,12 +12,12 @@
 </head>
 <body>
 	<div id="views">
-		<div class="view" data-name="home">
+		<div class="view" data-name="home" id="home">
 			<div id="languages">
 				<span class="button" data-action="language-cs" data-value="cs">CZ</span>
 				<span class="button" data-action="language-en" data-value="en">EN</span>
 			</div>
-			<div class="logo max"></div>
+			<div class="logo"></div>
 			<!--home
 			<span class="button" data-action="test-param;lumen-later">button</span>-->
 
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 			<div class="clearer"></div>
-			<div class="slogan at-home" data-trans="slogan"></div>
+			<div class="slogan" data-trans="slogan"></div>
 		</div>
 		<div class="view" data-name="vinelist">
 			<span data-trans="0"></span>
@@ -80,8 +80,27 @@
 		<div class="view" data-name="specials">
 			<span data-trans="3"></span>
 		</div>
-		<div class="view" data-name="aboutus">
-			<span data-trans="4"></span>
+		<div class="view" data-name="aboutus" id="aboutus">
+			<div class="logo"></div>
+			<div class="options">
+				<span class="button" data-trans="9" data-action="aboutgroup-videos"></span>
+				<span class="button mid" data-trans="10" data-action="aboutgroup-articles"></span>
+				<span class="button" data-trans="11" data-action="aboutgroup-suggestions"></span>
+			</div>
+			<div class="clearer"></div>
+			<div class="detail">
+				<div class="title"></div>
+				<div class="wrapper">
+					<div class="button prev" data-action="about-prev">
+						<span class="preview"></span>
+					</div>
+					<div class="button next" data-action="about-next">
+						<span class="preview"></span>
+					</div>
+					<div class="content"></div>
+				</div>
+			</div>
+			<div class="slogan" data-trans="slogan"></div>
 		</div>
 		<div class="view" data-name="feedback">
 			<span data-trans="5"></span>

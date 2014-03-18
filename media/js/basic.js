@@ -11,14 +11,26 @@ $(function () {
 		$eventsList = $('#events .list'),
 		$eventsListUpcoming = $eventsList.find('.upcoming'),
 		$eventsListPast = $eventsList.find('.past'),
-		$eventDetail = $('#events .detail');
-	function onWindowResize() {
+		$eventDetail = $('#events .detail'),
+		$aboutUsOptions = $('#aboutus .options .button'),
+		$aboutUsDetail = $('#aboutus .detail');
+		
+	function setAboutContent() {
+		$aboutUsDetail.find('.title').text('Title');
+		$aboutUsDetail.find('.content').html('Content');
+		$aboutUsDetail.find('.prev .preview').html('Předchozí');
+		$aboutUsDetail.find('.next .preview').html('Další');
+	}
+	$aboutUsOptions.click(function(){
+		setAboutContent();
+	});
+	/*function onWindowResize() {
 
 	}
 	$window.resize(function(){
 		onWindowResize();
 	});
-	onWindowResize();
+	onWindowResize();*/
 	function replaceDots(){
 		$slogans.each(function(){
 			var $this = $(this);
@@ -26,7 +38,10 @@ $(function () {
 		});
 	}
 	replaceDots();
-
+	$aboutUsOptions.click(function(){
+		$aboutUsOptions.removeClass('selected');
+		$(this).addClass('selected');
+	});
 	$liveButtons.on('click','.button',function(){
 		buttonPress($(this));
 	});
@@ -60,6 +75,8 @@ $(function () {
 				});
 				if (param === 'events') {
 					$eventsList.find('.button:first').trigger('click');
+				} else if (param === 'aboutus') {
+					$aboutUsOptions.first().trigger('click');
 				}
 				$goHome.toggleClass('show',param !== 'home');
 				break;
@@ -69,11 +86,23 @@ $(function () {
 				$eventDetail.find('.wrapper').html('popis');
 				$eventDetail.find('.photos').html('fotky');
 				break;
+			case 'aboutgroup':
+
+				break;
+			case 'about':
+				if (param === 'prev') {
+					setAboutContent();
+					alert('previous');
+				} else {
+					setAboutContent();
+					alert('next');
+				}
+				break;
 			default:
 				alert(name + ' - ' + param);
 		}
 	}
-	action('view','events');
+	action('view','aboutus');
 	action('language',language);
 
 });
