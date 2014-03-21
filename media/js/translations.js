@@ -13,6 +13,7 @@ var lang = {
 		9: "VIDEA",
 		10: "ČLÁNKY",
 		11: "RADY A DOPORUČENÍ",
+		12: "TÝDENNÍ NABÍDKA",
 
 
 
