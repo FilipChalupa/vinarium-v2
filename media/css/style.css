@@ -356,3 +356,68 @@ body {
 		right: 142px;
 		left: 142px;
 }
+.left-menu {
+	position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+}
+#specials .left-menu {
+	width: 400px;
+}
+.left-menu .items {
+	background-color: #CCCCCC;
+	border-right: 1px solid #666666;
+	width: 399px;
+	position: absolute;
+		top: 46px;
+		left: 0;
+		bottom: 0;
+	overflow: auto;
+}
+.left-menu .items .item {
+	padding: 10px;
+}
+.left-menu .items .thumb,
+.left-menu .items .item > span {
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.left-menu .items .thumb {
+	border: 1px solid #666666;
+	background-color: #999999;
+}
+.left-menu .items .title,
+.left-menu .items .description {
+	text-align: left;
+	margin-left: 4px;
+	width: 235px;
+	font-size: 14px;
+	padding: 3px 0;
+	font-weight: bold;
+}
+.left-menu .items .price {
+	margin-left: 5px;
+	width: 65px;
+	text-align: right;
+	font-weight: bold;
+}
+.left-menu .items .title {
+	text-transform: uppercase;
+	font-weight: normal;
+}
+.left-menu .items .title,
+.left-menu .items .price {
+	font-size: 18px;
+	padding: 5px 0;
+}
+.topline {
+	position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+	height: 6px;
+	background-color: #BAC405;
+}
