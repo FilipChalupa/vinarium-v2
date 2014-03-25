@@ -14,6 +14,17 @@ var lang = {
 		10: "ČLÁNKY",
 		11: "RADY A DOPORUČENÍ",
 		12: "TÝDENNÍ NABÍDKA",
+		13: "PROSTŘEDÍ",
+		14: "OBSLUHA",
+		15: "VÍNO",
+		16: "JÍDLO",
+		17: "VŠEOBECNÁ SPOKOJENOST",
+		18: "POSTŘEHY A PŘIPOMÍNKY",
+		19: "E-MAIL PRO PŘÍPADNOU ODPOVĚĎ",
+		20: "HODNOCENÍ NÁM SLOUŽÍ K ...",
+		21: "Význam hodnocení ..............",
+		22: "ODESLAT",
+		
 
 
 

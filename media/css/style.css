@@ -264,7 +264,8 @@ body {
 	line-height: 40px;
 	text-align: left;
 }
-#aboutus .logo {
+#aboutus .logo,
+#feedback .logo {
 	margin: 30px 0 40px 0;
 	height: 150px;
 }
@@ -272,7 +273,9 @@ body {
 	max-width: 900px;
 	margin: 0 auto;
 }
-#aboutus .options .button {
+#aboutus .options .button,
+#feedback .grid .title,
+#feedback .grid .submit {
 	float: left;
 	width: 30%;
 	margin: 0 2%;
@@ -388,6 +391,7 @@ body {
 .left-menu .items .thumb {
 	border: 1px solid #666666;
 	background-color: #999999;
+	margin-top: 5px;
 }
 .left-menu .items .title,
 .left-menu .items .description {
@@ -420,4 +424,57 @@ body {
 		right: 0;
 	height: 6px;
 	background-color: #BAC405;
+}
+#feedback .grid {
+	margin: 0 auto;
+}
+#feedback .grid .title,
+#feedback .grid .submit {
+	width: 275px;
+	float: none;
+	margin: 0 20px;
+}
+#feedback .grid .submit {
+	width: auto;
+	display: inline-block;
+	margin: 20px auto 0 auto;
+	padding: 15px 10px;
+}
+#feedback .caption {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+#feedback .text {
+	font-style: italic;
+}
+#feedback .score {
+	display: inline-block;
+	margin: 25px 0 35px 0;
+}
+#feedback .vote {
+	float: left;
+	position: relative;
+	width: 27px;
+	height: 31px;
+	margin: 0 8px;
+	background-image: url(../images/rating_hands.png);
+}
+#feedback .vote-up {
+	background-position: -27px 0;
+}
+#feedback .vote:after {
+	content: '';
+	position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	margin: -25px;
+}
+#feedback .stars {
+	float: left;
+	height: 34px;
+	width: 170px;
+	background-image: url(../images/star.png);
+	background-position: 0 -68px;
 }

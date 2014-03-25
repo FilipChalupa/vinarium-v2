@@ -102,7 +102,7 @@ $(function () {
 				alert(name + ' - ' + param);
 		}
 	}
-	action('view','specials');
+	action('view','feedback');
 	action('language',language);
 
 });
