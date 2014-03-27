@@ -120,51 +120,80 @@
 		</div>
 		<div class="view" data-name="feedback" id="feedback">
 			<div class="logo"></div>
-			<table class="grid">
-				<tr>
-					<td>
-						<div class="title" data-trans="13">Title</div>
-						<div class="score">
-							<div class="button vote vote-down" data-action="votedown-1"></div>
-							<div class="stars"></div>
-							<div class="button vote vote-up" data-action="voteup-1"></div>
-						</div>
-					</td>
-					<td>
-						<div class="title" data-trans="14">Title 2</div>
-						<div class="score">hvězdy</div>
-					</td>
-					<td>
-						<div class="title" data-trans="15">Title 3</div>
-						<div class="score">hvězdy</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="title" data-trans="16">Title</div>
-						<div class="score">hvězdy</div>
-					</td>
-					<td>
-						<div class="title" data-trans="17">Title 2</div>
-						<div class="score">hvězdy</div>
-					</td>
-					<td rowspan="2">
-						<div class="caption" data-trans="20"></div>
-						<div class="text" data-trans="21"></div>
-						<div class="button submit" data-action="feedbacksubmit" data-trans="22"></div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="title" data-trans="18">Title</div>
-						<div class="score">hvězdy</div>
-					</td>
-					<td>
-						<div class="title" data-trans="19">Title 2</div>
-						<div class="score">hvězdy</div>
-					</td>
-				</tr>
-			</table>
+			<form action="/" method="post">
+				<table class="grid">
+					<tr>
+						<td>
+							<div class="title" data-trans="13"></div>
+							<div class="score" data-id="1">
+								<label for="vote-1-down" class="button vote vote-down" data-action="vote-1" data-id="1"></label>
+								<div class="stars star-1"></div>
+								<label for="vote-1-up" class="button vote vote-up" data-action="vote-1" data-id="1"></label>
+								<input type="radio" name="vote-1" id="vote-1-up" value="up" class="hide">
+								<input type="radio" name="vote-1" id="vote-1-down" value="down" class="hide">
+							</div>
+						</td>
+						<td>
+							<div class="title" data-trans="14"></div>
+							<div class="score" data-id="2">
+								<label for="vote-2-down" class="button vote vote-down" data-action="vote-2" data-id="2"></label>
+								<div class="stars star-2"></div>
+								<label for="vote-2-up" class="button vote vote-up" data-action="vote-2" data-id="2"></label>
+								<input type="radio" name="vote-2" id="vote-2-up" value="up" class="hide">
+								<input type="radio" name="vote-2" id="vote-2-down" value="down" class="hide">
+							</div>
+						</td>
+						<td>
+							<div class="title" data-trans="15"></div>
+							<div class="score" data-id="3">
+								<label for="vote-3-down" class="button vote vote-down" data-action="vote-3" data-id="3"></label>
+								<div class="stars star-3"></div>
+								<label for="vote-3-up" class="button vote vote-up" data-action="vote-3" data-id="3"></label>
+								<input type="radio" name="vote-3" id="vote-3-up" value="up" class="hide">
+								<input type="radio" name="vote-3" id="vote-3-down" value="down" class="hide">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="title" data-trans="16"></div>
+							<div class="score" data-id="4">
+								<label for="vote-4-down" class="button vote vote-down" data-action="vote-4" data-id="4"></label>
+								<div class="stars star-4"></div>
+								<label for="vote-4-up" class="button vote vote-up" data-action="vote-4" data-id="4"></label>
+								<input type="radio" name="vote-4" id="vote-4-up" value="up" class="hide">
+								<input type="radio" name="vote-4" id="vote-4-down" value="down" class="hide">
+							</div>
+						</td>
+						<td>
+							<div class="title" data-trans="17"></div>
+							<div class="score" data-id="5">
+								<label for="vote-5-down" class="button vote vote-down" data-action="vote-5" data-id="5"></label>
+								<div class="stars star-5"></div>
+								<label for="vote-5-up" class="button vote vote-up" data-action="vote-5" data-id="5"></label>
+								<input type="radio" name="vote-5" id="vote-5-up" value="up" class="hide">
+								<input type="radio" name="vote-5" id="vote-5-down" value="down" class="hide">
+							</div>
+						</td>
+						<td rowspan="2">
+							<div class="caption" data-trans="20"></div>
+							<div class="text" data-trans="21"></div>
+							<div class="button submit" data-action="feedbacksubmit" data-trans="22"></div>
+							<input type="submit" value="xxx" class="hide">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="title" data-trans="18"></div>
+							<textarea name="text" class="input"></textarea>
+						</td>
+						<td>
+							<div class="title" data-trans="19"></div>
+							<input type="email" name="email" placeholder="@" class="input">
+						</td>
+					</tr>
+				</table>
+			</form>
 		</div>
 		<div class="view" data-name="weekly">
 			<span data-trans="12"></span>

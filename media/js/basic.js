@@ -1,5 +1,5 @@
 $(function () {
-	var homepage = 'http://forhaus.cz',
+	var homepage = /*'http://forhaus.cz'*/'http://localhost/vinarium-v2',
 		language = 'cs',
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
@@ -13,7 +13,11 @@ $(function () {
 		$eventsListPast = $eventsList.find('.past'),
 		$eventDetail = $('#events .detail'),
 		$aboutUsOptions = $('#aboutus .options .button'),
-		$aboutUsDetail = $('#aboutus .detail');
+		$aboutUsDetail = $('#aboutus .detail'),
+		$feedback = $('#feedback'),
+		$feedbackForm = $feedback.find('form'),
+		$feedbackScores = $feedbackForm.find('.score'),
+		$feedbackHands = $feedbackScores.find('.button');
 		
 	function setAboutContent() {
 		$aboutUsDetail.find('.title').text('Title');
@@ -21,8 +25,34 @@ $(function () {
 		$aboutUsDetail.find('.prev .preview').html('Předchozí');
 		$aboutUsDetail.find('.next .preview').html('Další');
 	}
+	$feedbackHands.click(function(){
+		var $hand = $(this);
+		$feedbackScores.each(function(){
+			var $score = $(this);
+			if ($score.data('id') === $hand.data('id')) {
+				$score.find('.button').removeClass('selected');
+				return false;
+			}
+		});
+		$hand.addClass('selected');
+	});
 	$aboutUsOptions.click(function(){
 		setAboutContent();
+	});
+	$feedbackForm.submit(function(event){
+		event.preventDefault();
+		var data = $feedbackForm.serializeArray();
+		console.log(data);
+		$.post( homepage+'/post/feedback/', function(data) {
+			alert( "success" );
+			action('view','feedback');
+		})
+		.fail(function() {
+			alert( "error" );
+		})
+		.always(function() {
+			alert( "finished" );
+		});
 	});
 	/*function onWindowResize() {
 
@@ -77,6 +107,10 @@ $(function () {
 					$eventsList.find('.button:first').trigger('click');
 				} else if (param === 'aboutus') {
 					$aboutUsOptions.first().trigger('click');
+				} else if (param === 'feedback') {
+					$feedbackHands.removeClass('selected');
+					$feedbackScores.removeClass('voted');
+					$feedbackForm.trigger('reset');
 				}
 				$goHome.toggleClass('show',param !== 'home');
 				break;
@@ -97,6 +131,17 @@ $(function () {
 					setAboutContent();
 					alert('next');
 				}
+				break;
+			case 'feedbacksubmit':
+				$feedbackForm.submit();
+				break;
+			case 'vote':
+				$feedbackScores.each(function(){
+					var $this = $(this);
+					if ($this.data('id') == param) {
+						$this.addClass('voted');
+					}
+				});
 				break;
 			default:
 				alert(name + ' - ' + param);

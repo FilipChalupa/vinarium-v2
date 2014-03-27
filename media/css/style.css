@@ -475,6 +475,51 @@ body {
 	float: left;
 	height: 34px;
 	width: 170px;
-	background-image: url(../images/star.png);
+	overflow: hidden;
+	position: relative;
+	white-space: nowrap;
+}
+#feedback .stars:before,
+#feedback .stars:after {
+	content: '';
+	display: inline-block;
+	height: 34px;
+	width: 170px;
+	background-image: url(../images/stars.png);
+}
+#feedback .stars:before {
+	background-image: url(../images/stars.png);
 	background-position: 0 -68px;
+}
+#feedback .stars.star-0:before {width: 0px;}
+#feedback .stars.star-1:before {width: 34px;}
+#feedback .stars.star-2:before {width: 68px;}
+#feedback .stars.star-3:before {width: 102px;}
+#feedback .stars.star-4:before {width: 136px;}
+#feedback .stars.star-5:before {width: 170px;}
+.hide {
+	display: none;
+}
+#feedback .input {
+	display: block;
+	margin: 20px auto 0 auto;
+	width: 200px;
+	font-size: 17px;
+	height: 20px;
+	line-height: 20px;
+	padding: 5px;
+}
+#feedback textarea:focus {
+	height: 100px;
+}
+#feedback .voted .button {
+	opacity: 0.7;
+}
+#feedback .voted .vote-up.selected {
+	background-position: -27px -32px;
+	opacity: 1;
+}
+#feedback .voted .vote-down.selected {
+	background-position: 0 -32px;
+	opacity: 1;
 }
