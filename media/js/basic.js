@@ -147,7 +147,7 @@ $(function () {
 				alert(name + ' - ' + param);
 		}
 	}
-	action('view','feedback');
+	action('view','stablemenu');
 	action('language',language);
 
 });

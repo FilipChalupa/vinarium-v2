@@ -523,3 +523,52 @@ body {
 	background-position: 0 -32px;
 	opacity: 1;
 }
+.product {
+	width: 400px;
+	margin: 0 auto;
+	text-align: left;
+}
+.product .title {
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 21px;
+	border-bottom: 6px solid #BAC405;
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.product .text {
+	font-style: italic;
+	font-size: 14px;
+}
+.product .subtitle {
+	margin: 20px 0 5px 0;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.product .fancy img,
+.product .fancy div {
+	float: left;
+}
+.product .fancy img {
+	border: 2px solid #CCCCCC;
+}
+.product .fancy div {
+	color: white;
+	font-size: 17px;
+	height: 60px;
+	line-height: 60px;
+	background-color: #333333;
+	text-align: center;
+	margin-bottom: 8px;
+	margin-left: 6px;
+	width: 120px;
+}
+.product .fancy .status {
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 20px;
+	font-size: 14px;
+}

@@ -24,6 +24,8 @@ var lang = {
 		20: "HODNOCENÍ NÁM SLOUŽÍ K ...",
 		21: "Význam hodnocení ..............",
 		22: "ODESLAT",
+		23: "VHODNÉ K:",
+		24: "HODNOTY A DIETY:",
 		
 
 
