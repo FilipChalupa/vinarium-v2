@@ -26,6 +26,8 @@ var lang = {
 		22: "ODESLAT",
 		23: "VHODNÉ K:",
 		24: "HODNOTY A DIETY:",
+		25: "Načítám ...",
+		26: "Při načítání došlo k chybě.",
 		
 
 

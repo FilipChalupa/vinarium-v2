@@ -1,5 +1,5 @@
 $(function () {
-	var homepage = /*'http://forhaus.cz'*/'http://localhost/vinarium-v2',
+	var homepage = 'http://forhaus.cz'/*'http://localhost/vinarium-v2'*/,
 		language = 'cs',
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
@@ -12,13 +12,36 @@ $(function () {
 		$eventsListUpcoming = $eventsList.find('.upcoming'),
 		$eventsListPast = $eventsList.find('.past'),
 		$eventDetail = $('#events .detail'),
+		$eventDetailChildren = {
+			'title': $eventDetail.find('.title'),
+			'date': $eventDetail.find('.date'),
+			'wrapper': $eventDetail.find('.wrapper'),
+			'photos': $eventDetail.find('.photos'),
+		},
 		$aboutUsOptions = $('#aboutus .options .button'),
 		$aboutUsDetail = $('#aboutus .detail'),
 		$feedback = $('#feedback'),
 		$feedbackForm = $feedback.find('form'),
 		$feedbackScores = $feedbackForm.find('.score'),
-		$feedbackHands = $feedbackScores.find('.button');
-		
+		$feedbackHands = $feedbackScores.find('.button'),
+		updateTimer = false,
+		apiSource = [
+			{
+				'name': 'events',
+				'url': '/events/'
+			}
+		],
+		apiIndexUpdate = 0,
+		ajax = false;
+
+	function updateData() {
+		updateTimer = setTimeout(function(){
+			//apiSource[apiIndexUpdate];
+			console.log(apiIndexUpdate);
+			apiIndexUpdate++;
+			//updateData();
+		},200);
+	}
 	function setAboutContent() {
 		$aboutUsDetail.find('.title').text('Title');
 		$aboutUsDetail.find('.content').html('Content');
@@ -103,22 +126,48 @@ $(function () {
 					var $this = $(this);
 					$this.toggleClass('show',$this.data('name') === param);
 				});
-				if (param === 'events') {
-					$eventsList.find('.button:first').trigger('click');
-				} else if (param === 'aboutus') {
-					$aboutUsOptions.first().trigger('click');
-				} else if (param === 'feedback') {
-					$feedbackHands.removeClass('selected');
-					$feedbackScores.removeClass('voted');
-					$feedbackForm.trigger('reset');
+				if (param === 'home') {
+					if (updateTimer === false) {
+						updateData();
+					}
+				} else {
+					if (updateTimer !== false) {
+						window.clearTimeout(updateTimer);
+						updateTimer = false;
+					}
+					if (param === 'events') {
+						$eventsList.find('.button:first').trigger('click');
+					} else if (param === 'aboutus') {
+						$aboutUsOptions.first().trigger('click');
+					} else if (param === 'feedback') {
+						$feedbackHands.removeClass('selected');
+						$feedbackScores.removeClass('voted');
+						$feedbackForm.trigger('reset');
+					}
 				}
 				$goHome.toggleClass('show',param !== 'home');
 				break;
 			case 'event':
-				$eventDetail.find('.title').text('Nadpis ' + param);
-				$eventDetail.find('.date').text('datum');
-				$eventDetail.find('.wrapper').html('popis');
-				$eventDetail.find('.photos').html('fotky');
+				$eventDetailChildren.title.text(lang[language][25]);
+				$eventDetailChildren.date.text('');
+				$eventDetailChildren.wrapper.html('');
+				$eventDetailChildren.photos.html('');
+				//ajax
+				if (ajax) {
+					ajax.abort();
+				}
+				ajax = $.getJSON( homepage + '/api/json_event/'+param+'?callback=?', function(data) {
+					$eventDetailChildren.title.text(data['title_'+lang]);
+					$eventDetailChildren.date.text(data['date']+' - '+data['date_to']);
+					$eventDetailChildren.wrapper.html(data['content_'+lang]);
+					//photos!!
+				})
+				.fail(function() {
+					$eventDetailChildren.title.text(lang[language][26]);
+				})
+				.always(function() {
+					ajax = false;
+				});
 				break;
 			case 'aboutgroup':
 
@@ -147,7 +196,7 @@ $(function () {
 				alert(name + ' - ' + param);
 		}
 	}
-	action('view','stablemenu');
+	action('view','events');
 	action('language',language);
 
 });
