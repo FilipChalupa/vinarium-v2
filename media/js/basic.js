@@ -26,6 +26,8 @@ $(function () {
 		$feedbackHands = $feedbackScores.find('.button'),
 		$specialProduct = $('#specials .product'),
 		$specialsList = $('#specials .items'),
+		$stableMenuProduct = $('#stablemenu .product'),
+		$stableMenuList = $('#stablemenu .items'),
 		updateTimer = false,
 		apiSource = [
 			{
@@ -157,6 +159,8 @@ $(function () {
 						$feedbackForm.trigger('reset');
 					} else if (param === 'specials') {
 						$specialsList.find('.button:first').trigger('click');
+					} else if (param === 'stablemenu') {
+						$stableMenuList.find('.button:first').trigger('click');
 					}
 				}
 				$goHome.toggleClass('show',param !== 'home');
@@ -208,6 +212,14 @@ $(function () {
 				break;
 			case 'special':
 				setProductWrapper($specialProduct,
+								  'title',
+								  'fancy',
+								  'Lorem',
+								  'čuník',
+								  'hodně');
+				break;
+			case 'stable':
+				setProductWrapper($stableMenuProduct,
 								  'title',
 								  'fancy',
 								  'Lorem',
