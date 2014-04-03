@@ -24,6 +24,8 @@ $(function () {
 		$feedbackForm = $feedback.find('form'),
 		$feedbackScores = $feedbackForm.find('.score'),
 		$feedbackHands = $feedbackScores.find('.button'),
+		$specialProduct = $('#specials .product'),
+		$specialsList = $('#specials .items'),
 		updateTimer = false,
 		apiSource = [
 			{
@@ -34,6 +36,18 @@ $(function () {
 		apiIndexUpdate = 0,
 		ajax = false;
 
+	function setProductWrapper($parent, xTitle, xFancy, xText, xGoodWTitle, xGoodWText, xValsTitle, xValsText) {
+		var title = $parent.find('.title'),
+			fancy = $parent.find('.fancy'),
+			text = $parent.find('.text'),
+			goodWithText = $parent.find('.good_with .subtext'),
+			valsText = $parent.find('.vals .subtext');
+		title.text(xTitle);
+		fancy.html(xFancy);
+		text.html(xText);
+		goodWithText.text(xGoodWText);
+		valsText.text(xValsText);
+	}
 	function updateData() {
 		updateTimer = setTimeout(function(){
 			//apiSource[apiIndexUpdate];
@@ -64,9 +78,7 @@ $(function () {
 	});
 	$feedbackForm.submit(function(event){
 		event.preventDefault();
-		var data = $feedbackForm.serializeArray();
-		console.log(data);
-		$.post( homepage+'/post/feedback/', function(data) {
+		$.post( homepage+'/post/feedback/', $feedbackForm.serializeArray(),function(data) {
 			alert( "success" );
 			action('view','feedback');
 		})
@@ -143,6 +155,8 @@ $(function () {
 						$feedbackHands.removeClass('selected');
 						$feedbackScores.removeClass('voted');
 						$feedbackForm.trigger('reset');
+					} else if (param === 'specials') {
+						$specialsList.find('.button:first').trigger('click');
 					}
 				}
 				$goHome.toggleClass('show',param !== 'home');
@@ -156,7 +170,7 @@ $(function () {
 				if (ajax) {
 					ajax.abort();
 				}
-				ajax = $.getJSON( homepage + '/api/json_event/'+param+'?callback=?', function(data) {
+				ajax = $.getJSON( homepage + '/api/json_event/'+param/*+'?callback=?'*/, function(data) {
 					$eventDetailChildren.title.text(data['title_'+lang]);
 					$eventDetailChildren.date.text(data['date']+' - '+data['date_to']);
 					$eventDetailChildren.wrapper.html(data['content_'+lang]);
@@ -192,11 +206,19 @@ $(function () {
 					}
 				});
 				break;
+			case 'special':
+				setProductWrapper($specialProduct,
+								  'title',
+								  'fancy',
+								  'Lorem',
+								  'čuník',
+								  'hodně');
+				break;
 			default:
 				alert(name + ' - ' + param);
 		}
 	}
-	action('view','events');
+	action('view','specials');
 	action('language',language);
 
 });
