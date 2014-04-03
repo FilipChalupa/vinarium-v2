@@ -136,6 +136,9 @@ $(function () {
 				replaceDots();
 				break;
 			case 'view':
+				if (arguments[2] !== 'noHistory') {
+					history.pushState({}, param, "#"+param);
+				}
 				$views.each(function(){
 					var $this = $(this);
 					$this.toggleClass('show',$this.data('name') === param);
@@ -230,7 +233,23 @@ $(function () {
 				alert(name + ' - ' + param);
 		}
 	}
-	action('view','specials');
+	action('view','home','noHistory');
+	function handleHash() {
+		var hash = window.location.hash.substring(1),
+			notFound = true;
+		$views.each(function(){
+			if ($(this).data('name') === hash) {
+				action('view',hash,'noHistory');
+				notFound = false;
+				return false;
+			}
+		});
+		if (notFound) {
+			action('view','home');
+		}
+	}
+	window.onhashchange = handleHash;
+	handleHash();
 	action('language',language);
 
 });
