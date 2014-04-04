@@ -242,8 +242,11 @@ body {
 		top: 50px;
 		left: 0;
 		right: 0;
-		bottom: 300px;
+		bottom: 0;
 	padding: 70px 100px;
+}
+#events .detail.hasPhotos .description {
+		bottom: 300px;
 }
 #events .detail .photos {
 	position: absolute;
@@ -254,6 +257,33 @@ body {
 	border-top: 6px solid #333333;
 	max-width: 600px;
 	margin: 0 auto;
+	display: none;
+}
+#events .detail.hasPhotos .photos {
+	display: block;
+}
+#events .detail .photos .button {
+	background-size: cover;
+	background-position: center;
+	position: absolute;
+		top: 5%;
+		bottom: 5%;
+		right: 0;
+		left: 82%;
+}
+#events .detail .photos .img_1 {
+		left: 0;
+		right: 20%;
+}
+#events .detail .photos .img_2 {
+		bottom: 67%;
+}
+#events .detail .photos .img_3 {
+		top: 36%;
+		bottom: 36%;
+}
+#events .detail .photos .img_4 {
+		top: 67%;
 }
 #events .slogan {
 	position: absolute;

@@ -53,7 +53,7 @@ $(function () {
 	function updateData() {
 		updateTimer = setTimeout(function(){
 			//apiSource[apiIndexUpdate];
-			console.log(apiIndexUpdate);
+			console.log('update '+apiIndexUpdate);
 			apiIndexUpdate++;
 			//updateData();
 		},200);
@@ -177,11 +177,18 @@ $(function () {
 				if (ajax) {
 					ajax.abort();
 				}
-				ajax = $.getJSON( homepage + '/api/json_event/'+param/*+'?callback=?'*/, function(data) {
-					$eventDetailChildren.title.text(data['title_'+lang]);
+				ajax = $.getJSON( homepage + '/api/json_event/'+param, function(data) {
+					$eventDetailChildren.title.text(data['title_'+language]);
 					$eventDetailChildren.date.text(data['date']+' - '+data['date_to']);
-					$eventDetailChildren.wrapper.html(data['content_'+lang]);
-					//photos!!
+					$eventDetailChildren.wrapper.html(data['content_'+language]);
+					var hasPhotos = false;
+					for (var i=1;i<=4;i++) {
+						if (data['photo_'+i]) {
+							hasPhotos = true;
+							$eventDetailChildren.photos.append('<div class="button img_'+i+'" style="background-image: url('+homepage+'/media/'+data['photo_'+i]+');" data-url="'+homepage+'/media/'+data['photo_'+i]+'"></div>');
+						}
+					}
+					$eventDetail.toggleClass('hasPhotos',hasPhotos);
 				})
 				.fail(function() {
 					$eventDetailChildren.title.text(lang[language][26]);
