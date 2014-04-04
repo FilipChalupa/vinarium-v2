@@ -26,8 +26,8 @@ $(function () {
 		$feedbackHands = $feedbackScores.find('.button'),
 		$specialProduct = $('#specials .product'),
 		$specialsList = $('#specials .items'),
-		$stableMenuProduct = $('#stablemenu .product'),
-		$stableMenuList = $('#stablemenu .items'),
+		$weeklyProduct = $('#weekly .product'),
+		$weeklyList = $('#weekly .items'),
 		updateTimer = false,
 		apiSource = [
 			{
@@ -162,8 +162,8 @@ $(function () {
 						$feedbackForm.trigger('reset');
 					} else if (param === 'specials') {
 						$specialsList.find('.button:first').trigger('click');
-					} else if (param === 'stablemenu') {
-						$stableMenuList.find('.button:first').trigger('click');
+					} else if (param === 'weekly') {
+						$weeklyList.find('.button:first').trigger('click');
 					}
 				}
 				$goHome.toggleClass('show',param !== 'home');
@@ -173,6 +173,7 @@ $(function () {
 				$eventDetailChildren.date.text('');
 				$eventDetailChildren.wrapper.html('');
 				$eventDetailChildren.photos.html('');
+				$eventDetail.removeClass('hasPhotos');
 				//ajax
 				if (ajax) {
 					ajax.abort();
@@ -228,8 +229,8 @@ $(function () {
 								  'čuník',
 								  'hodně');
 				break;
-			case 'stable':
-				setProductWrapper($stableMenuProduct,
+			case 'weekly':
+				setProductWrapper($weeklyProduct,
 								  'title',
 								  'fancy',
 								  'Lorem',
