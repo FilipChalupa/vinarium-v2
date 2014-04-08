@@ -1,6 +1,7 @@
 $(function () {
 	var homepage = 'http://forhaus.cz'/*'http://localhost/vinarium-v2'*/,
 		language = 'cs',
+		temp,
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
 		$views = $('#views .view'),
@@ -186,7 +187,7 @@ $(function () {
 					for (var i=1;i<=4;i++) {
 						if (data['photo_'+i]) {
 							hasPhotos = true;
-							$eventDetailChildren.photos.append('<div class="button img_'+i+'" style="background-image: url('+homepage+'/media/'+data['photo_'+i]+');" data-url="'+homepage+'/media/'+data['photo_'+i]+'"></div>');
+							$eventDetailChildren.photos.append('<div class="galleryItem img_'+i+'" style="background-image: url('+homepage+'/media/'+data['photo_'+i]+');" data-url="'+homepage+'/media/'+data['photo_'+i]+'"></div>');
 						}
 					}
 					$eventDetail.toggleClass('hasPhotos',hasPhotos);
@@ -260,4 +261,38 @@ $(function () {
 	handleHash();
 	action('language',language);
 
+	//slideshow start
+	temp = $('#slideshow');
+	var $slideshow = {
+			this: temp,
+			close: temp.children('.close'),
+			prev: temp.children('.prev'),
+			next: temp.children('.next'),
+			swiper: temp.children('.swiper')
+		},
+		$galleryWrappers = $('.galleryWrapper');
+	var gallerySwiper = $('#slideshowSwiper').swiper({
+		mode:'horizontal'
+	});
+	$slideshow.close.click(function(){
+		gallerySwiper.removeAllSlides();
+		$slideshow.this.removeClass('show');
+	});
+	$galleryWrappers.on('click','.galleryItem',function(){
+		var $selected = $(this),
+			$all = $selected.closest('.galleryWrapper').find('.galleryItem'),
+			targetIndex = 0;
+		$all.each(function(i){
+			var $this = $(this);
+			if ($this === $selected) {
+				targetIndex = i;
+			}
+			gallerySwiper.appendSlide('<div class="title">'+i+'</div><div class="frame"><img src="'+$this.data('url')+'"></div>');
+		});
+		gallerySwiper.reInit();
+		gallerySwiper.swipeTo(targetIndex);
+		$slideshow.this.addClass('show');
+	});
+
+	//slideshow end
 });
