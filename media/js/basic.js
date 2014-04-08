@@ -2,6 +2,7 @@ $(function () {
 	var homepage = 'http://forhaus.cz'/*'http://localhost/vinarium-v2'*/,
 		language = 'cs',
 		temp,
+		currentView = '',
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
 		$views = $('#views .view'),
@@ -33,12 +34,24 @@ $(function () {
 		apiSource = [
 			{
 				'name': 'events',
-				'url': '/events/'
+				'url': '/cs/api/event/'
+			},
+			{
+				'name': 'videos',
+				'url': '/cs/api/videos/'
+			},
+			{
+				'name': 'weekly_offer',
+				'url': '/cs/api/weekly_offer/'
 			}
 		],
 		apiIndexUpdate = 0,
 		ajax = false;
-
+	$.each(apiSource,function(key,val) {
+		if (localStorage[val.name] === undefined) {
+			localStorage[val.name] = '[]';
+		}
+	});
 	function setProductWrapper($parent, xTitle, xFancy, xText, xGoodWTitle, xGoodWText, xValsTitle, xValsText) {
 		var title = $parent.find('.title'),
 			fancy = $parent.find('.fancy'),
@@ -53,11 +66,22 @@ $(function () {
 	}
 	function updateData() {
 		updateTimer = setTimeout(function(){
-			//apiSource[apiIndexUpdate];
-			console.log('update '+apiIndexUpdate);
-			apiIndexUpdate++;
-			//updateData();
-		},200);
+			if (apiSource[apiIndexUpdate] === undefined) {
+				apiIndexUpdate = 0;
+			}
+			$.get( homepage + apiSource[apiIndexUpdate].url, function(data) {
+				localStorage[apiSource[apiIndexUpdate].name] = JSON.stringify(data);
+			})
+			.always(function() {
+				apiIndexUpdate++;
+				if (updateTimer !== false) {
+					updateData();
+				}
+			});
+		},500);
+	}
+	function getFromStorage(name) {
+		return JSON.parse(localStorage[name]);
 	}
 	function setAboutContent() {
 		$aboutUsDetail.find('.title').text('Title');
@@ -144,6 +168,10 @@ $(function () {
 					var $this = $(this);
 					$this.toggleClass('show',$this.data('name') === param);
 				});
+				if (currentView === 'events') {
+					$eventsListPast.empty();
+					$eventsListUpcoming.empty();
+				}
 				if (param === 'home') {
 					if (updateTimer === false) {
 						updateData();
@@ -154,6 +182,14 @@ $(function () {
 						updateTimer = false;
 					}
 					if (param === 'events') {
+						$.each(getFromStorage('events'),function(key,val){
+							var html = '<div class="button frame" data-action="event-'+val.id+'">'+val['title_'+language]+'</div>';
+							if (val.is_past) {
+								$eventsListPast.prepend(html);
+							} else {
+								$eventsListUpcoming.append(html);
+							}
+						});
 						$eventsList.find('.button:first').trigger('click');
 					} else if (param === 'aboutus') {
 						$aboutUsOptions.first().trigger('click');
@@ -168,6 +204,7 @@ $(function () {
 					}
 				}
 				$goHome.toggleClass('show',param !== 'home');
+				currentView = param;
 				break;
 			case 'event':
 				$eventDetailChildren.title.text(lang[language][25]);
