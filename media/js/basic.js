@@ -43,6 +43,14 @@ $(function () {
 			{
 				'name': 'weekly_offer',
 				'url': '/cs/api/weekly_offer/'
+			},
+			{
+				'name': 'vineyards',
+				'url': '/api/vineyards/'
+			},
+			{
+				'name': 'wines',
+				'url': '/api/wines/'
 			}
 		],
 		apiIndexUpdate = 0,
@@ -211,7 +219,7 @@ $(function () {
 				$eventDetailChildren.date.text('');
 				$eventDetailChildren.wrapper.html('');
 				$eventDetailChildren.photos.html('');
-				$eventDetail.removeClass('hasPhotos');
+				$eventDetail.removeClass('hasPhotos hasOnePhoto');
 				//ajax
 				if (ajax) {
 					ajax.abort();
@@ -220,14 +228,15 @@ $(function () {
 					$eventDetailChildren.title.text(data['title_'+language]);
 					$eventDetailChildren.date.text(data['date']+' - '+data['date_to']);
 					$eventDetailChildren.wrapper.html(data['content_'+language]);
-					var hasPhotos = false;
+					var countPhotos = 0;
 					for (var i=1;i<=4;i++) {
 						if (data['photo_'+i]) {
-							hasPhotos = true;
+							countPhotos++;
 							$eventDetailChildren.photos.append('<div class="galleryItem img_'+i+'" style="background-image: url('+homepage+'/media/'+data['photo_'+i]+');" data-url="'+homepage+'/media/'+data['photo_'+i]+'"></div>');
 						}
 					}
-					$eventDetail.toggleClass('hasPhotos',hasPhotos);
+					$eventDetail.toggleClass('hasPhotos',countPhotos !== 0);
+					$eventDetail.toggleClass('hasOnePhoto',countPhotos === 1);
 				})
 				.fail(function() {
 					$eventDetailChildren.title.text(lang[language][26]);

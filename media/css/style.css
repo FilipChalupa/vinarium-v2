@@ -275,6 +275,9 @@ body {
 		left: 0;
 		right: 20%;
 }
+#events .detail.hasOnePhoto .img_1 {
+		right: 0;
+}
 #events .detail .photos .img_2 {
 		bottom: 67%;
 }
