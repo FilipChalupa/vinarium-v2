@@ -232,7 +232,7 @@ $(function () {
 					for (var i=1;i<=4;i++) {
 						if (data['photo_'+i]) {
 							countPhotos++;
-							$eventDetailChildren.photos.append('<div class="galleryItem img_'+i+'" style="background-image: url('+homepage+'/media/'+data['photo_'+i]+');" data-url="'+homepage+'/media/'+data['photo_'+i]+'"></div>');
+							$eventDetailChildren.photos.append('<div class="galleryItem img_'+i+'" style="background-image: url('+homepage+'/media/'+data['photo_'+i]+');" data-url="'+homepage+'/media/'+data['photo_'+i]+'" data-title="'+data['title_'+language]+'"></div>');
 						}
 					}
 					$eventDetail.toggleClass('hasPhotos',countPhotos !== 0);
@@ -318,26 +318,58 @@ $(function () {
 		},
 		$galleryWrappers = $('.galleryWrapper');
 	var gallerySwiper = $('#slideshowSwiper').swiper({
-		mode:'horizontal'
+		mode:'horizontal',
+		onSlideChangeEnd: function(){
+			checkSlideshowArrows();
+		}
 	});
+	function checkSlideshowArrows() {
+		var currentSlide = gallerySwiper.getSlide(gallerySwiper.activeIndex);
+		$slideshow.next.toggleClass('nomore',currentSlide === gallerySwiper.getLastSlide());
+		$slideshow.prev.toggleClass('nomore',currentSlide === gallerySwiper.getFirstSlide());
+	}
 	$slideshow.close.click(function(){
 		gallerySwiper.removeAllSlides();
+		gallerySwiper.reInit();
 		$slideshow.this.removeClass('show');
 	});
+	$slideshow.next.click(function(){
+		gallerySwiper.swipeNext();
+	});
+	$slideshow.prev.click(function(){
+		gallerySwiper.swipePrev();
+	});
+	$(document).keyup(function(e) {
+		if ($slideshow.this.hasClass('show')) {
+			if (e.keyCode === 27) {//escape
+				console.log('esc');
+				$slideshow.close.trigger('click');
+			} else if (e.keyCode === 37) { // left
+				gallerySwiper.swipePrev();
+			} else if(e.keyCode === 39) { // right
+				gallerySwiper.swipeNext();
+			}
+		}
+	});
 	$galleryWrappers.on('click','.galleryItem',function(){
+		$slideshow.this.addClass('show');
 		var $selected = $(this),
 			$all = $selected.closest('.galleryWrapper').find('.galleryItem'),
 			targetIndex = 0;
 		$all.each(function(i){
-			var $this = $(this);
-			if ($this === $selected) {
+			var $this = $(this),
+				title = '';
+			if ($this.is($selected)) {
 				targetIndex = i;
 			}
-			gallerySwiper.appendSlide('<div class="title">'+i+'</div><div class="frame"><img src="'+$this.data('url')+'"></div>');
+			if ($this.data('title')) {
+				title = $this.data('title');
+			}
+			gallerySwiper.appendSlide('<div class="title">'+title+'</div><div class="frame"><div class="wrapper"><img src="'+$this.data('url')+'"></div></div>');
 		});
 		gallerySwiper.reInit();
-		gallerySwiper.swipeTo(targetIndex);
-		$slideshow.this.addClass('show');
+		gallerySwiper.swipeTo(targetIndex,0);
+		checkSlideshowArrows();
 	});
 
 	//slideshow end

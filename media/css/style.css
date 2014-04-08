@@ -244,6 +244,7 @@ body {
 		right: 0;
 		bottom: 0;
 	padding: 70px 100px;
+	overflow: auto;
 }
 #events .detail.hasPhotos .description {
 		bottom: 300px;
@@ -633,6 +634,7 @@ body {
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
+	z-index: 10;
 }
 #slideshow .close:after {
 	content: '×';
@@ -652,6 +654,7 @@ body {
 	position: absolute;
 		top: 80px;
 		bottom: 0;
+	z-index: 10;
 }
 #slideshow .prev {
 	transition: left 0.2s;
@@ -693,8 +696,40 @@ body {
 .galleryItem {
 	cursor: pointer;
 }
-#slideshow .swiper-slide {
-	width: 100%;
+#slideshow .swiper-container {
+	position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	height: 100%;
+}
+#slideshow .swiper-slide {
+	position: relative;
+}
+#slideshow .title {
+	position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+	height: 80px;
+	line-height: 80px;
+	color: white;
+	font-size: 24px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#slideshow .frame {
+	position: absolute;
+		top: 80px;
+		left: 80px;
+		right: 80px;
+		bottom: 10px;
+	overflow: hidden;
+}
+#slideshow .frame img {
+	max-width: 100%;
+	max-height: 100%;
 }
 /*slideshow end*/
