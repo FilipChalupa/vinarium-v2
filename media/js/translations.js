@@ -37,6 +37,8 @@ var lang = {
 		33: "Sobota",
 		34: "Neděle",
 		35: "Polévka:",
+		36: "Předchozí",
+		37: "Další",
 		
 
 

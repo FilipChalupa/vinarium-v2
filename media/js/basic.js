@@ -22,6 +22,8 @@ $(function () {
 		},
 		$aboutUsOptions = $('#aboutus .options .button'),
 		$aboutUsDetail = $('#aboutus .detail'),
+		aboutUsIndex = 0,
+		aboutUsSection = 'videos',
 		$feedback = $('#feedback'),
 		$feedbackForm = $feedback.find('form'),
 		$feedbackScores = $feedbackForm.find('.score'),
@@ -91,10 +93,28 @@ $(function () {
 		return JSON.parse(localStorage[name]);
 	}
 	function setAboutContent() {
-		$aboutUsDetail.find('.title').text('Title');
-		$aboutUsDetail.find('.content').html('Content');
-		$aboutUsDetail.find('.prev .preview').html('Předchozí');
-		$aboutUsDetail.find('.next .preview').html('Další');
+		/*$aboutUsDetail.find('.title').text('Title');
+		$aboutUsDetail.find('.content').html('Content');*/
+		switch (aboutUsSection) {
+			case 'videos':
+				var videos = getFromStorage('videos');
+				if (videos.length !== 0) {
+					if (aboutUsIndex >= videos.length) {
+						aboutUsIndex = 0;
+					} else if (aboutUsIndex < 0) {
+						aboutUsIndex = videos.length-1;
+					}
+					$aboutUsDetail.find('.title').text(videos[aboutUsIndex]['title_'+language]);
+					$aboutUsDetail.find('.content').html('<iframe width="50" height="50" src="http://www.youtube.com/embed/'+videos[aboutUsIndex]['get_code']+'" frameborder="0" allowfullscreen></iframe>');
+				}
+				break;
+			case 'articles':
+
+				break;
+			case 'suggestions':
+
+				break;
+		}
 	}
 	$feedbackHands.click(function(){
 		var $hand = $(this);
@@ -106,9 +126,6 @@ $(function () {
 			}
 		});
 		$hand.addClass('selected');
-	});
-	$aboutUsOptions.click(function(){
-		setAboutContent();
 	});
 	$feedbackForm.submit(function(event){
 		event.preventDefault();
@@ -256,15 +273,17 @@ $(function () {
 				});
 				break;
 			case 'aboutgroup':
-
+				aboutUsIndex = 0;
+				setAboutContent();
+				aboutUsSection = param;
 				break;
 			case 'about':
 				if (param === 'prev') {
+					aboutUsIndex--;
 					setAboutContent();
-					alert('previous');
 				} else {
+					aboutUsIndex++;
 					setAboutContent();
-					alert('next');
 				}
 				break;
 			case 'feedbacksubmit':
