@@ -28,8 +28,7 @@ $(function () {
 		$feedbackHands = $feedbackScores.find('.button'),
 		$specialProduct = $('#specials .product'),
 		$specialsList = $('#specials .items'),
-		$weeklyProduct = $('#weekly .product'),
-		$weeklyList = $('#weekly .items'),
+		$weeklyList = $('#weekly .list'),
 		updateTimer = false,
 		apiSource = [
 			{
@@ -164,7 +163,7 @@ $(function () {
 					$this.toggleClass('selected',$this.data('value') === language);
 				});
 				$.each(lang[language], function(key, val) {
-					$('*[data-trans='+key+']').text(val);
+					$('*[data-trans='+key+']').html(val);
 				});
 				replaceDots();
 				break;
@@ -179,6 +178,8 @@ $(function () {
 				if (currentView === 'events') {
 					$eventsListPast.empty();
 					$eventsListUpcoming.empty();
+				} else if (currentView === 'weekly') {
+					$weeklyList.empty();
 				}
 				if (param === 'home') {
 					if (updateTimer === false) {
@@ -208,7 +209,16 @@ $(function () {
 					} else if (param === 'specials') {
 						$specialsList.find('.button:first').trigger('click');
 					} else if (param === 'weekly') {
-						$weeklyList.find('.button:first').trigger('click');
+						$.each(getFromStorage('weekly_offer'),function(key,val){
+							$weeklyList.append('<div class="day">'+lang[language][27+val.day]+'</div>');
+							$.each(val.food,function(key,val){
+								if (val.is_soup === true) {
+									$weeklyList.append('<div class="soup"><strong>'+lang[language][35]+'</strong> '+val.name+'</div>');
+								} else {
+									$weeklyList.append('<div class="meal">'+val.name+'<span class="price">'+val.price+',-</span></div>');
+								}
+							});
+						});
 					}
 				}
 				$goHome.toggleClass('show',param !== 'home');
@@ -270,14 +280,6 @@ $(function () {
 				break;
 			case 'special':
 				setProductWrapper($specialProduct,
-								  'title',
-								  'fancy',
-								  'Lorem',
-								  'čuník',
-								  'hodně');
-				break;
-			case 'weekly':
-				setProductWrapper($weeklyProduct,
 								  'title',
 								  'fancy',
 								  'Lorem',

@@ -28,6 +28,15 @@ var lang = {
 		24: "HODNOTY A DIETY:",
 		25: "Načítám ...",
 		26: "Při načítání došlo k chybě.",
+		27: "V ceně dezert dle denní nabídky.<br>K obědu Vám rádi nabídneme bílé a červené víno 0,15l.",
+		28: "Pondělí",
+		29: "Úterý",
+		30: "Středa",
+		31: "Čtvrtek",
+		32: "Pátek",
+		33: "Sobota",
+		34: "Neděle",
+		35: "Polévka:",
 		
 
 

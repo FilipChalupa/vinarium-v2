@@ -299,7 +299,8 @@ body {
 	text-align: left;
 }
 #aboutus .logo,
-#feedback .logo {
+#feedback .logo,
+#weekly .logo {
 	margin: 30px 0 40px 0;
 	height: 150px;
 }
@@ -399,12 +400,10 @@ body {
 		bottom: 0;
 		left: 0;
 }
-#specials .left-menu,
-#weekly .left-menu {
+#specials .left-menu {
 	width: 400px;
 }
-#specials .product,
-#weekly .product {
+#specials .product {
 	padding-left: 400px;
 	margin: 50px auto 0 auto;
 }
@@ -647,6 +646,9 @@ body {
 		right: -20px;
 		bottom: -20px;
 }
+#slideshow .close:hover:after {
+	color: #BAC405;
+}
 #slideshow .prev,
 #slideshow .next {
 	cursor: pointer;
@@ -733,3 +735,34 @@ body {
 	max-height: 100%;
 }
 /*slideshow end*/
+#weekly .list {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 15px;
+	text-align: left;
+}
+#weekly .day {
+	font-size: 23px;
+	margin: 20px 0 10px -10px;
+	font-weight: bold;
+}
+#weekly .soup,
+#weekly .meal {
+	margin-bottom: 5px;
+	font-size: 16px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-right: 50px;
+}
+#weekly .meal {
+	position: relative;
+}
+#weekly .price {
+	position: absolute;
+		top: 0;
+		right: 0;
+}
+strong, b {
+	font-weight: bold;
+}
