@@ -31,6 +31,10 @@ $(function () {
 		$specialProduct = $('#specials .product'),
 		$specialsList = $('#specials .items'),
 		$weeklyList = $('#weekly .list'),
+		$stableMenuFButtons = $('#stablemenu .items .type-f'),
+		$stableMenuDButtons = $('#stablemenu .items .type-d'),
+		$stableMenuDetailTitle = $('#stablemenu .product .title'),
+		$stableMenuDetailList = $('#stablemenu .product .list'),
 		updateTimer = false,
 		apiSource = [
 			{
@@ -52,6 +56,18 @@ $(function () {
 			{
 				'name': 'wines',
 				'url': '/api/wines/'
+			},
+			{
+				'name': 'special',
+				'url': '/cs/api/special_offer/'
+			},
+			{
+				'name': 'menu_f',
+				'url': '/cs/api/menu_structure/f'
+			},
+			{
+				'name': 'menu_d',
+				'url': '/cs/api/menu_structure/d'
 			}
 		],
 		apiIndexUpdate = 0,
@@ -158,6 +174,12 @@ $(function () {
 		$aboutUsOptions.removeClass('selected');
 		$(this).addClass('selected');
 	});
+	$stableMenuFButtons.on('click','.button',function(){
+		$stableMenuDetailTitle.text($(this).text());
+	});
+	$stableMenuDButtons.on('click','.button',function(){
+		$stableMenuDetailTitle.text($(this).text());
+	});
 	$liveButtons.on('click','.button',function(){
 		buttonPress($(this));
 	});
@@ -197,6 +219,11 @@ $(function () {
 					$eventsListUpcoming.empty();
 				} else if (currentView === 'weekly') {
 					$weeklyList.empty();
+				} else if (currentView === 'stablemenu') {
+					$stableMenuFButtons.empty();
+					$stableMenuDButtons.empty();
+					$stableMenuDetailTitle.empty();
+					$stableMenuDetailList.empty();
 				}
 				if (param === 'home') {
 					if (updateTimer === false) {
@@ -236,6 +263,14 @@ $(function () {
 								}
 							});
 						});
+					} else if (param === 'stablemenu') {
+						$.each(getFromStorage('menu_f'),function(key,val){
+							$stableMenuFButtons.append('<div class="item button" data-action="stablegroup-'+val.id+'">'+val['name_'+language]+'</div>');
+						});
+						$.each(getFromStorage('menu_d'),function(key,val){
+							$stableMenuDButtons.append('<div class="item button" data-action="stablegroup-'+val.id+'">'+val['name_'+language]+'</div>');
+						});
+						$stableMenuFButtons.find('.button:first').first().trigger('click');
 					}
 				}
 				$goHome.toggleClass('show',param !== 'home');
@@ -300,10 +335,28 @@ $(function () {
 			case 'special':
 				setProductWrapper($specialProduct,
 								  'title',
-								  'fancy',
+								  'abc',
 								  'Lorem',
-								  'čuník',
+								  'xyz',
 								  'hodně');
+				break;
+			case 'stablegroup':
+				$stableMenuDetailList.text(lang[language][25]);
+				if (ajax) {
+					ajax.abort();
+				}
+				ajax = $.getJSON( homepage + '/cs/api/menu_detail/'+param, function(data) {
+					$stableMenuDetailList.empty();
+					$.each(data, function(index, val) {
+						$stableMenuDetailList.append('<div class="item">'+val['name_'+language]+'<span class="price">'+val.price+',-</span></div>'); 
+					});
+				})
+				.fail(function() {
+					$stableMenuDetailList.text(lang[language][26]);
+				})
+				.always(function() {
+					ajax = false;
+				});
 				break;
 			default:
 				alert(name + ' - ' + param);

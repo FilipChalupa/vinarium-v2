@@ -39,6 +39,8 @@ var lang = {
 		35: "Polévka:",
 		36: "Předchozí",
 		37: "Další",
+		38: "Jídla",
+		39: "Pití",
 		
 
 
