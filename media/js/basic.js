@@ -241,7 +241,7 @@ $(function () {
 						$.each(getFromStorage('events'),function(key,val){
 							var html = '<div class="button frame" data-action="event-'+val.id+'">'+val['title_'+language]+'</div>';
 							if (val.is_past) {
-								$eventsListPast.prepend(html);
+								$eventsListPast.append(html);
 							} else {
 								$eventsListUpcoming.append(html);
 							}
