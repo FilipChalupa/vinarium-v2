@@ -67,6 +67,10 @@ $(function () {
 			{
 				'name': 'menu_d',
 				'url': '/cs/api/menu_structure/d'
+			},
+			{
+				'name': 'feedbackScores',
+				'url': '/api/average_feedback'
 			}
 		],
 		apiIndexUpdate = 0,
@@ -138,15 +142,11 @@ $(function () {
 	});
 	$feedbackForm.submit(function(event){
 		event.preventDefault();
-		$.post( homepage+'/post/feedback/', $feedbackForm.serializeArray(),function(data) {
-			alert( "success" );
+		$.post( homepage+'/api/process_feedback', $feedbackForm.serializeArray(),function(data) {
 			action('view','feedback');
 		})
 		.fail(function() {
-			alert( "error" );
-		})
-		.always(function() {
-			alert( "finished" );
+			alert(lang[language][40]);
 		});
 	});
 	/*function onWindowResize() {

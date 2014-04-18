@@ -41,6 +41,7 @@ var lang = {
 		37: "Další",
 		38: "Jídla",
 		39: "Pití",
+		40: "Při zpracování došlo k chybě.",
 		
 
 
