@@ -28,13 +28,12 @@ $(function () {
 		$feedbackForm = $feedback.find('form'),
 		$feedbackScores = $feedbackForm.find('.score'),
 		$feedbackHands = $feedbackScores.find('.button'),
-		$specialProduct = $('#specials .product'),
-		$specialsList = $('#specials .items'),
 		$weeklyList = $('#weekly .list'),
 		$stableMenuFButtons = $('#stablemenu .items .type-f'),
 		$stableMenuDButtons = $('#stablemenu .items .type-d'),
 		$stableMenuDetailTitle = $('#stablemenu .product .title'),
 		$stableMenuDetailList = $('#stablemenu .product .list'),
+		$specialButton = $('#specialButton'),
 		updateTimer = false,
 		apiSource = [
 			{
@@ -77,17 +76,8 @@ $(function () {
 			localStorage[val.name] = '[]';
 		}
 	});
-	function setProductWrapper($parent, xTitle, xFancy, xText, xGoodWTitle, xGoodWText, xValsTitle, xValsText) {
-		var title = $parent.find('.title'),
-			fancy = $parent.find('.fancy'),
-			text = $parent.find('.text'),
-			goodWithText = $parent.find('.good_with .subtext'),
-			valsText = $parent.find('.vals .subtext');
-		title.text(xTitle);
-		fancy.html(xFancy);
-		text.html(xText);
-		goodWithText.text(xGoodWText);
-		valsText.text(xValsText);
+	function updateHomeSpecialButton() {
+		$specialButton.toggleClass('hide',getFromStorage('special').length === 0);
 	}
 	function updateData() {
 		updateTimer = setTimeout(function(){
@@ -96,6 +86,9 @@ $(function () {
 			}
 			$.get( homepage + apiSource[apiIndexUpdate].url, function(data) {
 				localStorage[apiSource[apiIndexUpdate].name] = JSON.stringify(data);
+				if (apiSource[apiIndexUpdate].name === 'special') {
+					updateHomeSpecialButton();
+				}
 			})
 			.always(function() {
 				apiIndexUpdate++;
@@ -230,6 +223,7 @@ $(function () {
 					$stableMenuDetailList.empty();
 				}
 				if (param === 'home') {
+					updateHomeSpecialButton();
 					if (updateTimer === false) {
 						updateData();
 					}
@@ -255,7 +249,7 @@ $(function () {
 						$feedbackScores.removeClass('voted');
 						$feedbackForm.trigger('reset');
 					} else if (param === 'specials') {
-						$specialsList.find('.button:first').trigger('click');
+						
 					} else if (param === 'weekly') {
 						$.each(getFromStorage('weekly_offer'),function(key,val){
 							$weeklyList.append('<div class="day">'+lang[language][27+val.day]+'</div>');
@@ -334,14 +328,6 @@ $(function () {
 						$this.addClass('voted');
 					}
 				});
-				break;
-			case 'special':
-				setProductWrapper($specialProduct,
-								  'title',
-								  'abc',
-								  'Lorem',
-								  'xyz',
-								  'hodně');
 				break;
 			case 'stablegroup':
 				$stableMenuDetailList.text(lang[language][25]);

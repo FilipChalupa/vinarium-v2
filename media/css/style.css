@@ -837,3 +837,6 @@ strong, b {
 	font-weight: bold;
 	padding-top: 10px;
 }
+#specialButton.hide {
+	display: none;
+}
