@@ -28,6 +28,7 @@ $(function () {
 		$feedbackForm = $feedback.find('form'),
 		$feedbackScores = $feedbackForm.find('.score'),
 		$feedbackHands = $feedbackScores.find('.button'),
+		$feedbackStars = $feedbackScores.find('.stars'),
 		$weeklyList = $('#weekly .list'),
 		$stableMenuFButtons = $('#stablemenu .items .type-f'),
 		$stableMenuDButtons = $('#stablemenu .items .type-d'),
@@ -221,6 +222,10 @@ $(function () {
 					$stableMenuDButtons.empty();
 					$stableMenuDetailTitle.empty();
 					$stableMenuDetailList.empty();
+				} else if (currentView === 'feedback') {
+					for (var i=0;i<=5;i++) {
+						$feedbackStars.removeClass('star-'+i);
+					}
 				}
 				if (param === 'home') {
 					updateHomeSpecialButton();
@@ -248,6 +253,11 @@ $(function () {
 						$feedbackHands.removeClass('selected');
 						$feedbackScores.removeClass('voted');
 						$feedbackForm.trigger('reset');
+						var data = getFromStorage('feedbackScores');
+						$feedbackStars.each(function(key,val){
+							var $this = $(this);
+							$this.addClass('star-'+Math.round(data[$this.data('name')+'__avg']));
+						});
 					} else if (param === 'specials') {
 						
 					} else if (param === 'weekly') {
