@@ -210,9 +210,13 @@ $(function () {
 				if (arguments[2] !== 'noHistory') {
 					history.pushState({}, param, "#"+param);
 				}
+				$goHome.removeClass('show');
 				$views.each(function(){
 					var $this = $(this);
 					$this.toggleClass('show',$this.data('name') === param);
+					if ($this.hasClass('show') && $this.hasClass('hasgohome')) {
+						$goHome.addClass('show');
+					}
 				});
 				if (currentView === 'events') {
 					$eventsListPast.empty();
@@ -273,7 +277,6 @@ $(function () {
 						$stableMenuFButtons.find('.button:first').first().trigger('click');
 					}
 				}
-				$goHome.toggleClass('show',param !== 'home');
 				currentView = param;
 				break;
 			case 'event':

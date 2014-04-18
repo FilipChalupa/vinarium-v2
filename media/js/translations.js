@@ -4,7 +4,7 @@ var lang = {
 		0: "VINNÝ LÍSTEK",
 		1: "STÁLÉ MENU",
 		2: "AKCE",
-		3: "DNEŠNÍ SPECIALITY",
+		3: "AKTUÁLNÍ SPECIALITY",
 		4: "O NÁS",
 		5: "ZPĚTNÁ VAZBA",
 		6: "NADCHÁZEJÍCÍ AKCE:",
