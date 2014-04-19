@@ -535,8 +535,9 @@ $(function () {
 				}
 				ajax = $.getJSON( homepage + '/cs/api/menu_detail/'+param, function(data) {
 					$stableMenuDetailList.empty();
+					xx++;
 					$.each(data, function(index, val) {
-						$stableMenuDetailList.append('<div class="item">'+val['name_'+language]+'<span class="price">'+val.price+',-</span></div>'); 
+						$stableMenuDetailList.append((xx)+'<div class="item">'+val['name_'+language]+'<span class="price">'+val.price+',-</span></div>'); 
 					});
 				})
 				.fail(function() {
@@ -550,6 +551,7 @@ $(function () {
 				alert(name + ' - ' + param);
 		}
 	}
+	var xx = 0;
 	action('view','home','noHistory');
 	function handleHash() {
 		var hash = window.location.hash.substring(1),
