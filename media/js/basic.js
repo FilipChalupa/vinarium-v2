@@ -533,7 +533,7 @@ $(function () {
 			case 'stablegroup':
 				if (isStartingAjax === false) {
 					isStartingAjax = true;
-					setTimeout(function(){isStartingAjax = false;},100);
+					setTimeout(function(){isStartingAjax = false;},300);
 					$stableMenuDetailList.text(lang[language][25]);
 					if (ajax) {
 						ajax.abort();
