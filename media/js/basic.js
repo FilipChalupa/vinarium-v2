@@ -240,9 +240,11 @@ $(function () {
 		$winesList.find('.button').removeClass('hide');
 	});
 	$liveButtons.on('tap','.button',function(){
-		//buttonPress($(this));
+		event.stopPropagation();
+		buttonPress($(this));
 	});
 	$buttons.on('tap',function(){
+		event.stopPropagation();
 		buttonPress($(this));
 	});
 	function buttonPress($this) {
@@ -592,6 +594,7 @@ $(function () {
 		$slideshow.prev.toggleClass('nomore',currentSlide === gallerySwiper.getFirstSlide());
 	}
 	$slideshow.close.on('tap',function(){
+		event.stopPropagation();
 		gallerySwiper.removeAllSlides();
 		gallerySwiper.reInit();
 		$slideshow.this.removeClass('show');
