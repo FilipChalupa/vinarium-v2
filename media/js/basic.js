@@ -243,14 +243,14 @@ $(function () {
 	$liveButtons.on('tap','.button',function(){
 		if (tabNotBlocked) {
 			tabNotBlocked = false;
-			setTimeout(function(){tabNotBlocked = true;},350);
+			//setTimeout(function(){tabNotBlocked = true;},350);
 			buttonPress($(this));
 		}
 	});
 	$buttons.on('tap',function(){
 		if (tabNotBlocked) {
 			tabNotBlocked = false;
-			setTimeout(function(){tabNotBlocked = true;},350);
+			//setTimeout(function(){tabNotBlocked = true;},350);
 			buttonPress($(this));
 		}
 	});
