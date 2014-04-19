@@ -70,8 +70,7 @@ body {
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 	font-family: Calibri, sans-serif;
 }
-.button:hover,
-.buttonStatic:hover {
+.button:hover {
 	cursor: pointer;
 }
 .slogan {
@@ -133,8 +132,7 @@ body {
 	margin: 50px 0 80px 0;
 	height: 177px;
 }
-.button.frame,
-.buttonStatic.frame {
+.button.frame {
 	display: inline-block;
 	border: 1px solid #666666;
 	box-shadow: #666666 0px 0px 1px 1px;
@@ -143,8 +141,7 @@ body {
 	color: #333333;
 	text-transform: uppercase;
 }
-.nav .button,
-.nav .buttonStatic {
+.nav .button {
 	font-size: 21px;
 	width: 200px;
 	margin: 10px 0.25em;
@@ -159,8 +156,7 @@ body {
 		right: 30px;
 	box-shadow: #666666 0px 0px 1px 1px;
 }
-#languages .button,
-#languages .buttonStatic {
+#languages .button {
 	height: 31px;
 	min-width: 45px;
 	padding: 0 5px;
@@ -170,8 +166,7 @@ body {
 	border: 1px solid #333333;
 	float: left;
 }
-#languages .button.selected,
-#languages .buttonStatic.selected {
+#languages .button.selected {
 	background-color: #333333;
 	color: white;
 }
@@ -190,8 +185,7 @@ body {
 		right: 0;
 	overflow: auto;
 }
-#events .sidebar .list .button,
-#events .sidebar .list .buttonStatic {
+#events .sidebar .list .button {
 	display: block;
 	margin: 10px 3px 10px 20px;
 }
@@ -329,7 +323,6 @@ body {
 	margin: 0 auto;
 }
 #aboutus .options .button,
-#aboutus .options .buttonStatic,
 #feedback .grid .title,
 #feedback .grid .submit {
 	float: left;
@@ -341,12 +334,10 @@ body {
 	font-size: 16px;
 	box-shadow: #666666 2px 2px 4px 0px;
 }
-#aboutus .options .button,
-#aboutus .options .buttonStatic {
+#aboutus .options .button {
 	position: relative;
 }
-#aboutus .options .button:after,
-#aboutus .options .buttonStatic:after {
+#aboutus .options .button:after {
 	content: '';
 	position: absolute;
 		top: -20px;
@@ -392,12 +383,10 @@ body {
 		top: 55px;
 		bottom: 0;
 }
-#aboutus .wrapper > .button,
-#aboutus .wrapper > .buttonStatic {
+#aboutus .wrapper > .button {
 	width: 135px;
 }
-#aboutus .wrapper > .button .preview,
-#aboutus .wrapper > .buttonStatic .preview {
+#aboutus .wrapper > .button .preview {
 	position: absolute;
 		left: 10px;
 		right: 10px;
@@ -410,8 +399,7 @@ body {
 #aboutus .wrapper .next {
 		right: 0;
 }
-#aboutus .wrapper > .button:after,
-#aboutus .wrapper > .buttonStatic:after {
+#aboutus .wrapper > .button:after {
 	content: '';
 	position: absolute;
 		top: 60%;
@@ -600,8 +588,7 @@ body {
 #feedback textarea:focus {
 	height: 100px;
 }
-#feedback .voted .button,
-#feedback .voted .buttonStatic {
+#feedback .voted .button {
 	opacity: 0.7;
 }
 #feedback .voted .vote-up.selected {
@@ -841,7 +828,6 @@ strong, b {
 #stablemenu .items .item,
 #stablemenu .items .title,
 #winelist .items .button,
-#winelist .items .buttonStatic,
 #winelist .items .title  {
 	margin-left: 8px;
 	white-space: nowrap;
@@ -899,20 +885,17 @@ strong, b {
 	box-shadow: 4px 0 15px rgba(0,0,0,0.2);
 	overflow: auto;
 }
-.second-menu .button,
-.second-menu .buttonStatic {
+.second-menu .button {
 	padding: 7px 3px;
 	position: relative;
 	font-size: 16px;
 	font-size: 24px;
 }
-.second-menu .button.selected,
-.second-menu .buttonStatic.selected {
+.second-menu .button.selected {
 	color: black;
 	text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
-.second-menu .button .subtitle,
-.second-menu .buttonStatic .subtitle {
+.second-menu .button .subtitle {
 	font-size: 20px;
 }
 .third-menu {
@@ -942,13 +925,11 @@ strong, b {
 		bottom: 0;
 	overflow: auto;
 }
-.third-menu .button,
-.third-menu .buttonStatic {
+.third-menu .button {
 	padding: 7px 3px;
 	position: relative;
 }
-.third-menu .button.selected:after,
-.third-menu .buttonStatic.selected:after {
+.third-menu .button.selected:after {
 	content: '';
 	display: block;
 	position: absolute;

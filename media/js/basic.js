@@ -5,10 +5,10 @@ $(function () {
 		currentView = '',
 		tabNotBlocked = true,
 		$slogans = $('.slogan'),
-		$buttons = $('.buttonStatic'),
+		$buttons = $('.button'),
 		$views = $('#views .view'),
 		$goHome = $('#go-home'),
-		$languages = $('#languages .buttonStatic'),
+		$languages = $('#languages .button'),
 		$window = $(window),
 		$liveButtons = $('.live-buttons'),
 		$eventsList = $('#events .list'),
@@ -21,7 +21,7 @@ $(function () {
 			'wrapper': $eventDetail.find('.wrapper'),
 			'photos': $eventDetail.find('.photos'),
 		},
-		$aboutUsOptions = $('#aboutus .options .buttonStatic'),
+		$aboutUsOptions = $('#aboutus .options .button'),
 		$aboutUsDetail = $('#aboutus .detail'),
 		$aboutUsTitle = $aboutUsDetail.find('.title'),
 		$aboutUsContent = $aboutUsDetail.find('.content'),
@@ -30,7 +30,7 @@ $(function () {
 		$feedback = $('#feedback'),
 		$feedbackForm = $feedback.find('form'),
 		$feedbackScores = $feedbackForm.find('.score'),
-		$feedbackHands = $feedbackScores.find('.buttonStatic'),
+		$feedbackHands = $feedbackScores.find('.button'),
 		$feedbackStars = $feedbackScores.find('.stars'),
 		$weeklyList = $('#weekly .list'),
 		$stableMenuAllButtons = $('#stablemenu .items'),
@@ -41,7 +41,7 @@ $(function () {
 		$stableMenuVCenter = $('#stablemenu .items .v_centre'),
 		$specialButton = $('#specialButton'),
 		$winesWrapper = $('#winelist'),
-		$winesFirstButtons = $('#winelist .left-menu .items .buttonStatic'),
+		$winesFirstButtons = $('#winelist .left-menu .items .button'),
 		$winesSeconds = $('#winelist .second-menu .s-menu'),
 		$winesFirstVCenter = $('#winelist .left-menu .v_centre'),
 		$winesSecondVCenter = $('#winelist .second-menu .v_centre'),
@@ -168,7 +168,7 @@ $(function () {
 		$feedbackScores.each(function(){
 			var $score = $(this);
 			if ($score.data('id') === $hand.data('id')) {
-				$score.find('.buttonStatic').removeClass('selected');
+				$score.find('.button').removeClass('selected');
 				return false;
 			}
 		});
@@ -209,7 +209,7 @@ $(function () {
 			$wrapper.css('margin-top',parentHeight< wrapperHeight?0:(parentHeight-wrapperHeight)/2);
 		}
 	}
-	$winesSeconds.on('tap','.button, .buttonStatic',function(){
+	$winesSeconds.on('tap','.button, .button',function(){
 		if ($winesSelectedSecond) {
 			$winesSelectedSecond.removeClass('selected');
 		}
@@ -238,19 +238,19 @@ $(function () {
 	$winesFirstButtons.on('tap',function(){
 		$winesFirstButtons.removeClass('selected');
 		$(this).addClass('selected');
-		$winesList.find('.buttonStatic').removeClass('hide');
+		$winesList.find('.button').removeClass('hide');
 	});
 	$liveButtons.on('tap','.button',function(){
 		if (tabNotBlocked) {
 			tabNotBlocked = false;
-			setTimeout(function(){tabNotBlocked = true;},150);
+			setTimeout(function(){tabNotBlocked = true;},350);
 			buttonPress($(this));
 		}
 	});
 	$buttons.on('tap',function(){
 		if (tabNotBlocked) {
 			tabNotBlocked = false;
-			setTimeout(function(){tabNotBlocked = true;},150);
+			setTimeout(function(){tabNotBlocked = true;},350);
 			buttonPress($(this));
 		}
 	});
