@@ -20,7 +20,7 @@
 			<div class="logo"></div>
 			<div class="nav">
 				<div class="f-left">
-					<span class="button frame" data-trans="0" data-action="view-vinelist"></span>
+					<span class="button frame" data-trans="0" data-action="view-winelist"></span>
 					<br>
 					<span class="button frame" data-trans="1" data-action="view-stablemenu"></span>
 					<br>
@@ -39,8 +39,108 @@
 			</div>
 			<div class="slogan" data-trans="slogan"></div>
 		</div>
-		<div class="view" data-name="vinelist">
-			<span data-trans="0"></span>
+		<div class="view" data-name="winelist" id="winelist">
+			<div class="topline"></div>
+			<div class="button expand" data-action="winesexpand"></div>
+			<div class="left-menu">
+				<div class="button header" data-action="view-home" data-trans="0"></div>
+				<div class="items">
+					<div class="v_centre">
+						<div class="button" data-trans="41" data-action="winesfirst-1"></div>
+						<div class="button" data-trans="42" data-action="winesfirst-2"></div>
+						<div class="button" data-trans="43" data-action="winesfirst-3"></div>
+						<div class="button" data-trans="44" data-action="winesfirst-4"></div>
+						<div class="button" data-trans="45" data-action="winesfirst;winesrecommended"></div>
+					</div>
+				</div>
+			</div>
+			<div class="second-menu">
+				<div class="v_centre">
+					<div class="s-menu" data-name="1">
+						<div class="button" data-action="winescolor-white" data-trans="white"></div>
+						<div class="button" data-action="winescolor-rose" data-trans="rose"></div>
+						<div class="button" data-action="winescolor-red" data-trans="red"></div>
+						<div class="button" data-action="winescolor-sekt" data-trans="sekt"></div>
+					</div>
+					<div class="s-menu" data-name="2">
+						<div class="button" data-action="winescategory-dry" data-trans="dry"></div>
+						<div class="button" data-action="winescategory-semidry" data-trans="semidry"></div>
+						<div class="button" data-action="winescategory-medium" data-trans="medium"></div>
+						<div class="button" data-action="winescategory-sweet" data-trans="sweet"></div>
+					</div>
+					<div class="s-menu live-buttons" data-name="3" id="vineyards"></div>
+					<div class="s-menu" data-name="4">
+						<div class="button complement compl1" data-action="winesgoodwith-chicken" data-trans="chicken"></div>
+						<div class="button complement compl2" data-action="winesgoodwith-beef" data-trans="beef"></div>
+						<div class="button complement compl3" data-action="winesgoodwith-pork" data-trans="pork"></div>
+						<div class="button complement compl4" data-action="winesgoodwith-fish" data-trans="fish"></div>
+						<div class="button complement compl5" data-action="winesgoodwith-venison" data-trans="venison"></div>
+					</div>
+				</div>
+			</div>
+			<div class="third-menu">
+				<div class="title" data-trans="59"></div>
+				<div class="list live-buttons"></div>
+			</div>
+			<div class="detail">
+				<div class="logo"></div>
+				<div class="intro">
+					<div class="title" data-trans="0"></div>
+					<div class="text" data-trans="60"></div>
+					<div class="slogan" data-trans="slogan"></div>
+				</div>
+				<div class="wine">
+					<div class="title">intro</div>
+					<div class="single">
+						<span class="price"></span>
+						<span data-trans="65"></span>
+					</div>
+					<div class="single">
+						<span data-trans="62"></span>
+						<span class="info availability"></span>
+					</div>
+					<div class="single">
+						<span data-trans="63"></span>
+						<span class="info color"></span>
+					</div>
+					<div class="single">
+						<span data-trans="64"></span>
+						<span class="info category"></span>
+					</div>
+					<div class="description text"></div>
+					<div>
+						<div class="subtitle" data-trans="66"></div>
+						<div class="fit"></div>
+					</div>
+					<div class="location">
+						<div class="subtitle" data-trans="67"></div>
+						<div>
+ 							<span class="place"></span>, <span class="track"></span>
+						</div>
+						<div class="place_description text"></div>
+					</div>
+					<div>
+						<div class="subtitle" data-trans="68"></div>
+						<div>
+							<span data-trans="69"></span>
+							<span class="residual_sugar"></span> g/l
+						</div>
+						<div>
+							<span data-trans="70"></span>
+							<span class="acids"></span> g/l
+						</div>
+						<div>
+							<span data-trans="71"></span>
+							<span class="alcohol"></span> %
+						</div>
+						<div>
+							<span data-trans="72"></span>
+							<span class="bezcukerny_extrakt"></span> g/l
+						</div>
+					</div>
+					<div class="image"></div>
+				</div>
+			</div>
 		</div>
 		<div class="view hasgohome" data-name="weekly" id="weekly">
 			<div class="topline"></div>
@@ -176,13 +276,15 @@
 		</div>
 		<div class="view" data-name="stablemenu" id="stablemenu">
 			<div class="topline"></div>
-			<div class="left-menu live-buttons">
+			<div class="left-menu">
 				<div class="button header" data-action="view-home" data-trans="1"></div>
-				<div class="items">
-					<div class="title" data-trans="38"></div>
-					<div class="type-f"></div>
-					<div class="title" data-trans="39"></div>
-					<div class="type-d"></div>
+				<div class="items live-buttons">
+					<div class="v_centre">
+						<div class="title" data-trans="38"></div>
+						<div class="type-f"></div>
+						<div class="title" data-trans="39"></div>
+						<div class="type-d"></div>
+					</div>
 				</div>
 			</div>
 			<div class="product">

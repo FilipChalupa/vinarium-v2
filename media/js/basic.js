@@ -22,6 +22,8 @@ $(function () {
 		},
 		$aboutUsOptions = $('#aboutus .options .button'),
 		$aboutUsDetail = $('#aboutus .detail'),
+		$aboutUsTitle = $aboutUsDetail.find('.title'),
+		$aboutUsContent = $aboutUsDetail.find('.content'),
 		aboutUsIndex = 0,
 		aboutUsSection = 'videos',
 		$feedback = $('#feedback'),
@@ -30,11 +32,23 @@ $(function () {
 		$feedbackHands = $feedbackScores.find('.button'),
 		$feedbackStars = $feedbackScores.find('.stars'),
 		$weeklyList = $('#weekly .list'),
+		$stableMenuAllButtons = $('#stablemenu .items'),
 		$stableMenuFButtons = $('#stablemenu .items .type-f'),
 		$stableMenuDButtons = $('#stablemenu .items .type-d'),
 		$stableMenuDetailTitle = $('#stablemenu .product .title'),
 		$stableMenuDetailList = $('#stablemenu .product .list'),
+		$stableMenuVCenter = $('#stablemenu .items .v_centre'),
 		$specialButton = $('#specialButton'),
+		$winesWrapper = $('#winelist'),
+		$winesFirstButtons = $('#winelist .left-menu .items .button'),
+		$winesSeconds = $('#winelist .second-menu .s-menu'),
+		$winesFirstVCenter = $('#winelist .left-menu .v_centre'),
+		$winesSecondVCenter = $('#winelist .second-menu .v_centre'),
+		$winesList = $('#winelist .third-menu .list'),
+		$vCenter = $('.v_centre'),
+		$winesSelectedSecond = false,
+		$vineyardsList = $('#vineyards'),
+		winesData = {},
 		updateTimer = false,
 		apiSource = [
 			{
@@ -76,6 +90,24 @@ $(function () {
 		],
 		apiIndexUpdate = 0,
 		ajax = false;
+	temp = $('#winelist .detail .wine');
+	$wineDetail = {
+		title: temp.find('.title'),
+		price: temp.find('.price'),
+		availability: temp.find('.availability'),
+		color: temp.find('.color'),
+		category: temp.find('.category'),
+		description: temp.find('.description'),
+		fit: temp.find('.fit'),
+		place_description: temp.find('.place_description'),
+		place: temp.find('.place'),
+		track: temp.find('.track'),
+		residual_sugar: temp.find('.residual_sugar'),
+		acids: temp.find('.acids'),
+		alcohol: temp.find('.alcohol'),
+		bezcukerny_extrakt: temp.find('.bezcukerny_extrakt'),
+		image: temp.find('.image')
+	}
 	$.each(apiSource,function(key,val) {
 		if (localStorage[val.name] === undefined) {
 			localStorage[val.name] = '[]';
@@ -107,8 +139,6 @@ $(function () {
 		return JSON.parse(localStorage[name]);
 	}
 	function setAboutContent() {
-		/*$aboutUsDetail.find('.title').text('Title');
-		$aboutUsDetail.find('.content').html('Content');*/
 		switch (aboutUsSection) {
 			case 'videos':
 				var videos = getFromStorage('videos');
@@ -118,15 +148,17 @@ $(function () {
 					} else if (aboutUsIndex < 0) {
 						aboutUsIndex = videos.length-1;
 					}
-					$aboutUsDetail.find('.title').text(videos[aboutUsIndex]['title_'+language]);
-					$aboutUsDetail.find('.content').html('<iframe width="50" height="50" src="http://www.youtube.com/embed/'+videos[aboutUsIndex]['get_code']+'" frameborder="0" allowfullscreen></iframe>');
+					$aboutUsTitle.text(videos[aboutUsIndex]['title_'+language]);
+					$aboutUsContent.html('<iframe width="50" height="50" src="http://www.youtube.com/embed/'+videos[aboutUsIndex]['get_code']+'" frameborder="0" allowfullscreen></iframe>');
 				}
 				break;
 			case 'articles':
-
+				$aboutUsTitle.text('aaa');
+				$aboutUsContent.html('bbb');
 				break;
 			case 'suggestions':
-
+				$aboutUsTitle.text('ccc');
+				$aboutUsContent.html('ddd');
 				break;
 		}
 	}
@@ -150,13 +182,13 @@ $(function () {
 			alert(lang[language][40]);
 		});
 	});
-	/*function onWindowResize() {
-
+	function onWindowResize() {
+		VCenter();
 	}
 	$window.resize(function(){
 		onWindowResize();
 	});
-	onWindowResize();*/
+	onWindowResize();
 	function replaceDots(){
 		$slogans.each(function(){
 			var $this = $(this);
@@ -164,8 +196,35 @@ $(function () {
 		});
 	}
 	replaceDots();
+	function VCenter($wrapper){
+		if (arguments.length === 0) {
+			$vCenter.each(function(){
+				VCenter($(this));
+			});
+		} else {
+			var parentHeight = $wrapper.parent().height(),
+				wrapperHeight = $wrapper.height();
+			$wrapper.css('margin-top',parentHeight< wrapperHeight?0:(parentHeight-wrapperHeight)/2);
+		}
+	}
+	$winesSeconds.on('click','.button',function(){
+		if ($winesSelectedSecond) {
+			$winesSelectedSecond.removeClass('selected');
+		}
+		$winesSelectedSecond = $(this);
+		$winesSelectedSecond.addClass('selected');
+	});
+	$winesList.on('click','.button',function(){
+		$winesWrapper.addClass('collapse');
+		$winesList.find('.selected').removeClass('selected');
+		$(this).addClass('selected');
+	});
 	$aboutUsOptions.click(function(){
 		$aboutUsOptions.removeClass('selected');
+		$(this).addClass('selected');
+	});
+	$stableMenuAllButtons.on('click','.button',function(){
+		$stableMenuAllButtons.find('.button').removeClass('selected');
 		$(this).addClass('selected');
 	});
 	$stableMenuFButtons.on('click','.button',function(){
@@ -173,6 +232,11 @@ $(function () {
 	});
 	$stableMenuDButtons.on('click','.button',function(){
 		$stableMenuDetailTitle.text($(this).text());
+	});
+	$winesFirstButtons.click(function(){
+		$winesFirstButtons.removeClass('selected');
+		$(this).addClass('selected');
+		$winesList.find('.button').removeClass('hide');
 	});
 	$liveButtons.on('click','.button',function(){
 		buttonPress($(this));
@@ -226,6 +290,8 @@ $(function () {
 					for (var i=0;i<=5;i++) {
 						$feedbackStars.removeClass('star-'+i);
 					}
+				} else if (currentView === 'winelist') {
+					$vineyardsList.empty();
 				}
 				if (param === 'home') {
 					updateHomeSpecialButton();
@@ -278,7 +344,23 @@ $(function () {
 						$.each(getFromStorage('menu_d'),function(key,val){
 							$stableMenuDButtons.append('<div class="item button" data-action="stablegroup-'+val.id+'">'+val['name_'+language]+'</div>');
 						});
+						setTimeout(function(){
+							VCenter($stableMenuVCenter);
+						},20);
 						$stableMenuFButtons.find('.button:first').first().trigger('click');
+					} else if (param === 'winelist') {
+						$winesFirstButtons.first().trigger('click');
+						var data = getFromStorage('vineyards');
+						$.each(data,function(key,val){
+							$vineyardsList.append('<div class="button" data-action="winesvineyard-'+val.id+'">'+val['region_'+language]+'<div class="subtitle">'+val['name_'+language]+'</div></div>');
+						});
+						winesData = getFromStorage('wines');
+						$.each(winesData,function(key,val){
+							$winesList.append('<div class="button" data-action="winedetail-'+key+'" data-index="'+key+'">'+val['name_'+language]+'</div>');
+						});
+						setTimeout(function(){
+							VCenter($winesFirstVCenter);
+						},20);
 					}
 				}
 				currentView = param;
@@ -316,8 +398,8 @@ $(function () {
 				break;
 			case 'aboutgroup':
 				aboutUsIndex = 0;
-				setAboutContent();
 				aboutUsSection = param;
+				setAboutContent();
 				break;
 			case 'about':
 				if (param === 'prev') {
@@ -331,6 +413,71 @@ $(function () {
 			case 'feedbacksubmit':
 				$feedbackForm.submit();
 				break;
+			case 'winesfirst':
+				if ($winesSelectedSecond) {
+					$winesSelectedSecond.removeClass('selected');
+				}
+				$winesSeconds.each(function(){
+					var $this = $(this);
+					$this.toggleClass('show',$this.data('name') == param);
+				});
+				setTimeout(function(){
+					VCenter($winesSecondVCenter);
+				},20);
+				break;
+			case 'winedetail':
+				$wineDetail.title.text(winesData[param]['name_'+language]);
+				$wineDetail.price.text(winesData[param].price);
+				if (winesData[param].available) {
+					$wineDetail.availability.text(lang[language][46]+' ('+lang[language][61]+': '+winesData[param].bottles+')');
+				} else {
+					$wineDetail.availability.text(lang[language][47]);
+				}
+				$wineDetail.color.text(lang[language][winesData[param].color]);
+				$wineDetail.category.text(lang[language][winesData[param].category]);
+				$wineDetail.description.html(winesData[param]['description_'+language].replace(/\n/g, "<br>"));
+				temp = [];
+				if (winesData[param].get_recommended_food == '') {
+					temp.push(lang[language][48]);
+				} else {
+					$.each(winesData[param].get_recommended_food,function(key,val){
+						temp.push(lang[language][val]);
+					});
+				}
+				$wineDetail.fit.text(temp.join(', '));
+				$wineDetail.place_description.html(winesData[param].vineyard['region_description_'+language].replace(/\n/g, "<br>"));
+				$wineDetail.place.text(winesData[param].vineyard['region_'+language]);
+				$wineDetail.track.text(winesData[param].vineyard['name_'+language]);
+				if (winesData[param].bezcukerny_extrakt) {
+					$wineDetail.bezcukerny_extrakt.text(winesData[param].bezcukerny_extrakt);
+					$wineDetail.bezcukerny_extrakt.parent().removeClass('hide');
+				} else {
+					$wineDetail.bezcukerny_extrakt.parent().addClass('hide');
+				}
+				if (winesData[param].residual_sugar) {
+					$wineDetail.residual_sugar.text(winesData[param].residual_sugar);
+					$wineDetail.residual_sugar.parent().removeClass('hide');
+				} else {
+					$wineDetail.residual_sugar.parent().addClass('hide');
+				}
+				if (winesData[param].acids) {
+					$wineDetail.acids.text(winesData[param].acids);
+					$wineDetail.acids.parent().removeClass('hide');
+				} else {
+					$wineDetail.acids.parent().addClass('hide');
+				}
+				if (winesData[param].alcohol) {
+					$wineDetail.alcohol.text(winesData[param].alcohol);
+					$wineDetail.alcohol.parent().removeClass('hide');
+				} else {
+					$wineDetail.alcohol.parent().addClass('hide');
+				}
+				if (winesData[param].main_photo) {
+					$wineDetail.image.html('<img src="'+homepage+winesData[param].main_photo+'">');
+				} else {
+					$wineDetail.image.html('');
+				}
+				break;
 			case 'vote':
 				$feedbackScores.each(function(){
 					var $this = $(this);
@@ -339,6 +486,50 @@ $(function () {
 					}
 				});
 				break;
+			case 'winesexpand':
+				$winesWrapper.removeClass('collapse');
+				$winesList.find('.selected').removeClass('selected');
+				$winesFirstButtons.removeClass('selected');
+				$winesList.find('.button').removeClass('hide');
+				$winesFirstButtons.first().trigger('click');
+				break;
+
+			case 'winesrecommended':
+				var $wines = $winesList.find('.button');
+				$wines.each(function(){
+					var $this = $(this);
+					$this.toggleClass('hide',winesData[$this.data('index')].recommended === false);
+				});
+				break;
+			case 'winescolor':
+				var $wines = $winesList.find('.button');
+				$wines.each(function(){
+					var $this = $(this);
+					$this.toggleClass('hide',winesData[$this.data('index')].color !== param);
+				});
+				break;
+			case 'winescategory':
+				var $wines = $winesList.find('.button');
+				$wines.each(function(){
+					var $this = $(this);
+					$this.toggleClass('hide',winesData[$this.data('index')].category !== param);
+				});
+				break;
+			case 'winesgoodwith':
+				var $wines = $winesList.find('.button');
+				$wines.each(function(){
+					var $this = $(this);
+					$this.toggleClass('hide',winesData[$this.data('index')].get_recommended_food.indexOf(param) === -1);
+				});
+				break;
+			case 'winesvineyard':
+				var $wines = $winesList.find('.button');
+				$wines.each(function(){
+					var $this = $(this);
+					$this.toggleClass('hide',winesData[$this.data('index')].vineyard.id != param);
+				});
+				break;
+
 			case 'stablegroup':
 				$stableMenuDetailList.text(lang[language][25]);
 				if (ajax) {
@@ -415,7 +606,6 @@ $(function () {
 	$(document).keyup(function(e) {
 		if ($slideshow.this.hasClass('show')) {
 			if (e.keyCode === 27) {//escape
-				console.log('esc');
 				$slideshow.close.trigger('click');
 			} else if (e.keyCode === 37) { // left
 				gallerySwiper.swipePrev();
@@ -444,6 +634,6 @@ $(function () {
 		gallerySwiper.swipeTo(targetIndex,0);
 		checkSlideshowArrows();
 	});
-
 	//slideshow end
+	
 });
