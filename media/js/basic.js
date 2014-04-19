@@ -245,6 +245,8 @@ $(function () {
 			tabNotBlocked = false;
 			setTimeout(function(){tabNotBlocked = true;},150);
 			buttonPress($(this));
+		} else {
+			alert('double a');
 		}
 	});
 	$buttons.on('tap',function(){
@@ -252,6 +254,8 @@ $(function () {
 			tabNotBlocked = false;
 			setTimeout(function(){tabNotBlocked = true;},150);
 			buttonPress($(this));
+		} else {
+			alert('double b');
 		}
 	});
 	function buttonPress($this) {
