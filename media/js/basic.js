@@ -153,12 +153,12 @@ $(function () {
 				}
 				break;
 			case 'articles':
-				$aboutUsTitle.text('aaa');
-				$aboutUsContent.html('bbb');
+				$aboutUsTitle.text('');
+				$aboutUsContent.html('');
 				break;
 			case 'suggestions':
-				$aboutUsTitle.text('ccc');
-				$aboutUsContent.html('ddd');
+				$aboutUsTitle.text('');
+				$aboutUsContent.html('');
 				break;
 		}
 	}
@@ -349,7 +349,6 @@ $(function () {
 						},20);
 						$stableMenuFButtons.find('.button:first').first().trigger('click');
 					} else if (param === 'winelist') {
-						$winesFirstButtons.first().trigger('click');
 						var data = getFromStorage('vineyards');
 						$.each(data,function(key,val){
 							$vineyardsList.append('<div class="button" data-action="winesvineyard-'+val.id+'">'+val['region_'+language]+'<div class="subtitle">'+val['name_'+language]+'</div></div>');
@@ -360,6 +359,7 @@ $(function () {
 						});
 						setTimeout(function(){
 							VCenter($winesFirstVCenter);
+							$winesFirstButtons.first().trigger('click');
 						},20);
 					}
 				}
@@ -421,9 +421,7 @@ $(function () {
 					var $this = $(this);
 					$this.toggleClass('show',$this.data('name') == param);
 				});
-				setTimeout(function(){
-					VCenter($winesSecondVCenter);
-				},20);
+				VCenter($winesSecondVCenter);
 				break;
 			case 'winedetail':
 				$wineDetail.title.text(winesData[param]['name_'+language]);
