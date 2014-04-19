@@ -3,6 +3,7 @@ $(function () {
 		language = 'cs',
 		temp,
 		currentView = '',
+		tabNotBlocked = true,
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
 		$views = $('#views .view'),
@@ -240,12 +241,18 @@ $(function () {
 		$winesList.find('.button').removeClass('hide');
 	});
 	$liveButtons.on('tap','.button',function(){
-		event.stopPropagation();
-		buttonPress($(this));
+		if (tabNotBlocked) {
+			tabNotBlocked = false;
+			setTimeout(function(){tabNotBlocked = true;},50);
+			buttonPress($(this));
+		}
 	});
 	$buttons.on('tap',function(){
-		event.stopPropagation();
-		buttonPress($(this));
+		if (tabNotBlocked) {
+			tabNotBlocked = false;
+			setTimeout(function(){tabNotBlocked = true;},50);
+			buttonPress($(this));
+		}
 	});
 	function buttonPress($this) {
 		var actions = $this.data('action').split(';');
@@ -594,7 +601,6 @@ $(function () {
 		$slideshow.prev.toggleClass('nomore',currentSlide === gallerySwiper.getFirstSlide());
 	}
 	$slideshow.close.on('tap',function(){
-		event.stopPropagation();
 		gallerySwiper.removeAllSlides();
 		gallerySwiper.reInit();
 		$slideshow.this.removeClass('show');
