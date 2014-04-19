@@ -3,7 +3,6 @@ $(function () {
 		language = 'cs',
 		temp,
 		currentView = '',
-		tabNotBlocked = true,
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
 		$views = $('#views .view'),
@@ -241,18 +240,10 @@ $(function () {
 		$winesList.find('.button').removeClass('hide');
 	});
 	$liveButtons.on('tap','.button',function(){
-		if (tabNotBlocked) {
-			tabNotBlocked = false;
-			//setTimeout(function(){tabNotBlocked = true;},350);
-			buttonPress($(this));
-		}
+		buttonPress($(this));
 	});
 	$buttons.on('tap',function(){
-		if (tabNotBlocked) {
-			tabNotBlocked = false;
-			//setTimeout(function(){tabNotBlocked = true;},350);
-			buttonPress($(this));
-		}
+		buttonPress($(this));
 	});
 	function buttonPress($this) {
 		var actions = $this.data('action').split(';');
