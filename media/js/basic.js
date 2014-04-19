@@ -3,6 +3,7 @@ $(function () {
 		language = 'cs',
 		temp,
 		currentView = '',
+		isStartingAjax = false,
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
 		$views = $('#views .view'),
@@ -530,22 +531,26 @@ $(function () {
 				break;
 
 			case 'stablegroup':
-				$stableMenuDetailList.text(lang[language][25]);
-				if (ajax) {
-					ajax.abort();
-				}
-				ajax = $.getJSON( homepage + '/cs/api/menu_detail/'+param, function(data) {
-					$stableMenuDetailList.empty();
-					$.each(data, function(index, val) {
-						$stableMenuDetailList.append('<div class="item">'+val['name_'+language]+'<span class="price">'+val.price+',-</span></div>'); 
+				if (isStartingAjax === false) {
+					isStartingAjax = true;
+					setTimeout(function(){isStartingAjax = false;},100);
+					$stableMenuDetailList.text(lang[language][25]);
+					if (ajax) {
+						ajax.abort();
+					}
+					ajax = $.getJSON( homepage + '/cs/api/menu_detail/'+param, function(data) {
+						$stableMenuDetailList.empty();
+						$.each(data, function(index, val) {
+							$stableMenuDetailList.append('<div class="item">'+val['name_'+language]+'<span class="price">'+val.price+',-</span></div>'); 
+						});
+					})
+					.fail(function() {
+						$stableMenuDetailList.text(lang[language][26]);
+					})
+					.always(function() {
+						ajax = false;
 					});
-				})
-				.fail(function() {
-					$stableMenuDetailList.text(lang[language][26]);
-				})
-				.always(function() {
-					ajax = false;
-				});
+				}
 				break;
 			default:
 				alert(name + ' - ' + param);
