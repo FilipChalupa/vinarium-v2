@@ -176,6 +176,7 @@ $(function () {
 	$feedbackForm.submit(function(event){
 		event.preventDefault();
 		$.post( homepage+'/api/process_feedback', $feedbackForm.serializeArray(),function(data) {
+			alert(lang[language][49]);
 			action('view','feedback');
 		})
 		.fail(function() {
@@ -239,7 +240,7 @@ $(function () {
 		$winesList.find('.button').removeClass('hide');
 	});
 	$liveButtons.on('tap','.button',function(){
-		buttonPress($(this));
+		//buttonPress($(this));
 	});
 	$buttons.on('tap',function(){
 		buttonPress($(this));
@@ -535,9 +536,8 @@ $(function () {
 				}
 				ajax = $.getJSON( homepage + '/cs/api/menu_detail/'+param, function(data) {
 					$stableMenuDetailList.empty();
-					xx++;
 					$.each(data, function(index, val) {
-						$stableMenuDetailList.append((xx)+'<div class="item">'+val['name_'+language]+'<span class="price">'+val.price+',-</span></div>'); 
+						$stableMenuDetailList.append('<div class="item">'+val['name_'+language]+'<span class="price">'+val.price+',-</span></div>'); 
 					});
 				})
 				.fail(function() {
@@ -551,7 +551,6 @@ $(function () {
 				alert(name + ' - ' + param);
 		}
 	}
-	var xx = 0;
 	action('view','home','noHistory');
 	function handleHash() {
 		var hash = window.location.hash.substring(1),
