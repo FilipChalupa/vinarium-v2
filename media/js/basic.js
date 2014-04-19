@@ -5,10 +5,10 @@ $(function () {
 		currentView = '',
 		tabNotBlocked = true,
 		$slogans = $('.slogan'),
-		$buttons = $('.button'),
+		$buttons = $('.buttonStatic'),
 		$views = $('#views .view'),
 		$goHome = $('#go-home'),
-		$languages = $('#languages .button'),
+		$languages = $('#languages .buttonStatic'),
 		$window = $(window),
 		$liveButtons = $('.live-buttons'),
 		$eventsList = $('#events .list'),
@@ -21,7 +21,7 @@ $(function () {
 			'wrapper': $eventDetail.find('.wrapper'),
 			'photos': $eventDetail.find('.photos'),
 		},
-		$aboutUsOptions = $('#aboutus .options .button'),
+		$aboutUsOptions = $('#aboutus .options .buttonStatic'),
 		$aboutUsDetail = $('#aboutus .detail'),
 		$aboutUsTitle = $aboutUsDetail.find('.title'),
 		$aboutUsContent = $aboutUsDetail.find('.content'),
@@ -30,7 +30,7 @@ $(function () {
 		$feedback = $('#feedback'),
 		$feedbackForm = $feedback.find('form'),
 		$feedbackScores = $feedbackForm.find('.score'),
-		$feedbackHands = $feedbackScores.find('.button'),
+		$feedbackHands = $feedbackScores.find('.buttonStatic'),
 		$feedbackStars = $feedbackScores.find('.stars'),
 		$weeklyList = $('#weekly .list'),
 		$stableMenuAllButtons = $('#stablemenu .items'),
@@ -41,7 +41,7 @@ $(function () {
 		$stableMenuVCenter = $('#stablemenu .items .v_centre'),
 		$specialButton = $('#specialButton'),
 		$winesWrapper = $('#winelist'),
-		$winesFirstButtons = $('#winelist .left-menu .items .button'),
+		$winesFirstButtons = $('#winelist .left-menu .items .buttonStatic'),
 		$winesSeconds = $('#winelist .second-menu .s-menu'),
 		$winesFirstVCenter = $('#winelist .left-menu .v_centre'),
 		$winesSecondVCenter = $('#winelist .second-menu .v_centre'),
@@ -168,7 +168,7 @@ $(function () {
 		$feedbackScores.each(function(){
 			var $score = $(this);
 			if ($score.data('id') === $hand.data('id')) {
-				$score.find('.button').removeClass('selected');
+				$score.find('.buttonStatic').removeClass('selected');
 				return false;
 			}
 		});
@@ -209,7 +209,7 @@ $(function () {
 			$wrapper.css('margin-top',parentHeight< wrapperHeight?0:(parentHeight-wrapperHeight)/2);
 		}
 	}
-	$winesSeconds.on('tap','.button',function(){
+	$winesSeconds.on('tap','.button, .buttonStatic',function(){
 		if ($winesSelectedSecond) {
 			$winesSelectedSecond.removeClass('selected');
 		}
@@ -238,15 +238,13 @@ $(function () {
 	$winesFirstButtons.on('tap',function(){
 		$winesFirstButtons.removeClass('selected');
 		$(this).addClass('selected');
-		$winesList.find('.button').removeClass('hide');
+		$winesList.find('.buttonStatic').removeClass('hide');
 	});
 	$liveButtons.on('tap','.button',function(){
 		if (tabNotBlocked) {
 			tabNotBlocked = false;
 			setTimeout(function(){tabNotBlocked = true;},150);
 			buttonPress($(this));
-		} else {
-			alert('double a');
 		}
 	});
 	$buttons.on('tap',function(){
@@ -254,8 +252,6 @@ $(function () {
 			tabNotBlocked = false;
 			setTimeout(function(){tabNotBlocked = true;},150);
 			buttonPress($(this));
-		} else {
-			alert('double b');
 		}
 	});
 	function buttonPress($this) {
@@ -361,7 +357,7 @@ $(function () {
 						setTimeout(function(){
 							VCenter($stableMenuVCenter);
 						},20);
-						$stableMenuFButtons.find('.button:first').first().trigger('tap');
+						$stableMenuAllButtons.find('.button:first').first().trigger('tap');
 					} else if (param === 'winelist') {
 						var data = getFromStorage('vineyards');
 						$.each(data,function(key,val){
