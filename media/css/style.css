@@ -982,6 +982,14 @@ strong, b {
 #winelist .detail .wine {
 	display: none;
 }
+#winelist .detail .wine .wrapper {
+	position: absolute;
+		top: 200px;
+		bottom: 0;
+		left: 445px;
+		right: 0;
+	overflow: auto;
+}
 #winelist.collapse .detail .wine {
 	display: block;
 }
