@@ -126,6 +126,7 @@ $(function () {
 	function updateHomeSpecialButton() {
 		$specialButton.toggleClass('hide',getFromStorage('special').length === 0);
 	}
+	alert('testStart');
 	function updateData() {
 		updateTimer = setTimeout(function(){
 			if (apiSource[apiIndexUpdate] === undefined) {
