@@ -311,6 +311,9 @@ $(function () {
 				} else if (currentView === 'specials') {
 					$specialsTitle.empty();
 					$specialsList.empty();
+				} else if (currentView === 'aboutus') {
+					$aboutUsTitle.empty();
+					$aboutUsContent.empty();
 				}
 				if (param === 'home') {
 					updateHomeSpecialButton();
