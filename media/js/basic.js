@@ -48,6 +48,8 @@ $(function () {
 		$vCenter = $('.v_centre'),
 		$winesSelectedSecond = false,
 		$vineyardsList = $('#vineyards'),
+		$specialsTitle = $('#specials .title'),
+		$specialsList = $('#specials .list'),
 		winesData = {},
 		updateTimer = false,
 		apiSource = [
@@ -73,7 +75,7 @@ $(function () {
 			},
 			{
 				'name': 'special',
-				'url': '/cs/api/special_offer/'
+				'url': '/cs/apixxx/special_offer/'
 			},
 			{
 				'name': 'menu_f',
@@ -136,7 +138,12 @@ $(function () {
 		},500);
 	}
 	function getFromStorage(name) {
-		return JSON.parse(localStorage[name]);
+		try {
+			var data = JSON.parse(localStorage[name]);
+			return data?data:[];
+		} catch (e) {
+			return [];
+		}
 	}
 	function setAboutContent() {
 		switch (aboutUsSection) {
@@ -293,6 +300,9 @@ $(function () {
 					}
 				} else if (currentView === 'winelist') {
 					$vineyardsList.empty();
+				} else if (currentView === 'specials') {
+					$specialsTitle.empty();
+					$specialsList.empty();
 				}
 				if (param === 'home') {
 					updateHomeSpecialButton();
@@ -325,8 +335,6 @@ $(function () {
 							var $this = $(this);
 							$this.addClass('star-'+Math.round(data[$this.data('name')+'__avg']));
 						});
-					} else if (param === 'specials') {
-						
 					} else if (param === 'weekly') {
 						$.each(getFromStorage('weekly_offer'),function(key,val){
 							$weeklyList.append('<div class="day">'+lang[language][27+val.day]+'</div>');
@@ -362,6 +370,13 @@ $(function () {
 							VCenter($winesFirstVCenter);
 							$winesFirstButtons.first().trigger('tap');
 						},20);
+					} else if (param === 'specials') {
+						var data = getFromStorage('special')[0];
+						console.log(data['title_'+language]);
+						$specialsTitle.text(data['title_'+language]);
+						$.each(data.get_food,function(key,val){
+							$specialsList.append('<div class="item">'+val.name+'<span class="price">'+val.price+',-</span></div>');
+						});
 					}
 				}
 				currentView = param;

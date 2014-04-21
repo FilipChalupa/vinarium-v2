@@ -314,7 +314,8 @@ body {
 }
 #aboutus .logo,
 #feedback .logo,
-#weekly .logo {
+#weekly .logo,
+#specials .logo {
 	margin: 30px 0 40px 0;
 	height: 150px;
 }
@@ -427,16 +428,9 @@ body {
 	box-shadow: 4px 0 15px rgba(0,0,0,0.5);
 	z-index: 8;
 }
-#specials .left-menu {
-	width: 400px;
-}
 #stablemenu .left-menu,
 #winelist .left-menu {
 	width: 250px;
-}
-#specials .product {
-	padding-left: 400px;
-	margin: 50px auto 0 auto;
 }
 .left-menu .items {
 	background-color: #CCCCCC;
@@ -773,7 +767,12 @@ body {
 	max-height: 100%;
 }
 /*slideshow end*/
-#weekly .list {
+#weekly .sub,
+#specials .title {
+	padding: 3px 90px;
+}
+#weekly .list,
+#specials .list {
 	max-width: 600px;
 	margin: 0 auto;
 	padding: 15px 90px;
@@ -784,6 +783,7 @@ body {
 	margin: 20px 0 10px -10px;
 	font-weight: bold;
 }
+#specials .item,
 #weekly .soup,
 #weekly .meal,
 #stablemenu .product .item {
@@ -794,6 +794,7 @@ body {
 	padding: 5px 50px 5px 0;
 	position: relative;
 }
+#specials .price,
 #weekly .price,
 #stablemenu .product .price {
 	position: absolute;
@@ -1065,3 +1066,7 @@ strong, b {
 .compl4.selected:after {background-position: -168px -56px;}
 .compl5.selected:after {background-position: -224px -56px;}
 .compl6.selected:after {background-position: -280px -56px;}
+#specials .title {
+	text-transform: uppercase;
+	font-size: 30px;
+}
