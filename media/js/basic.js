@@ -136,11 +136,10 @@ $(function () {
 				if (apiSource[apiIndexUpdate].name === 'special') {
 					updateHomeSpecialButton();
 				}
+				alert('ok '+apiSource[apiIndexUpdate].name);
 			})
-			.error(function(request, status, error){
-				alert(request);
-				alert(status);
-				alert(error);
+			.fail(function(jqXHR, textStatus, errorThrown){
+				alert(textStatus);
 			})
 			.always(function() {
 				apiIndexUpdate++;
