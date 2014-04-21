@@ -137,6 +137,11 @@ $(function () {
 					updateHomeSpecialButton();
 				}
 			})
+			.error(function(request, status, error){
+				alert(request);
+				alert(status);
+				alert(error);
+			})
 			.always(function() {
 				apiIndexUpdate++;
 				if (updateTimer !== false) {
