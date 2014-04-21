@@ -11,6 +11,7 @@
         Food icons from http://www.visualpharm.com
     </description>
     <feature name="http://api.phonegap.com/1.0/network"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     
     <preference name="phonegap-version" value="3.3.0" />
     <preference name="fullscreen" value="true" />
