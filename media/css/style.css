@@ -419,6 +419,17 @@ body {
 #aboutus .wrapper .content {
 		right: 142px;
 		left: 142px;
+	overflow: hidden;
+}
+#aboutus .wrapper .content > .texty {
+	text-align: left;
+	padding: 15px;
+	overflow: auto;
+	position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 }
 .left-menu {
 	position: absolute;
@@ -990,6 +1001,7 @@ strong, b {
 		left: 445px;
 		right: 0;
 	overflow: auto;
+	padding-bottom: 10px;
 }
 #winelist.collapse .detail .wine {
 	display: block;

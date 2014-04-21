@@ -75,7 +75,7 @@ $(function () {
 			},
 			{
 				'name': 'special',
-				'url': '/cs/apixxx/special_offer/'
+				'url': '/cs/api/special_offer/'
 			},
 			{
 				'name': 'menu_f',
@@ -88,6 +88,14 @@ $(function () {
 			{
 				'name': 'feedbackScores',
 				'url': '/api/average_feedback'
+			},
+			{
+				'name': 'articles',
+				'url': '/cs/api/blogposts/app'
+			},
+			{
+				'name': 'advices',
+				'url': '/cs/api/blogposts/advice'
 			}
 		],
 		apiIndexUpdate = 0,
@@ -146,27 +154,27 @@ $(function () {
 		}
 	}
 	function setAboutContent() {
-		switch (aboutUsSection) {
-			case 'videos':
-				var videos = getFromStorage('videos');
-				if (videos.length !== 0) {
-					if (aboutUsIndex >= videos.length) {
-						aboutUsIndex = 0;
-					} else if (aboutUsIndex < 0) {
-						aboutUsIndex = videos.length-1;
-					}
-					$aboutUsTitle.text(videos[aboutUsIndex]['title_'+language]);
-					$aboutUsContent.html('<iframe width="50" height="50" src="http://www.youtube.com/embed/'+videos[aboutUsIndex]['get_code']+'" frameborder="0" allowfullscreen></iframe>');
-				}
-				break;
-			case 'articles':
-				$aboutUsTitle.text('');
-				$aboutUsContent.html('');
-				break;
-			case 'suggestions':
-				$aboutUsTitle.text('');
-				$aboutUsContent.html('');
-				break;
+		var data = getFromStorage(aboutUsSection);
+		if (data.length !== 0) {
+			if (aboutUsIndex >= data.length) {
+				aboutUsIndex = 0;
+			} else if (aboutUsIndex < 0) {
+				aboutUsIndex = data.length-1;
+			}
+			switch (aboutUsSection) {
+				case 'videos':
+					$aboutUsTitle.text(data[aboutUsIndex]['title_'+language]);
+					$aboutUsContent.html('<iframe width="50" height="50" src="http://www.youtube.com/embed/'+data[aboutUsIndex]['get_code']+'" frameborder="0" allowfullscreen></iframe>');
+					break;
+				case 'articles':
+				case 'advices':
+					$aboutUsTitle.text(data[aboutUsIndex]['title_'+language] + ' ('+data[aboutUsIndex].pub_time+')');
+					$aboutUsContent.html('<div class="texty">'+data[aboutUsIndex]['content_'+language]+'</div>');
+					break;
+			}
+		} else {
+			$aboutUsTitle.text(lang[language][50]);
+			$aboutUsContent.empty();
 		}
 	}
 	$feedbackHands.on('tap',function(){
