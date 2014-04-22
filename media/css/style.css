@@ -1111,34 +1111,3 @@ strong, b {
 	text-transform: uppercase;
 	font-size: 30px;
 }
-
-
-.tester {
-	margin: 50px auto;
-	width: 100px;
-	height: 100px;
-	position: relative;
-	border: 1px solid black;
-}
-.tester:focus {
-	background-color: blue;
-}
-.tester:before,
-.tester:after {
-	display: none;
-	content: '';
-	position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-	height: 40px;
-	background-color: red;
-}
-.tester:after {
-	background-color: yellow;
-		top: 60px;
-}
-.tester:hover:before,
-.tester:active:after {
-	display: block;
-}
