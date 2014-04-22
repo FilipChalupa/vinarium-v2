@@ -925,6 +925,9 @@ strong, b {
 	font-size: 16px;
 	font-size: 24px;
 }
+.second-menu .button:hover {
+	text-decoration: underline;
+}
 .second-menu .button.selected {
 	color: black;
 	text-shadow: 0 0 10px rgba(0,0,0,0.5);
