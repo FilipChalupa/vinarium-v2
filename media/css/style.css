@@ -122,6 +122,9 @@ body {
 #go-home.show {
 	display: inline-block;
 }
+#go-home:hover {
+	background-color: black;
+}
 .logo {
 	background-image: url(../images/logo.png);
 	background-size: contain;
@@ -140,6 +143,9 @@ body {
 	margin: 0.25em;
 	color: #333333;
 	text-transform: uppercase;
+}
+.button.frame:hover {
+	background-color: rgba(186, 196, 5, 0.5)
 }
 .nav .button {
 	font-size: 21px;
@@ -188,6 +194,7 @@ body {
 #events .sidebar .list .button {
 	display: block;
 	margin: 10px 3px 10px 20px;
+	padding: 0.8em 0.5em;
 }
 #events .sidebar .title {
 	margin: 10px 0 10px 20px;
@@ -208,6 +215,9 @@ body {
 	font-size: 20px;
 	height: 22px;
 	line-height: 22px;
+}
+.header:hover {
+	text-decoration: underline;
 }
 #events .detail {
 	background-image: url(../images/trans_pattern.png);
@@ -411,10 +421,16 @@ body {
 	background-repeat: none;
 }
 #aboutus .wrapper .prev:after {
-		background-image: url(../images/about_arrow_prev.png);
+	background-image: url(../images/about_arrow_prev.png);
 }
 #aboutus .wrapper .next:after {
-		background-image: url(../images/about_arrow_next.png);
+	background-image: url(../images/about_arrow_next.png);
+}
+#aboutus .wrapper .prev:hover:after {
+	margin-left: -20px;
+}
+#aboutus .wrapper .next:hover:after {
+	margin-left: 0;
 }
 #aboutus .wrapper .content {
 		right: 142px;
@@ -459,6 +475,9 @@ body {
 }
 .left-menu .items .item {
 	padding: 10px;
+}
+.left-menu .button:hover {
+	text-decoration: underline;
 }
 .left-menu .items .thumb,
 .left-menu .items .item > span {

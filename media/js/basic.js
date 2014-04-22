@@ -177,7 +177,7 @@ $(function () {
 			$aboutUsContent.empty();
 		}
 	}
-	$feedbackHands.on('tap',function(){
+	$feedbackHands.on('click',function(){
 		var $hand = $(this);
 		$feedbackScores.each(function(){
 			var $score = $(this);
@@ -223,41 +223,41 @@ $(function () {
 			$wrapper.css('margin-top',parentHeight< wrapperHeight?0:(parentHeight-wrapperHeight)/2);
 		}
 	}
-	$winesSeconds.on('tap','.button, .button',function(){
+	$winesSeconds.on('click','.button, .button',function(){
 		if ($winesSelectedSecond) {
 			$winesSelectedSecond.removeClass('selected');
 		}
 		$winesSelectedSecond = $(this);
 		$winesSelectedSecond.addClass('selected');
 	});
-	$winesList.on('tap','.button',function(){
+	$winesList.on('click','.button',function(){
 		$winesWrapper.addClass('collapse');
 		$winesList.find('.selected').removeClass('selected');
 		$(this).addClass('selected');
 	});
-	$aboutUsOptions.on('tap',function(){
+	$aboutUsOptions.on('click',function(){
 		$aboutUsOptions.removeClass('selected');
 		$(this).addClass('selected');
 	});
-	$stableMenuAllButtons.on('tap','.button',function(){
+	$stableMenuAllButtons.on('click','.button',function(){
 		$stableMenuAllButtons.find('.button').removeClass('selected');
 		$(this).addClass('selected');
 	});
-	$stableMenuFButtons.on('tap','.button',function(){
+	$stableMenuFButtons.on('click','.button',function(){
 		$stableMenuDetailTitle.text($(this).text());
 	});
-	$stableMenuDButtons.on('tap','.button',function(){
+	$stableMenuDButtons.on('click','.button',function(){
 		$stableMenuDetailTitle.text($(this).text());
 	});
-	$winesFirstButtons.on('tap',function(){
+	$winesFirstButtons.on('click',function(){
 		$winesFirstButtons.removeClass('selected');
 		$(this).addClass('selected');
 		$winesList.find('.button').removeClass('hide');
 	});
-	$liveButtons.on('tap','.button',function(){
+	$liveButtons.on('click','.button',function(){
 		buttonPress($(this));
 	});
-	$buttons.on('tap',function(){
+	$buttons.on('click',function(){
 		buttonPress($(this));
 	});
 	function buttonPress($this) {
@@ -334,9 +334,9 @@ $(function () {
 								$eventsListUpcoming.append(html);
 							}
 						});
-						$eventsList.find('.button:first').trigger('tap');
+						$eventsList.find('.button:first').trigger('click');
 					} else if (param === 'aboutus') {
-						$aboutUsOptions.first().trigger('tap');
+						$aboutUsOptions.first().trigger('click');
 					} else if (param === 'feedback') {
 						$feedbackHands.removeClass('selected');
 						$feedbackScores.removeClass('voted');
@@ -367,7 +367,7 @@ $(function () {
 						setTimeout(function(){
 							VCenter($stableMenuVCenter);
 						},20);
-						$stableMenuAllButtons.find('.button:first').first().trigger('tap');
+						$stableMenuAllButtons.find('.button:first').first().trigger('click');
 					} else if (param === 'winelist') {
 						var data = getFromStorage('vineyards');
 						$.each(data,function(key,val){
@@ -379,7 +379,7 @@ $(function () {
 						});
 						setTimeout(function(){
 							VCenter($winesFirstVCenter);
-							$winesFirstButtons.first().trigger('tap');
+							$winesFirstButtons.first().trigger('click');
 						},20);
 					} else if (param === 'specials') {
 						var data = getFromStorage('special')[0];
@@ -516,7 +516,7 @@ $(function () {
 				$winesList.find('.selected').removeClass('selected');
 				$winesFirstButtons.removeClass('selected');
 				$winesList.find('.button').removeClass('hide');
-				$winesFirstButtons.first().trigger('tap');
+				$winesFirstButtons.first().trigger('click');
 				break;
 
 			case 'winesrecommended':
@@ -617,21 +617,21 @@ $(function () {
 		$slideshow.next.toggleClass('nomore',currentSlide === gallerySwiper.getLastSlide());
 		$slideshow.prev.toggleClass('nomore',currentSlide === gallerySwiper.getFirstSlide());
 	}
-	$slideshow.close.on('tap',function(){
+	$slideshow.close.on('click',function(){
 		gallerySwiper.removeAllSlides();
 		gallerySwiper.reInit();
 		$slideshow.this.removeClass('show');
 	});
-	$slideshow.next.on('tap',function(){
+	$slideshow.next.on('click',function(){
 		gallerySwiper.swipeNext();
 	});
-	$slideshow.prev.on('tap',function(){
+	$slideshow.prev.on('click',function(){
 		gallerySwiper.swipePrev();
 	});
 	$(document).keyup(function(e) {
 		if ($slideshow.this.hasClass('show')) {
 			if (e.keyCode === 27) {//escape
-				$slideshow.close.trigger('tap');
+				$slideshow.close.trigger('click');
 			} else if (e.keyCode === 37) { // left
 				gallerySwiper.swipePrev();
 			} else if(e.keyCode === 39) { // right
@@ -639,7 +639,7 @@ $(function () {
 			}
 		}
 	});
-	$galleryWrappers.on('tap','.galleryItem',function(){
+	$galleryWrappers.on('click','.galleryItem',function(){
 		$slideshow.this.addClass('show');
 		var $selected = $(this),
 			$all = $selected.closest('.galleryWrapper').find('.galleryItem'),
