@@ -169,12 +169,15 @@ body {
 	line-height: 31px;
 	color: #292929;
 	font-size: 21px;
-	border: 1px solid #333333;
 	float: left;
+	color: #292929;
 }
 #languages .button.selected {
 	background-color: #333333;
 	color: white;
+}
+#languages .button:hover {
+	text-decoration: underline;
 }
 #events .sidebar {
 	width: 320px;
