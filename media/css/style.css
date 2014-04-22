@@ -122,7 +122,7 @@ body {
 #go-home.show {
 	display: inline-block;
 }
-#go-home:hover {
+#go-home:active {
 	background-color: black;
 }
 .logo {
@@ -144,7 +144,7 @@ body {
 	color: #333333;
 	text-transform: uppercase;
 }
-.button.frame:hover {
+.button.frame:active {
 	background-color: rgba(186, 196, 5, 0.5)
 }
 .nav .button {
@@ -176,7 +176,7 @@ body {
 	background-color: #333333;
 	color: white;
 }
-#languages .button:hover {
+#languages .button:active {
 	text-decoration: underline;
 }
 #events .sidebar {
@@ -219,7 +219,7 @@ body {
 	height: 22px;
 	line-height: 22px;
 }
-.header:hover {
+.header:active {
 	text-decoration: underline;
 }
 #events .detail {
@@ -429,10 +429,10 @@ body {
 #aboutus .wrapper .next:after {
 	background-image: url(../images/about_arrow_next.png);
 }
-#aboutus .wrapper .prev:hover:after {
+#aboutus .wrapper .prev:active:after {
 	margin-left: -20px;
 }
-#aboutus .wrapper .next:hover:after {
+#aboutus .wrapper .next:active:after {
 	margin-left: 0;
 }
 #aboutus .wrapper .content {
@@ -479,7 +479,7 @@ body {
 .left-menu .items .item {
 	padding: 10px;
 }
-.left-menu .button:hover {
+.left-menu .button:active {
 	text-decoration: underline;
 }
 .left-menu .items .thumb,
@@ -925,7 +925,7 @@ strong, b {
 	font-size: 16px;
 	font-size: 24px;
 }
-.second-menu .button:hover {
+.second-menu .button:active {
 	text-decoration: underline;
 }
 .second-menu .button.selected {
@@ -966,7 +966,7 @@ strong, b {
 	padding: 7px 3px;
 	position: relative;
 }
-.third-menu .button:hover {
+.third-menu .button:active {
 	color: black;
 	text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
