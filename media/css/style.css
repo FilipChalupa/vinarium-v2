@@ -963,6 +963,10 @@ strong, b {
 	padding: 7px 3px;
 	position: relative;
 }
+.third-menu .button:hover {
+	color: black;
+	text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
 .third-menu .button.selected:after {
 	content: '';
 	display: block;
