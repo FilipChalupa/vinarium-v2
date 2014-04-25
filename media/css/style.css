@@ -14,7 +14,7 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 16px;
+	font-size: 20px;
 	font: inherit;
 	vertical-align: baseline;
 }
@@ -273,6 +273,9 @@ body {
 	padding: 70px 100px;
 	overflow: auto;
 }
+#events .detail .description p {
+	font-size: 20px;
+}
 #events .detail.hasPhotos .description {
 		bottom: 300px;
 }
@@ -345,7 +348,7 @@ body {
 	background-color: #333333;
 	color: white;
 	padding: 5px 0;
-	font-size: 16px;
+	font-size: 20px;
 	box-shadow: #666666 2px 2px 4px 0px;
 }
 #aboutus .options .button {
@@ -439,6 +442,10 @@ body {
 		right: 142px;
 		left: 142px;
 	overflow: hidden;
+	font-size: 20px;
+}
+#aboutus .wrapper .content p {
+	font-size: 20px;
 }
 #aboutus .wrapper .content > .texty {
 	text-align: left;
@@ -820,13 +827,13 @@ body {
 #weekly .soup,
 #weekly .meal,
 #stablemenu .product .item {
-	font-size: 16px;
+	font-size: 20px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	padding: 5px 50px 5px 0;
 	position: relative;
-	min-height: 10px;
+	min-height: 12px;
 }
 #specials .price,
 #weekly .price,
@@ -923,7 +930,6 @@ strong, b {
 .second-menu .button {
 	padding: 7px 3px;
 	position: relative;
-	font-size: 16px;
 	font-size: 24px;
 }
 .second-menu .button:active {
