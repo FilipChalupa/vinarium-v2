@@ -1026,6 +1026,7 @@ strong, b {
 #winelist.collapse .detail {
 		left: 290px;
 	padding-left: 445px;
+	font-size: 20px;
 }
 #winelist .detail .wine {
 	display: none;
@@ -1063,6 +1064,7 @@ strong, b {
 }
 #winelist .detail .text {
 	font-style: italic;
+	font-size: 20px;
 }
 #winelist .detail .subtitle {
 	margin-top: 5px;
