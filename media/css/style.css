@@ -826,6 +826,7 @@ body {
 	text-overflow: ellipsis;
 	padding: 5px 50px 5px 0;
 	position: relative;
+	min-height: 10px;
 }
 #specials .price,
 #weekly .price,
