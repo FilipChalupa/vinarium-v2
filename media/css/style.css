@@ -218,6 +218,8 @@ body {
 	font-size: 20px;
 	height: 22px;
 	line-height: 22px;
+	position: relative;
+	z-index: 9;
 }
 .header:active {
 	text-decoration: underline;
