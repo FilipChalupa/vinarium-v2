@@ -32,11 +32,17 @@ $(function () {
 		$feedbackHands = $feedbackScores.find('.button'),
 		$feedbackStars = $feedbackScores.find('.stars'),
 		$weeklyList = $('#weekly .list'),
+
+
 		$stableMenuAllButtons = $('#stablemenu .items'),
 		$stableMenuFButtons = $('#stablemenu .items .type-f'),
 		$stableMenuDButtons = $('#stablemenu .items .type-d'),
-		$stableMenuDetailTitle = $('#stablemenu .product .title'),
-		$stableMenuDetailList = $('#stablemenu .product .list'),
+		$stableMenuSecondMenu = $('#stablemenu .second-menu'),
+		$stableMenuSecondMenuSelected = false,
+		stableMenuData = {},
+		$stableMenuProduct = $('#stablemenu .product'),
+		$stableMenuProductDetail = {},
+
 		$stableMenuVCenter = $('#stablemenu .items .v_centre'),
 		$specialButton = $('#specialButton'),
 		$winesWrapper = $('#winelist'),
@@ -100,6 +106,10 @@ $(function () {
 		],
 		apiIndexUpdate = 0,
 		ajax = false;
+	$stableMenuProduct.find('.dynamic').each(function(){
+		var $this = $(this);
+		$stableMenuProductDetail[$this.data('key')] = $this;
+	});
 	temp = $('#winelist .detail .wine');
 	$wineDetail = {
 		title: temp.find('.title'),
@@ -223,12 +233,19 @@ $(function () {
 			$wrapper.css('margin-top',parentHeight< wrapperHeight?0:(parentHeight-wrapperHeight)/2);
 		}
 	}
-	$winesSeconds.on('click','.button, .button',function(){
+	$winesSeconds.on('click','.button',function(){
 		if ($winesSelectedSecond) {
 			$winesSelectedSecond.removeClass('selected');
 		}
 		$winesSelectedSecond = $(this);
 		$winesSelectedSecond.addClass('selected');
+	});
+	$stableMenuSecondMenu.on('click','.button',function(){
+		if ($stableMenuSecondMenuSelected) {
+			$stableMenuSecondMenuSelected.removeClass('selected');
+		}
+		$stableMenuSecondMenuSelected = $(this);
+		$stableMenuSecondMenuSelected.addClass('selected');
 	});
 	$winesList.on('click','.button',function(){
 		$winesWrapper.addClass('collapse');
@@ -242,12 +259,6 @@ $(function () {
 	$stableMenuAllButtons.on('click','.button',function(){
 		$stableMenuAllButtons.find('.button').removeClass('selected');
 		$(this).addClass('selected');
-	});
-	$stableMenuFButtons.on('click','.button',function(){
-		$stableMenuDetailTitle.text($(this).text());
-	});
-	$stableMenuDButtons.on('click','.button',function(){
-		$stableMenuDetailTitle.text($(this).text());
 	});
 	$winesFirstButtons.on('click',function(){
 		$winesFirstButtons.removeClass('selected');
@@ -300,8 +311,7 @@ $(function () {
 				} else if (currentView === 'stablemenu') {
 					$stableMenuFButtons.empty();
 					$stableMenuDButtons.empty();
-					$stableMenuDetailTitle.empty();
-					$stableMenuDetailList.empty();
+					$stableMenuSecondMenu.empty();
 				} else if (currentView === 'feedback') {
 					for (var i=0;i<=5;i++) {
 						$feedbackStars.removeClass('star-'+i);
@@ -556,22 +566,37 @@ $(function () {
 				break;
 
 			case 'stablegroup':
-				$stableMenuDetailList.text(lang[language][25]);
+				$stableMenuSecondMenuSelected = false;
+				$stableMenuProduct.removeClass('show_detail');
+				$stableMenuSecondMenu.empty();
+				$stableMenuSecondMenu.text(lang[language][25]);
 				if (ajax) {
 					ajax.abort();
 				}
 				ajax = $.getJSON( homepage + '/cs/api/menu_detail/'+param, function(data) {
-					$stableMenuDetailList.empty();
+					stableMenuData = data;
+					$stableMenuSecondMenu.empty();
 					$.each(data, function(index, val) {
-						$stableMenuDetailList.append('<div class="item">'+val['name_'+language]+'<span class="price">'+val.price+',-</span></div>'); 
+						$stableMenuSecondMenu.append('<div class="button" data-action="stablemenuproduct-'+index+'"><div class="image">img</div><div class="title">'+val['name_'+language]+'</div><div class="description">'+val['description_'+language]+'</div><div class="price">'+val.price+',-</div></div>');
 					});
 				})
 				.fail(function() {
-					$stableMenuDetailList.text(lang[language][26]);
+					$stableMenuSecondMenu.text(lang[language][26]);
 				})
 				.always(function() {
 					ajax = false;
 				});
+				break;
+			case 'stablemenuproduct':
+				$stableMenuProduct.addClass('show_detail');
+				$stableMenuProductDetail.box.toggleClass('recommended',stableMenuData[param].recommended);
+				$stableMenuProductDetail.title.text(stableMenuData[param]['name_'+language]);
+				$stableMenuProductDetail.price.text(stableMenuData[param].price);
+				$stableMenuProductDetail.grammage.text(stableMenuData[param]['grammage_'+language]);
+				$stableMenuProductDetail.description.html(stableMenuData[param]['description_'+language].replace(/\n/g, "<br>"));
+				$stableMenuProductDetail['good-with'].text('xyz');
+				$stableMenuProductDetail['val-diets'].html(stableMenuData[param]['diets_'+language].replace(/\n/g, "<br>"));
+				
 				break;
 			default:
 				alert(name + ' - ' + param);
