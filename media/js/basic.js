@@ -594,7 +594,9 @@ $(function () {
 				});
 				break;
 			case 'stablemenuexpand':
-				$stableMenuSecondMenuListSelected.removeClass('selected');
+				if ($stableMenuSecondMenuListSelected) {
+					$stableMenuSecondMenuListSelected.removeClass('selected');
+				}
 				$stableMenuSecondMenuListSelected = false;
 				$stableMenuProduct.removeClass('show_detail');
 				$stableMenuWrapper.removeClass('collapse');
