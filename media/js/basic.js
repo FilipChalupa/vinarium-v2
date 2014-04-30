@@ -36,8 +36,9 @@ $(function () {
 		$stableMenuAllButtons = $('#stablemenu .items'),
 		$stableMenuFButtons = $('#stablemenu .items .type-f'),
 		$stableMenuDButtons = $('#stablemenu .items .type-d'),
-		$stableMenuSecondMenu = $('#stablemenu .second-menu'),
-		$stableMenuSecondMenuSelected = false,
+		$stableMenuSecondMenuTitle = $('#stablemenu .second-menu .title'),
+		$stableMenuSecondMenuList = $('#stablemenu .second-menu .list'),
+		$stableMenuSecondMenuListSelected = false,
 		stableMenuData = {},
 		$stableMenuProduct = $('#stablemenu .product'),
 		$stableMenuProductDetail = {},
@@ -238,12 +239,12 @@ $(function () {
 		$winesSelectedSecond = $(this);
 		$winesSelectedSecond.addClass('selected');
 	});
-	$stableMenuSecondMenu.on('click','.button',function(){
-		if ($stableMenuSecondMenuSelected) {
-			$stableMenuSecondMenuSelected.removeClass('selected');
+	$stableMenuSecondMenuList.on('click','.button',function(){
+		if ($stableMenuSecondMenuListSelected) {
+			$stableMenuSecondMenuListSelected.removeClass('selected');
 		}
-		$stableMenuSecondMenuSelected = $(this);
-		$stableMenuSecondMenuSelected.addClass('selected');
+		$stableMenuSecondMenuListSelected = $(this);
+		$stableMenuSecondMenuListSelected.addClass('selected');
 	});
 	$winesList.on('click','.button',function(){
 		$winesWrapper.addClass('collapse');
@@ -255,8 +256,10 @@ $(function () {
 		$(this).addClass('selected');
 	});
 	$stableMenuAllButtons.on('click','.button',function(){
+		var $this = $(this);
 		$stableMenuAllButtons.find('.button').removeClass('selected');
-		$(this).addClass('selected');
+		$this.addClass('selected');
+		$stableMenuSecondMenuTitle.text($this.text());
 	});
 	$winesFirstButtons.on('click',function(){
 		$winesFirstButtons.removeClass('selected');
@@ -309,7 +312,7 @@ $(function () {
 				} else if (currentView === 'stablemenu') {
 					$stableMenuFButtons.empty();
 					$stableMenuDButtons.empty();
-					$stableMenuSecondMenu.empty();
+					$stableMenuSecondMenuList.empty();
 				} else if (currentView === 'feedback') {
 					for (var i=0;i<=5;i++) {
 						$feedbackStars.removeClass('star-'+i);
@@ -564,34 +567,34 @@ $(function () {
 				break;
 
 			case 'stablegroup':
-				$stableMenuSecondMenuSelected = false;
+				$stableMenuSecondMenuListSelected = false;
 				$stableMenuProduct.removeClass('show_detail');
-				$stableMenuSecondMenu.empty();
-				$stableMenuSecondMenu.text(lang[language][25]);
+				$stableMenuSecondMenuList.empty();
+				$stableMenuSecondMenuList.text(lang[language][25]);
 				if (ajax) {
 					ajax.abort();
 				}
 				ajax = $.getJSON( homepage + '/cs/api/menu_detail/'+param, function(data) {
 					stableMenuData = data;
-					$stableMenuSecondMenu.empty();
+					$stableMenuSecondMenuList.empty();
 					$.each(data, function(index, val) {
 						var image = '';
 						if (val.photo_small) {
 							image = '<img src="'+homepage+val.photo_small+'" width="65" height="65">';
 						}
-						$stableMenuSecondMenu.append('<div class="button" data-action="stablemenuproduct-'+index+'"><div class="image">'+image+'</div><div class="title">'+val['name_'+language]+'</div><div class="description">'+val['description_'+language]+'</div><div class="price">'+val.price+',-</div></div>');
+						$stableMenuSecondMenuList.append('<div class="button" data-action="stablemenuproduct-'+index+'"><div class="image">'+image+'</div><div class="title">'+val['name_'+language]+'</div><div class="description">'+val['description_'+language]+'</div><div class="price">'+val.price+',-</div></div>');
 					});
 				})
 				.fail(function() {
-					$stableMenuSecondMenu.text(lang[language][26]);
+					$stableMenuSecondMenuList.text(lang[language][26]);
 				})
 				.always(function() {
 					ajax = false;
 				});
 				break;
 			case 'stablemenuexpand':
-				$stableMenuSecondMenuSelected.removeClass('selected');
-				$stableMenuSecondMenuSelected = false;
+				$stableMenuSecondMenuListSelected.removeClass('selected');
+				$stableMenuSecondMenuListSelected = false;
 				$stableMenuProduct.removeClass('show_detail');
 				$stableMenuWrapper.removeClass('collapse');
 				break;

@@ -961,20 +961,36 @@ strong, b {
 	color: #666666;
 	overflow: auto;
 }
-.third-menu .title {
+.third-menu > .title,
+.second-menu > .title {
 	background-color: #BAC405;
 	height: 50px;
 	line-height: 50px;
 	color: white;
 	font-size: 24px;
+	text-transform: uppercase;
 }
-.third-menu .list {
+.third-menu > .list,
+.second-menu > .list {
 	position: absolute;
 		top: 50px;
 		left: 0;
 		right: 0;
 		bottom: 0;
 	overflow: auto;
+}
+.second-menu > .list {
+		top: 0;
+		padding: 15px 0;
+}
+.second-menu > .title {
+	display: none;
+}
+.collapse .second-menu > .list {
+		top: 50px;
+}
+.collapse .second-menu > .title {
+	display: block;
 }
 .third-menu .button {
 	padding: 7px 3px;
@@ -1138,7 +1154,6 @@ strong, b {
 }
 #stablemenu .second-menu {
 	width: 449px;
-	padding: 15px 0;
 }
 #stablemenu .second-menu .button {
 	color: #333333;
@@ -1158,7 +1173,7 @@ strong, b {
 		top: 7px;
 		left: 10px;
 }
-#stablemenu .second-menu .title {
+#stablemenu .second-menu .list .title {
 	font-size: 21px;
 	white-space: nowrap;
 	overflow: hidden;
