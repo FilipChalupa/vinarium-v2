@@ -313,6 +313,7 @@ $(function () {
 					$stableMenuFButtons.empty();
 					$stableMenuDButtons.empty();
 					$stableMenuSecondMenuList.empty();
+					action('stablemenuexpand');
 				} else if (currentView === 'feedback') {
 					for (var i=0;i<=5;i++) {
 						$feedbackStars.removeClass('star-'+i);
