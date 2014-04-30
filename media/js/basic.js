@@ -508,9 +508,9 @@ $(function () {
 					$wineDetail.alcohol.parent().addClass('hide');
 				}
 				if (winesData[param].main_photo) {
-					$wineDetail.image.html('<img src="'+homepage+winesData[param].main_photo+'">');
+					$wineDetail.image.html('<div class="galleryItem" data-url="'+homepage+winesData[param].main_photo+'" data-title="'+winesData[param]['name_'+language]+'"><img src="'+homepage+winesData[param].main_photo+'"></div>');
 				} else {
-					$wineDetail.image.html('');
+					$wineDetail.image.empty();
 				}
 				break;
 			case 'vote':
