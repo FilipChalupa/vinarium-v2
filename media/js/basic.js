@@ -32,8 +32,7 @@ $(function () {
 		$feedbackHands = $feedbackScores.find('.button'),
 		$feedbackStars = $feedbackScores.find('.stars'),
 		$weeklyList = $('#weekly .list'),
-
-
+		$stableMenuWrapper = $('#stablemenu'),
 		$stableMenuAllButtons = $('#stablemenu .items'),
 		$stableMenuFButtons = $('#stablemenu .items .type-f'),
 		$stableMenuDButtons = $('#stablemenu .items .type-d'),
@@ -42,7 +41,6 @@ $(function () {
 		stableMenuData = {},
 		$stableMenuProduct = $('#stablemenu .product'),
 		$stableMenuProductDetail = {},
-
 		$stableMenuVCenter = $('#stablemenu .items .v_centre'),
 		$specialButton = $('#specialButton'),
 		$winesWrapper = $('#winelist'),
@@ -591,7 +589,14 @@ $(function () {
 					ajax = false;
 				});
 				break;
+			case 'stablemenuexpand':
+				$stableMenuSecondMenuSelected.removeClass('selected');
+				$stableMenuSecondMenuSelected = false;
+				$stableMenuProduct.removeClass('show_detail');
+				$stableMenuWrapper.removeClass('collapse');
+				break;
 			case 'stablemenuproduct':
+				$stableMenuWrapper.addClass('collapse');
 				$stableMenuProduct.addClass('show_detail');
 				$stableMenuProductDetail.box.toggleClass('recommended',stableMenuData[param].recommended===true);
 				$stableMenuProductDetail.title.text(stableMenuData[param]['name_'+language]);

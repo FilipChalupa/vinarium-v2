@@ -994,7 +994,7 @@ strong, b {
 	height: 9px;
 	background: url(../images/underline.png) center no-repeat;
 }
-#winelist .expand {
+.expand {
 	z-index: 12;
 	position: absolute;
 		left: -50px;
@@ -1006,17 +1006,26 @@ strong, b {
 	background-position: center;
 	background-color: #333333;
 }
-#winelist.collapse .expand {
+.expand:active {
+	background-color: black;
+}
+.collapse .expand {
 		left: 0;
 	box-shadow: 4px 0 15px rgba(0,0,0,0.5);
 }
-#winelist.collapse .left-menu {
+.collapse .left-menu {
 	display: none;
 }
 #winelist.collapse .second-menu {
 	display: none;
 }
 #winelist.collapse .third-menu {
+		left: 50px;
+}
+#stablemenu.collapse .product {
+		left: 510px;
+}
+#stablemenu.collapse .second-menu {
 		left: 50px;
 }
 #winelist .detail {
