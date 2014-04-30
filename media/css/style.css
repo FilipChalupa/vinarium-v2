@@ -67,7 +67,7 @@ body {
 	color: #333333;
 	position: relative;
 	background-image: url(../images/background.jpg);
-	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	/*font-family: Futura, "Trebuchet MS", Arial, sans-serif;*/
 	font-family: Calibri, sans-serif;
 }
 .button:hover {
@@ -274,6 +274,7 @@ body {
 		bottom: 0;
 	padding: 70px 100px;
 	overflow: auto;
+	font-size: 20px;
 }
 #events .detail .description p {
 	font-size: 20px;
@@ -1249,4 +1250,5 @@ strong, b {
 }
 #stablemenu .product .available {
 		bottom: 0;
+	font-size: 16px;
 }

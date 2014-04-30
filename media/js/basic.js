@@ -577,7 +577,11 @@ $(function () {
 					stableMenuData = data;
 					$stableMenuSecondMenu.empty();
 					$.each(data, function(index, val) {
-						$stableMenuSecondMenu.append('<div class="button" data-action="stablemenuproduct-'+index+'"><div class="image">img</div><div class="title">'+val['name_'+language]+'</div><div class="description">'+val['description_'+language]+'</div><div class="price">'+val.price+',-</div></div>');
+						var image = '';
+						if (val.photo_small) {
+							image = '<img src="'+homepage+val.photo_small+'" width="65" height="65">';
+						}
+						$stableMenuSecondMenu.append('<div class="button" data-action="stablemenuproduct-'+index+'"><div class="image">'+image+'</div><div class="title">'+val['name_'+language]+'</div><div class="description">'+val['description_'+language]+'</div><div class="price">'+val.price+',-</div></div>');
 					});
 				})
 				.fail(function() {
@@ -589,14 +593,19 @@ $(function () {
 				break;
 			case 'stablemenuproduct':
 				$stableMenuProduct.addClass('show_detail');
-				$stableMenuProductDetail.box.toggleClass('recommended',stableMenuData[param].recommended);
+				$stableMenuProductDetail.box.toggleClass('recommended',stableMenuData[param].recommended===true);
 				$stableMenuProductDetail.title.text(stableMenuData[param]['name_'+language]);
 				$stableMenuProductDetail.price.text(stableMenuData[param].price);
 				$stableMenuProductDetail.grammage.text(stableMenuData[param]['grammage_'+language]);
 				$stableMenuProductDetail.description.html(stableMenuData[param]['description_'+language].replace(/\n/g, "<br>"));
-				$stableMenuProductDetail['good-with'].text('xyz');
+				$stableMenuProductDetail['good-with'].text(stableMenuData[param]['recommended_products_'+language]);
 				$stableMenuProductDetail['val-diets'].html(stableMenuData[param]['diets_'+language].replace(/\n/g, "<br>"));
-				
+				if (stableMenuData[param].photo_medium) {
+					$stableMenuProductDetail.image.html('<div class="galleryItem" data-url="'+homepage+'/media/'+stableMenuData[param].photo+'" data-title="'+stableMenuData[param]['name_'+language]+'"><img src="'+homepage+stableMenuData[param].photo_medium+'" width="290" height="170"></div>');
+				} else {
+					$stableMenuProductDetail.image.empty();
+				}
+				$stableMenuProductDetail.available.text(lang[language][53+(stableMenuData[param].active?0:1)]);
 				break;
 			default:
 				alert(name + ' - ' + param);
