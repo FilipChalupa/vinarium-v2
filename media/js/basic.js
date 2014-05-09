@@ -343,7 +343,7 @@ $(function () {
 							if (val.is_past) {
 								$eventsListPast.append(html);
 							} else {
-								$eventsListUpcoming.append(html);
+								$eventsListUpcoming.prepend(html);
 							}
 						});
 						$eventsList.find('.button:first').trigger('click');
