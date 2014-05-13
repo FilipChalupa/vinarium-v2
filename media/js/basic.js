@@ -3,6 +3,7 @@ $(function () {
 		language = 'cs',
 		temp,
 		currentView = '',
+		$body = $('body'),
 		$slogans = $('.slogan'),
 		$buttons = $('.button'),
 		$views = $('#views .view'),
@@ -55,6 +56,9 @@ $(function () {
 		$vineyardsList = $('#vineyards'),
 		$specialsTitle = $('#specials .title'),
 		$specialsList = $('#specials .list'),
+		$homeSlideshow = $('#homeSlideshow'),
+		$homeSlideshowItems = $('#homeSlideshow .items'),
+		$homeLevel = $('#home-level'),
 		winesData = {},
 		updateTimer = false,
 		apiSource = [
@@ -101,10 +105,21 @@ $(function () {
 			{
 				'name': 'advices',
 				'url': '/cs/api/blogposts/advice'
+			},
+			{
+				'name': 'homeslides',
+				'url': '/cs/api/blogposts/advice'
 			}
 		],
 		apiIndexUpdate = 0,
 		ajax = false;
+	temp = $window.width();
+	if (temp < $window.height()) {
+		temp = $window.height();
+	}
+	if (temp > 1300) {
+		$body.addClass('upscale');
+	}
 	$stableMenuProduct.find('.dynamic').each(function(){
 		var $this = $(this);
 		$stableMenuProductDetail[$this.data('key')] = $this;
@@ -213,6 +228,7 @@ $(function () {
 		$slideshow.this.find('img').load(function(){
 			centerImage($(this));
 		});
+		$homeSlideshow.css('top',$homeLevel.offset().top);
 	}
 	$window.resize(function(){
 		onWindowResize();
@@ -332,6 +348,14 @@ $(function () {
 				}
 				if (param === 'home') {
 					updateHomeSpecialButton();
+					$homeSlideshow.empty();
+					$.each(getFromStorage('homeslides'),function(key,val){
+						$homeSlideshow.append('<div class="galleryItem img_'+key+'" data-url="'+/*homepage+'/media/'+val['xx']*/'x'+'" data-title="'+/*val['title_'+language]*/'hh'+'"><img src="http://lorempixel.com/250/250/cats/1/" width="250" height="250"></div>');
+					});
+					$homeSlideshowItems = $homeSlideshow.find('.galleryItem');
+					if ($homeSlideshowItems.length > 4) {
+						slideHome();
+					}
 					if (updateTimer === false) {
 						updateData();
 					}
@@ -721,6 +745,28 @@ $(function () {
 		}
 	}
 	//slideshow end
+
 	
+	
+	function slideHome() {
+		if (currentView === 'home') {
+			console.log('switch');
+			setTimeout(function(){
+				slideHome();
+			},2000);
+			temp = Math.floor(Math.random()*4);
+			$homeSlideshow.find('.img_'+temp).removeClass('img_'+temp)
+											 .addClass('img_'+$homeSlideshowItems.length);
+			$homeSlideshow.find('.img_4').removeClass('img_4')
+										 .addClass('img_'+temp);
+			for (var i=5;i<=$homeSlideshowItems.length;i++) {
+				$homeSlideshow.find('.img_'+i).removeClass('img_'+i)
+											 .addClass('img_'+(i-1));
+			}
+		} else {
+			$homeSlideshow.empty();
+		}
+	}
+
 	onWindowResize();
 });
