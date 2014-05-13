@@ -108,7 +108,7 @@ $(function () {
 			},
 			{
 				'name': 'homeslides',
-				'url': '/cs/api/blogposts/advice'
+				'url': '/cs/api/intro_images'
 			}
 		],
 		apiIndexUpdate = 0,
@@ -350,7 +350,7 @@ $(function () {
 					updateHomeSpecialButton();
 					$homeSlideshow.empty();
 					$.each(getFromStorage('homeslides'),function(key,val){
-						$homeSlideshow.append('<div class="galleryItem img_'+key+'" data-url="'+/*homepage+'/media/'+val['xx']*/'x'+'" data-title="'+/*val['title_'+language]*/'hh'+'"><img src="http://lorempixel.com/250/250/cats/1/" width="250" height="250"></div>');
+						$homeSlideshow.append('<div class="galleryItem img_'+key+'" data-url="'+homepage+'/media/'+val['photo_file']+'" data-title="'+val['title_'+language]+'"><img src="'+homepage+val['photo_file_thumb']+'" width="250" height="250"></div>');
 					});
 					$homeSlideshowItems = $homeSlideshow.find('.galleryItem');
 					if ($homeSlideshowItems.length > 4) {
@@ -750,7 +750,6 @@ $(function () {
 	
 	function slideHome() {
 		if (currentView === 'home') {
-			console.log('switch');
 			setTimeout(function(){
 				slideHome();
 			},2000);
@@ -763,8 +762,6 @@ $(function () {
 				$homeSlideshow.find('.img_'+i).removeClass('img_'+i)
 											 .addClass('img_'+(i-1));
 			}
-		} else {
-			$homeSlideshow.empty();
 		}
 	}
 
