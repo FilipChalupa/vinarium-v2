@@ -325,11 +325,10 @@ body {
 #events .slogan {
 	position: absolute;
 		left: 360px;
-		right: 0;
+		right: 20px;
 		bottom: 0;
 	height: 40px;
 	line-height: 40px;
-	text-align: left;
 }
 #aboutus .logo,
 #feedback .logo,
@@ -375,7 +374,7 @@ body {
 #aboutus .detail {
 	position: absolute;
 		top: 300px;
-		bottom: 60px;
+		bottom: 66px;
 		left: 5px;
 		right: 5px;
 	max-width: 1024px;
@@ -1169,7 +1168,9 @@ strong, b {
 	width: 65px;
 	height: 65px;
 	border: 1px solid #6F6F6F;
-	background-image: url(../images/trans_pattern.png);
+	background-image: url(../images/logo_mini.png);
+	background-position: center;
+	background-repeat: no-repeat;
 	background-color: #CCCCCC;
 	box-shadow: 0 0 5px rgba(0,0,0,0.3);
 	position: absolute;
@@ -1183,7 +1184,7 @@ strong, b {
 	text-overflow: ellipsis;
 	position: absolute;
 		top: 7px;
-		left: 80px;
+		left: 84px;
 		right: 75px;
 	text-transform: uppercase;
 	padding: 3px 0;
@@ -1200,7 +1201,7 @@ strong, b {
 	text-overflow: ellipsis;
 	position: absolute;
 		top: 28px;
-		left: 80px;
+		left: 84px;
 		right: 75px;
 	padding: 3px 0;
 }
@@ -1253,8 +1254,10 @@ strong, b {
 		left: 0;
 		bottom: 0;
 	width: 290px;
-	background-image: url(../images/trans_pattern.png);
-	background-color: #CCCCCC;
+	background-image: url(../images/logo_medium.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	/*background-color: #CCCCCC;*/
 }
 #stablemenu .product .side {
 	height: 50px;
@@ -1278,4 +1281,42 @@ strong, b {
 #stablemenu .product .available {
 		bottom: 0;
 	font-size: 15px;
+}
+.imageCenterParent img {
+	transition: margin-top 0.2s;
+	-webkit-transition: margin-top 0.2s;
+}
+
+
+@media (min-width: 1400px) {
+	#events .slogan {
+		font-size: 25px;
+		height: 60px;
+		line-height: 60px;
+	}
+	#events .detail {
+		bottom: 60px;
+	}
+	#events .sidebar .title {
+		padding: 10px;
+		font-size: 18px;
+	}
+	#events .sidebar .list .button {
+		font-size: 19px;
+	}
+	#aboutus .wrapper > .button {
+		font-size: 20px;
+	}
+	#weekly .sub {
+		font-size: 20px;
+	}
+	#weekly .day {
+		font-size: 27px;
+	}
+	#specials .item,
+	#weekly .soup,
+	#weekly .meal,
+	#stablemenu .product .item {
+		font-size: 23px;
+	}
 }

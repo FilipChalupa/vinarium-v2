@@ -209,11 +209,14 @@ $(function () {
 	});
 	function onWindowResize() {
 		VCenter();
+		centerImage($wineDetail.image.find('img'));
+		$slideshow.this.find('img').load(function(){
+			centerImage($(this));
+		});
 	}
 	$window.resize(function(){
 		onWindowResize();
 	});
-	onWindowResize();
 	function replaceDots(){
 		$slogans.each(function(){
 			var $this = $(this);
@@ -395,7 +398,6 @@ $(function () {
 						},20);
 					} else if (param === 'specials') {
 						var data = getFromStorage('special')[0];
-						console.log(data['title_'+language]);
 						$specialsTitle.text(data['title_'+language]);
 						$.each(data.get_food,function(key,val){
 							$specialsList.append('<div class="item">'+val.name+'<span class="price">'+val.price+',-</span></div>');
@@ -511,6 +513,9 @@ $(function () {
 				}
 				if (winesData[param].main_photo) {
 					$wineDetail.image.html('<div class="galleryItem" data-url="'+homepage+winesData[param].main_photo+'" data-title="'+winesData[param]['name_'+language]+'"><img src="'+homepage+winesData[param].main_photo+'"></div>');
+					$wineDetail.image.find('img').load(function(){
+						centerImage($(this));
+					});
 				} else {
 					$wineDetail.image.empty();
 				}
@@ -610,7 +615,9 @@ $(function () {
 				$stableMenuProductDetail.grammage.text(stableMenuData[param]['grammage_'+language]);
 				$stableMenuProductDetail.description.html(stableMenuData[param]['description_'+language].replace(/\n/g, "<br>"));
 				$stableMenuProductDetail['good-with'].text(stableMenuData[param]['recommended_products_'+language]);
+				/**/$stableMenuProductDetail['good-with-title'].toggleClass('hide',!stableMenuData[param]['recommended_products_'+language]);
 				$stableMenuProductDetail['val-diets'].html(stableMenuData[param]['diets_'+language].replace(/\n/g, "<br>"));
+				$stableMenuProductDetail['val-diets-title'].toggleClass('hide',!stableMenuData[param]['diets_'+language]);
 				if (stableMenuData[param].photo_medium) {
 					$stableMenuProductDetail.image.html('<div class="galleryItem" data-url="'+homepage+'/media/'+stableMenuData[param].photo+'" data-title="'+stableMenuData[param]['name_'+language]+'"><img src="'+homepage+stableMenuData[param].photo_medium+'" width="290" height="170"></div>');
 				} else {
@@ -698,12 +705,22 @@ $(function () {
 			if ($this.data('title')) {
 				title = $this.data('title');
 			}
-			gallerySwiper.appendSlide('<div class="title">'+title+'</div><div class="frame"><div class="wrapper"><img src="'+$this.data('url')+'"></div></div>');
+			gallerySwiper.appendSlide('<div class="title">'+title+'</div><div class="frame imageCenterParent"><div class="wrapper"><img src="'+$this.data('url')+'"></div></div>');
 		});
 		gallerySwiper.reInit();
 		gallerySwiper.swipeTo(targetIndex,0);
+		$slideshow.this.find('img').load(function(){
+			centerImage($(this));
+		});
 		checkSlideshowArrows();
 	});
+	function centerImage($img) {
+		var $wrapper = $img.closest('.imageCenterParent');
+		if ($wrapper.height() > $img.height()) {
+			$img.css('margin-top',($wrapper.height()-$img.height())/2);
+		}
+	}
 	//slideshow end
 	
+	onWindowResize();
 });
