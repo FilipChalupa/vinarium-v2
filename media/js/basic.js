@@ -57,7 +57,6 @@ $(function () {
 		$specialsTitle = $('#specials .title'),
 		$specialsList = $('#specials .list'),
 		$homeSlideshow = $('#homeSlideshow'),
-		$homeSlideshowItems = $('#homeSlideshow .items'),
 		$homeLevel = $('#home-level'),
 		winesData = {},
 		updateTimer = false,
@@ -349,13 +348,24 @@ $(function () {
 				if (param === 'home') {
 					updateHomeSpecialButton();
 					$homeSlideshow.empty();
-					$.each(getFromStorage('homeslides'),function(key,val){
-						$homeSlideshow.append('<div class="galleryItem img_'+key+'" data-url="'+homepage+'/media/'+val['photo_file']+'" data-title="'+val['title_'+language]+'"><img src="'+homepage+val['photo_file_thumb']+'" width="250" height="250"></div>');
-					});
-					$homeSlideshowItems = $homeSlideshow.find('.galleryItem');
-					if ($homeSlideshowItems.length > 4) {
-						slideHome();
+					temp = getFromStorage('homeslides');
+					var set = [];
+					if (temp.length <= 4) {
+						set = [0,1,2,3];
+					} else {
+						while (set.length !== 4) {
+							var rand = Math.floor(Math.random()*temp.length);
+							if (set.indexOf(rand) === -1) {
+								set.push(rand);
+							}
+						}
 					}
+					var i=0;
+					$.each(temp,function(key,val){
+						if (set.indexOf(key) !== -1) {
+							$homeSlideshow.append('<div class="galleryItem img_'+(i++)+'" data-url="'+homepage+'/media/'+val['photo_file']+'" data-title="'+val['title_'+language]+'"><img src="'+homepage+val['photo_file_thumb']+'" width="250" height="250"></div>');
+						}
+					});
 					if (updateTimer === false) {
 						updateData();
 					}
@@ -745,25 +755,6 @@ $(function () {
 		}
 	}
 	//slideshow end
-
-	
-	
-	function slideHome() {
-		if (currentView === 'home') {
-			setTimeout(function(){
-				slideHome();
-			},2000);
-			temp = Math.floor(Math.random()*4);
-			$homeSlideshow.find('.img_'+temp).removeClass('img_'+temp)
-											 .addClass('img_'+$homeSlideshowItems.length);
-			$homeSlideshow.find('.img_4').removeClass('img_4')
-										 .addClass('img_'+temp);
-			for (var i=5;i<=$homeSlideshowItems.length;i++) {
-				$homeSlideshow.find('.img_'+i).removeClass('img_'+i)
-											 .addClass('img_'+(i-1));
-			}
-		}
-	}
 
 	onWindowResize();
 });

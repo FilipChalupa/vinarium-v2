@@ -1299,29 +1299,19 @@ strong, b {
 }
 #homeSlideshow .galleryItem {
 	display: block;
-	opacity: 0;
-	transition: opacity 0.4s;
-	-webkit-transition: opacity 0.4s;
-	position: absolute;
-		top: 400px;
-}
-#homeSlideshow .img_0,
-#homeSlideshow .img_1,
-#homeSlideshow .img_2,
-#homeSlideshow .img_3 {
 	width: 25%;
-	opacity: 1;
+	position: absolute;
 		top: 0;
 		bottom: 0;
 }
 #homeSlideshow .img_0 {
-		left: 25%;
+		left: 0;
 }
 #homeSlideshow .img_1 {
-		left: 50%;
+		left: 25%;
 }
 #homeSlideshow .img_2 {
-		left: 0;
+		left: 50%;
 }
 #homeSlideshow .img_3 {
 		left: 75%;
