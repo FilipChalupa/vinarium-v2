@@ -21,6 +21,8 @@ $(function () {
 			'wrapper': $eventDetail.find('.wrapper'),
 			'photos': $eventDetail.find('.photos'),
 		},
+		$suppliersListSuppliers = $('#suppliers .list-suppliers'),
+		$suppliersListPartners = $('#suppliers .list-partners'),
 		$aboutUsOptions = $('#aboutus .options .button'),
 		$aboutUsDetail = $('#aboutus .detail'),
 		$aboutUsTitle = $aboutUsDetail.find('.title'),
@@ -108,6 +110,10 @@ $(function () {
 			{
 				'name': 'homeslides',
 				'url': '/cs/api/intro_images'
+			},
+			{
+				'name': 'suppliers',
+				'url': '/api/suppliers'
 			}
 		],
 		apiIndexUpdate = 0,
@@ -345,6 +351,8 @@ $(function () {
 				} else if (currentView === 'aboutus') {
 					$aboutUsTitle.empty();
 					$aboutUsContent.empty();
+				} else if (currentView === 'suppliers') {
+					$suppliersList.empty();
 				}
 				if (param === 'home') {
 					updateHomeSpecialButton();
@@ -436,6 +444,14 @@ $(function () {
 						$specialsTitle.text(data['title_'+language]);
 						$.each(data.get_food,function(key,val){
 							$specialsList.append('<div class="item">'+val.name+'<span class="price">'+val.price+',-</span></div>');
+						});
+					} else if (param === 'suppliers') {
+						temp = getFromStorage('suppliers');
+						$.each(temp.suppliers,function(key,val){
+							$suppliersListSuppliers.append('<div class="item"><div class="image">'+(val.logo_thumb?'<img src="'+homepage+val.logo_thumb+'">':'')+'</div><div class="name">'+val.name+'</div><div class="link"><a href="'+val.url+'" target="_blank">'+val.url+'</a></div></div>');
+						});
+						$.each(temp.partners,function(key,val){
+							$suppliersListPartners.append('<div class="item"><div class="image">'+(val.logo_thumb?'<img src="'+homepage+val.logo_thumb+'">':'')+'</div><div class="name">'+val.name+'</div><div class="link"><a href="'+val.url+'" target="_blank">'+val.url+'</a></div></div>');
 						});
 					}
 				}
