@@ -1,5 +1,5 @@
 $(function () {
-	var homepage = 'http://forhaus.cz'/*'http://localhost/vinarium-v2'*/,
+	var homepage = 'http://forhaus.cz',
 		language = 'cs',
 		temp,
 		currentView = '',
@@ -44,7 +44,8 @@ $(function () {
 		$stableMenuProduct = $('#stablemenu .product'),
 		$stableMenuProductDetail = {},
 		$stableMenuVCenter = $('#stablemenu .items .v_centre'),
-		$specialButton = $('#specialButton'),
+		$homeInOpt = $('#home .inOpt'),
+		$homeOutOpt = $('#home .outOpt'),
 		$winesWrapper = $('#winelist'),
 		$winesFirstButtons = $('#winelist .left-menu .items .button'),
 		$winesSeconds = $('#winelist .second-menu .s-menu'),
@@ -57,7 +58,6 @@ $(function () {
 		$specialsTitle = $('#specials .title'),
 		$specialsList = $('#specials .list'),
 		$homeSlideshow = $('#homeSlideshow'),
-		$homeLevel = $('#home-level'),
 		winesData = {},
 		updateTimer = false,
 		apiSource = [
@@ -147,7 +147,9 @@ $(function () {
 		}
 	});
 	function updateHomeSpecialButton() {
-		$specialButton.toggleClass('hide',getFromStorage('special').length === 0);
+		temp = getFromStorage('special').length === 0;
+		$homeInOpt.toggleClass('hide',temp);
+		$homeOutOpt.toggleClass('hide',!temp);
 	}
 	function updateData() {
 		updateTimer = setTimeout(function(){
@@ -227,7 +229,6 @@ $(function () {
 		$slideshow.this.find('img').load(function(){
 			centerImage($(this));
 		});
-		$homeSlideshow.css('top',$homeLevel.offset().top);
 	}
 	$window.resize(function(){
 		onWindowResize();

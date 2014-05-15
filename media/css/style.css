@@ -330,6 +330,14 @@ body {
 	height: 40px;
 	line-height: 40px;
 }
+#suppliers .title {
+	max-width: 200px;
+	margin: 15px auto;
+	padding: 10px;
+	font-size: 25px;
+	font-weight: bold;
+	border-bottom: 6px solid #BAC405;
+}
 #aboutus .logo,
 #feedback .logo,
 #weekly .logo,
@@ -611,7 +619,8 @@ body {
 #feedback .stars.star-3:before {width: 102px;}
 #feedback .stars.star-4:before {width: 136px;}
 #feedback .stars.star-5:before {width: 170px;}
-.hide {
+.hide,
+#home .hide {
 	display: none;
 }
 #feedback .input {
@@ -906,9 +915,6 @@ strong, b {
 	display: inline-block;
 	padding-left: 25px;
 	padding-right: 25px;
-}
-#specialButton.hide {
-	display: none;
 }
 .left-menu .selected {
 	background-color: #CCCCCC;
@@ -1288,10 +1294,7 @@ strong, b {
 }
 #homeSlideshow {
 	display: none;
-	position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 50px;
+	position: relative;
 	height: 250px;
 	max-width: 1200px;
 	margin: 20px auto 0 auto;
