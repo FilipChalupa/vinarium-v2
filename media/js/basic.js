@@ -352,7 +352,8 @@ $(function () {
 					$aboutUsTitle.empty();
 					$aboutUsContent.empty();
 				} else if (currentView === 'suppliers') {
-					$suppliersList.empty();
+					$suppliersListSuppliers.empty();
+					$suppliersListPartners.empty();
 				}
 				if (param === 'home') {
 					updateHomeSpecialButton();
