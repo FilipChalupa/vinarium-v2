@@ -73,7 +73,7 @@ $(function () {
 			},
 			{
 				'name': 'weekly_offer',
-				'url': '/cs/api/weekly_offer/'
+				'url': '/cs/api/weekly_offer'
 			},
 			{
 				'name': 'vineyards',
@@ -587,12 +587,18 @@ $(function () {
 				$winesList.find('.button').removeClass('hide');
 				$winesFirstButtons.first().trigger('click');
 				break;
-
 			case 'winesrecommended':
 				var $wines = $winesList.find('.button');
 				$wines.each(function(){
 					var $this = $(this);
 					$this.toggleClass('hide',winesData[$this.data('index')].recommended === false);
+				});
+				break;
+			case 'winesopened':
+				var $wines = $winesList.find('.button');
+				$wines.each(function(){
+					var $this = $(this);
+					$this.toggleClass('hide',winesData[$this.data('index')].bottle_opened === false);
 				});
 				break;
 			case 'winescolor':

@@ -193,6 +193,7 @@ body {
 		left: 0;
 		right: 0;
 	overflow: auto;
+	padding-bottom: 70px;
 }
 #events .sidebar .list .button {
 	display: block;
@@ -520,6 +521,7 @@ body {
 #stablemenu .left-menu .items,
 #winelist .left-menu .items {
 	width: 249px;
+	padding: 70px 0;
 }
 .left-menu .items .item {
 	padding: 10px;

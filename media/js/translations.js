@@ -1,6 +1,6 @@
 var lang = {
 	"cs": {
-		"slogan": "dobře pít ∙ často se smát ∙ dlouho žít",
+		"slogan": "dobře jíst ∙ často se smát ∙ dlouho žít",
 		0: "VINNÝ LÍSTEK",
 		1: "JÍDELNÍ LÍSTEK",
 		2: "AKCE",
@@ -59,6 +59,7 @@ var lang = {
 		55: "DODAVATELÉ",
 		56: "PARTNEŘI",
 		57: "Icons by Icon8<br><a href='http://buzz.icons8.com/knowledgebase' tagret='_blank'>http://buzz.icons8.com/knowledgebase</a>",
+		58: "Otevřená vína",
 		'white': "Bílé",
 		'rose': "Růžové",
 		'red': "Červené",
@@ -89,7 +90,7 @@ var lang = {
 
 	},
 	"en": {
-		"slogan": "drink well ∙ often laugh ∙ live long",
+		"slogan": "eat well ∙ often laugh ∙ live long",
 		0: "WINE LIST",
 		1: "MENU",
 		2: "EVENTS",
@@ -148,6 +149,7 @@ var lang = {
 		55: "SUPPLIERS",
 		56: "PARTNERS",
 		57: "Icons by Icon8<br><a href='http://buzz.icons8.com/knowledgebase' tagret='_blank'>http://buzz.icons8.com/knowledgebase</a>",
+		58: "Opened bottles",
 		'white': "White",
 		'rose': "Rose",
 		'red': "Red",
