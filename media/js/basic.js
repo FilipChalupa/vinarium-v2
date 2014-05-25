@@ -2,6 +2,7 @@ $(function () {
 	var homepage = 'http://forhaus.cz',
 		language = 'cs',
 		temp,
+		wineIdDelayed,
 		currentView = '',
 		$body = $('body'),
 		$slogans = $('.slogan'),
@@ -344,6 +345,8 @@ $(function () {
 						$feedbackStars.removeClass('star-'+i);
 					}
 				} else if (currentView === 'winelist') {
+					action('winesexpand');
+					$winesList.empty();
 					$vineyardsList.empty();
 				} else if (currentView === 'specials') {
 					$specialsTitle.empty();
@@ -629,7 +632,6 @@ $(function () {
 					$this.toggleClass('hide',winesData[$this.data('index')].vineyard.id != param);
 				});
 				break;
-
 			case 'stablegroup':
 				$stableMenuSecondMenuListSelected = false;
 				$stableMenuProduct.removeClass('show_detail');
@@ -672,8 +674,14 @@ $(function () {
 				$stableMenuProductDetail.price.text(stableMenuData[param].price);
 				$stableMenuProductDetail.grammage.text(stableMenuData[param]['grammage_'+language]);
 				$stableMenuProductDetail.description.html(stableMenuData[param]['description_'+language].replace(/\n/g, "<br>"));
-				$stableMenuProductDetail['good-with'].text(stableMenuData[param]['recommended_products_'+language]);
-				/**/$stableMenuProductDetail['good-with-title'].toggleClass('hide',!stableMenuData[param]['recommended_products_'+language]);
+				$stableMenuProductDetail['good-with'].empty();
+				temp = getFromStorage('wines');
+				$.each(temp,function(key,val){
+					if (stableMenuData[param].recommended_wine.indexOf(val.id) !== -1) {
+						$stableMenuProductDetail['good-with'].append('<div class="button" data-action="wineid-'+val.id+'">'+val['name_'+language]+'</div>');
+					}
+				});
+				$stableMenuProductDetail['good-with-title'].toggleClass('hide',stableMenuData[param]['recommended_wine'].length === 0);
 				$stableMenuProductDetail['val-diets'].html(stableMenuData[param]['diets_'+language].replace(/\n/g, "<br>"));
 				$stableMenuProductDetail['val-diets-title'].toggleClass('hide',!stableMenuData[param]['diets_'+language]);
 				if (stableMenuData[param].photo_medium) {
@@ -682,6 +690,25 @@ $(function () {
 					$stableMenuProductDetail.image.empty();
 				}
 				$stableMenuProductDetail.available.text(lang[language][53+(stableMenuData[param].active?0:1)]);
+				break;
+			case 'wineid':
+				action('view','winelist');
+				wineIdDelayed = -1;
+				$.each(getFromStorage('wines'),function(key,val){
+					if (param == val.id) {
+						wineIdDelayed = key;
+					}
+				});
+				if (wineIdDelayed !== -1) {
+					setTimeout(function(){
+						$winesList.find('.button').each(function(key,val){
+							var $this = $(this);
+							if ($this.data('index') == wineIdDelayed) {
+								$this.trigger('click');
+							}
+						});
+					}, 100);
+				}
 				break;
 			default:
 				alert(name + ' - ' + param);
