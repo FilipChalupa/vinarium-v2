@@ -685,7 +685,13 @@ $(function () {
 				$stableMenuProductDetail['val-diets'].html(stableMenuData[param]['diets_'+language].replace(/\n/g, "<br>"));
 				$stableMenuProductDetail['val-diets-title'].toggleClass('hide',!stableMenuData[param]['diets_'+language]);
 				if (stableMenuData[param].photo_medium) {
-					$stableMenuProductDetail.image.html('<div class="galleryItem" data-url="'+homepage+'/media/'+stableMenuData[param].photo+'" data-title="'+stableMenuData[param]['name_'+language]+'"><img src="'+homepage+stableMenuData[param].photo_medium+'" width="290" height="170"></div>');
+					temp = '<div class="galleryItem" data-url="'+homepage+'/media/'+stableMenuData[param].photo+'" data-title="'+stableMenuData[param]['name_'+language]+'">';
+					if ($body.hasClass('upscale')) {
+						temp += '<img src="'+homepage+stableMenuData[param].photo_large+'" width="460" height="280">';
+					} else {
+						temp += '<img src="'+homepage+stableMenuData[param].photo_medium+'" width="290" height="170">';
+					}
+					$stableMenuProductDetail.image.html(temp +'</div>');
 				} else {
 					$stableMenuProductDetail.image.empty();
 				}
