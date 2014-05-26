@@ -889,15 +889,13 @@ body {
 	text-overflow: ellipsis;
 }
 #specials .price,
-#weekly .price,
-#stablemenu .product .price {
+#weekly .price {
 	position: absolute;
 		top: 5px;
 		right: 0;
 }
 .upscale #specials .price,
-.upscale #weekly .price,
-.upscale #stablemenu .product .price {
+.upscale #weekly .price {
 		top: 8px;
 }
 #weekly .sub {
