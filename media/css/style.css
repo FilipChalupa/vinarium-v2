@@ -936,7 +936,7 @@ strong, b {
 	max-width: 400px;
 	width: auto;
 }
-.upscale #stablemenu .product {
+.current-upscale #stablemenu .product {
 	max-width: 710px;
 }
 #stablemenu .product .title {
@@ -1280,7 +1280,7 @@ strong, b {
 	margin: 20px 0;
 	position: relative;
 }
-.upscale #stablemenu .product .box {
+.current-upscale #stablemenu .product .box {
 	height: 280px;
 }
 #stablemenu .product .box.recommended:after {
@@ -1303,9 +1303,21 @@ strong, b {
 	background-position: center;
 	background-repeat: no-repeat;
 }
-.upscale #stablemenu .product .image {
+.current-upscale #stablemenu .product .image {
 	background-image: url(../images/logo_large.png);
 	width: 460px;
+}
+#stablemenu .product .image .larger {
+	display: none;
+}
+.current-upscale #stablemenu .product .image .larger {
+	display: inline;
+}
+#stablemenu .product .image .smaller {
+	display: inline;
+}
+.current-upscale #stablemenu .product .image .smaller {
+	display: none;
 }
 #stablemenu .product .side {
 	height: 50px;
@@ -1319,7 +1331,7 @@ strong, b {
 	text-align: center;
 	overflow: hidden;
 }
-.upscale #stablemenu .product .side {
+.current-upscale #stablemenu .product .side {
 		left: 480px;
 	height: 80px;
 	line-height: 80px;
@@ -1332,7 +1344,7 @@ strong, b {
 		top: 60px;
 		right: 0;
 }
-.upscale #stablemenu .product .grammage {
+.current-upscale #stablemenu .product .grammage {
 		top: 100px;
 }
 #stablemenu .product .available {

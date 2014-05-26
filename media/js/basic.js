@@ -236,6 +236,8 @@ $(function () {
 		$slideshow.this.find('img').load(function(){
 			centerImage($(this));
 		});
+		temp = $window.width();
+		$body.toggleClass('current-upscale',$window.width() > 1300);
 	}
 	$window.resize(function(){
 		onWindowResize();
@@ -686,11 +688,8 @@ $(function () {
 				$stableMenuProductDetail['val-diets-title'].toggleClass('hide',!stableMenuData[param]['diets_'+language]);
 				if (stableMenuData[param].photo_medium) {
 					temp = '<div class="galleryItem" data-url="'+homepage+'/media/'+stableMenuData[param].photo+'" data-title="'+stableMenuData[param]['name_'+language]+'">';
-					if ($body.hasClass('upscale')) {
-						temp += '<img src="'+homepage+stableMenuData[param].photo_large+'" width="460" height="280">';
-					} else {
-						temp += '<img src="'+homepage+stableMenuData[param].photo_medium+'" width="290" height="170">';
-					}
+					temp += '<img class="larger" src="'+homepage+stableMenuData[param].photo_large+'" width="460" height="280">';
+					temp += '<img class="smaller" src="'+homepage+stableMenuData[param].photo_medium+'" width="290" height="170">';
 					$stableMenuProductDetail.image.html(temp +'</div>');
 				} else {
 					$stableMenuProductDetail.image.empty();
