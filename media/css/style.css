@@ -868,12 +868,15 @@ body {
 #weekly .meal,
 #stablemenu .product .item {
 	font-size: 20px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 	padding: 5px 50px 5px 0;
 	position: relative;
 	min-height: 12px;
+}
+#specials .item,
+#stablemenu .product .item {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 #specials .price,
 #weekly .price,
