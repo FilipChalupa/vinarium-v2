@@ -694,7 +694,7 @@ $(function () {
 				} else {
 					$stableMenuProductDetail.image.empty();
 				}
-				$stableMenuProductDetail.available.text(lang[language][53+(stableMenuData[param].active?0:1)]);
+				$stableMenuProductDetail.available.text(lang[language][53+(stableMenuData[param].available?0:1)]);
 				break;
 			case 'wineid':
 				action('view','winelist');
