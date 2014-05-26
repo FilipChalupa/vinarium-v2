@@ -858,6 +858,10 @@ body {
 	padding: 15px 90px;
 	text-align: left;
 }
+.upscale #weekly .list,
+.upscale #specials .list {
+	max-width: 900px;
+}
 #weekly .day {
 	font-size: 23px;
 	margin: 20px 0 10px -10px;
@@ -872,6 +876,12 @@ body {
 	position: relative;
 	min-height: 12px;
 }
+.upscale #specials .item,
+.upscale #weekly .soup,
+.upscale #weekly .meal,
+.upscale #stablemenu .product .item {
+	padding: 8px 50px 8px 0;
+}
 #specials .item,
 #stablemenu .product .item {
 	white-space: nowrap;
@@ -884,6 +894,11 @@ body {
 	position: absolute;
 		top: 5px;
 		right: 0;
+}
+.upscale #specials .price,
+.upscale #weekly .price,
+.upscale #stablemenu .product .price {
+		top: 8px;
 }
 #weekly .sub {
 	font-style: italic;
@@ -1415,7 +1430,7 @@ strong, b {
 .upscale #weekly .soup,
 .upscale #weekly .meal,
 .upscale #stablemenu .product .item {
-	font-size: 23px;
+	font-size: 27px;
 }
 .upscale .nav .button {
 	font-size: 26px;
