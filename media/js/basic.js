@@ -123,11 +123,8 @@ $(function () {
 	if (temp < $window.height()) {
 		temp = $window.height();
 	}
-	if (temp > 1540) {
+	if (temp > 1360) {
 		$body.addClass('upscale');
-		alert('yes - upscale '+temp);
-	} else {
-		alert('no - upscale '+temp);
 	}
 	$stableMenuProduct.find('.dynamic').each(function(){
 		var $this = $(this);
