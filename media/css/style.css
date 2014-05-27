@@ -1169,7 +1169,8 @@ strong, b {
 		top: 6px;
 		bottom: 6px;
 		left: 0;
-	width: 440px;
+	width: 430px;
+	padding-left: 10px;
 }
 #winelist .detail .image img {
 	max-width: 100%;
