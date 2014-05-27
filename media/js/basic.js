@@ -125,6 +125,9 @@ $(function () {
 	}
 	if (temp > 1540) {
 		$body.addClass('upscale');
+		alert('yes - upscale '+temp);
+	} else {
+		alert('no - upscale '+temp);
 	}
 	$stableMenuProduct.find('.dynamic').each(function(){
 		var $this = $(this);
