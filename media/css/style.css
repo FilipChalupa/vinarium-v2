@@ -1216,9 +1216,10 @@ strong, b {
 #stablemenu .second-menu .button {
 	color: #333333;
 	position: relative;
-	height: 81px;
+	min-height: 81px;
 	text-align: left;
 	padding: 0;
+	padding: 0 75px 0 84px;
 }
 #stablemenu .second-menu .image {
 	width: 65px;
@@ -1235,15 +1236,15 @@ strong, b {
 }
 #stablemenu .second-menu .list .title {
 	font-size: 21px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	text-transform: uppercase;
+	padding: 6px 0 3px 0;
+}
+#stablemenu .second-menu .price {
+	font-size: 21px;
+	font-weight: bold;
 	position: absolute;
 		top: 7px;
-		left: 84px;
-		right: 75px;
-	text-transform: uppercase;
-	padding: 3px 0;
+		right: 10px;
 }
 #stablemenu .second-menu .button:active,
 #stablemenu .second-menu .selected {
@@ -1255,18 +1256,7 @@ strong, b {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	position: absolute;
-		top: 28px;
-		left: 84px;
-		right: 75px;
-	padding: 3px 0;
-}
-#stablemenu .second-menu .price {
-	font-size: 21px;
-	font-weight: bold;
-	position: absolute;
-		top: 7px;
-		right: 10px;
+	padding: 3px 0 8px 0;
 }
 #stablemenu .product {
 	font-size: 20px;
