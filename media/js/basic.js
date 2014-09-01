@@ -1,4 +1,5 @@
 $(function () {
+try {
 	var homepage = 'http://forhaus.cz',
 		language = 'cs',
 		temp,
@@ -391,7 +392,6 @@ $(function () {
 						}
 					});
 					if (updateTimer === false) {
-						console.log('start');
 						$.each(apiSource,function(key,val){
 							val.updated = false;
 						});
@@ -826,4 +826,8 @@ $(function () {
 	//slideshow end
 
 	onWindowResize();
+}catch(err) {
+    localStorage.clear();
+    location.reload();
+}
 });
