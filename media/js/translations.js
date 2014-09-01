@@ -87,6 +87,7 @@ var lang = {
 		70: "Kyseliny:",
 		71: "Alkohol:",
 		72: "Bezcukerný extrakt:",
+		73: "Aktualizováno",
 
 	},
 	"en": {
@@ -177,6 +178,7 @@ var lang = {
 		70: "Acids:",
 		71: "Alcohol:",
 		72: "Sugar-free dry extract:",
+		73: "Updated",
 	}
 }
 

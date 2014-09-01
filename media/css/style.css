@@ -1431,3 +1431,14 @@ strong, b {
 .upscale #homeSlideshow {
 	display: block;
 }
+#updated {
+	position: absolute;
+		bottom: 5px;
+		right: 5px;
+	color: #333333;
+	background-color: rgba(186, 196, 5, 0.5);
+	border: 1px solid #666666;
+	box-shadow: rgba(102, 102, 102, 0.5) 0px 0px 1px 1px;
+	border-radius: 3px;
+	padding: 3px;
+}

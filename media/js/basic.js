@@ -61,6 +61,7 @@ $(function () {
 		$specialsTitle = $('#specials .title'),
 		$specialsList = $('#specials .list'),
 		$homeSlideshow = $('#homeSlideshow'),
+		$updated = $('#updated'),
 		winesData = {},
 		updateTimer = false,
 		apiSource = [
@@ -168,6 +169,7 @@ $(function () {
 				if (apiSource[apiIndexUpdate].name === 'special') {
 					updateHomeSpecialButton();
 				}
+				apiSource[apiIndexUpdate].updated = true;
 			})
 			.always(function() {
 				apiIndexUpdate++;
@@ -176,6 +178,13 @@ $(function () {
 				}
 			});
 		},500);
+		var updated = true;
+		$.each(apiSource,function(key,val){
+			if (val.updated === false) {
+				updated = false;
+			}
+		});
+		$updated.toggleClass('hide',updated === false);
 	}
 	function getFromStorage(name) {
 		try {
@@ -377,12 +386,15 @@ $(function () {
 					}
 					var i=0;
 					$.each(temp,function(key,val){
-						console.log(val);
 						if (set.indexOf(key) !== -1) {
 							$homeSlideshow.append('<div class="galleryItem img_'+(i++)+'" data-url="'+homepage+'/media/'+val['photo_file']+'" data-title="'+val['title_'+language]+'"><!--<img src="'+homepage+val['photo_file_thumb']+'" width="250" height="250">--><div style="width: 250px; height: 250px; background-image: url('+homepage+'/media/'+val['photo_file']+'); background-size: cover;"></div></div>');
 						}
 					});
 					if (updateTimer === false) {
+						console.log('start');
+						$.each(apiSource,function(key,val){
+							val.updated = false;
+						});
 						updateData();
 					}
 				} else {
