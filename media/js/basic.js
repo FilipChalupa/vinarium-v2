@@ -377,8 +377,9 @@ $(function () {
 					}
 					var i=0;
 					$.each(temp,function(key,val){
+						console.log(val);
 						if (set.indexOf(key) !== -1) {
-							$homeSlideshow.append('<div class="galleryItem img_'+(i++)+'" data-url="'+homepage+'/media/'+val['photo_file']+'" data-title="'+val['title_'+language]+'"><img src="'+homepage+val['photo_file_thumb']+'" width="250" height="250"></div>');
+							$homeSlideshow.append('<div class="galleryItem img_'+(i++)+'" data-url="'+homepage+'/media/'+val['photo_file']+'" data-title="'+val['title_'+language]+'"><!--<img src="'+homepage+val['photo_file_thumb']+'" width="250" height="250">--><div style="width: 250px; height: 250px; background-image: url('+homepage+'/media/'+val['photo_file']+'); background-size: cover;"></div></div>');
 						}
 					});
 					if (updateTimer === false) {
