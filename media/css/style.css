@@ -1377,6 +1377,9 @@ strong, b {
 		top: 0;
 		bottom: 0;
 }
+#homeSlideshow .galleryItem > div {
+	margin: 0 auto;
+}
 #homeSlideshow .img_0 {
 		left: 0;
 }
