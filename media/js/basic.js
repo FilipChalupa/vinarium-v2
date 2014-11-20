@@ -1,6 +1,6 @@
 $(function () {
 try {
-	var homepage = 'http://forhaus.cz',
+	var homepage = 'http://beta.forhaus.cz',
 		language = 'cs',
 		temp,
 		wineIdDelayed,
