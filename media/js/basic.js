@@ -404,7 +404,7 @@ try {
 					}
 					if (param === 'events') {
 						$.each(getFromStorage('events'),function(key,val){
-							var html = '<div class="button frame" data-action="event-'+val.id+'">'+val['title_'+language]+'</div>';
+							var html = '<div class="button frame" data-action="event-'+val.id+'">'+(val['title_'+language]?val['title_'+language]:val['title_cs'])+'</div>';
 							if (val.is_past) {
 								$eventsListPast.append(html);
 							} else {
@@ -487,9 +487,9 @@ try {
 					ajax.abort();
 				}
 				ajax = $.getJSON( homepage + '/api/json_event/'+param, function(data) {
-					$eventDetailChildren.title.text(data['title_'+language]);
+					$eventDetailChildren.title.text(data['title_'+language]?data['title_'+language]:data['title_cs']);
 					$eventDetailChildren.date.text(data['date']+' - '+data['date_to']);
-					$eventDetailChildren.wrapper.html(data['content_'+language]);
+					$eventDetailChildren.wrapper.html(data['content_'+language]?data['content_'+language]:data['content_cs']);
 					var countPhotos = 0;
 					for (var i=1;i<=4;i++) {
 						if (data['photo_'+i]) {
