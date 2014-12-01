@@ -537,7 +537,7 @@ try {
 			case 'winedetail':
 				$wineDetail.title.text(winesData[param]['name_'+language]);
 				$wineDetail.price.text(winesData[param].price);
-				if (winesData[param].available) {
+				if (winesData[param].available || winesData[param].bottles == 0) {
 					$wineDetail.availability.text(lang[language][46]+' ('+lang[language][61]+': '+winesData[param].bottles+')');
 				} else {
 					$wineDetail.availability.text(lang[language][47]);
