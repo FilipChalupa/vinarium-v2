@@ -108,8 +108,8 @@ body {
 }
 #go-home {
 	position: fixed;
-		bottom: 0;
-		left: 0;
+		bottom: -1px;
+		left: -1px;
 	display: none;
 	background-color: #333333;
 	width: 60px;
@@ -118,6 +118,8 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	border-top-right-radius: 20px;
+	border: 1px solid black;
+	box-shadow: black 0 0 10px 0;
 }
 #go-home.show {
 	display: inline-block;
@@ -138,7 +140,7 @@ body {
 .button.frame {
 	display: inline-block;
 	border: 1px solid #666666;
-	box-shadow: #666666 0px 0px 1px 1px;
+	box-shadow: #666666 0 0 1px 1px;
 	padding: 0.5em;
 	margin: 0.25em;
 	color: #333333;
@@ -160,7 +162,7 @@ body {
 	position: absolute;
 		top: 60px;
 		right: 30px;
-	box-shadow: #666666 0px 0px 1px 1px;
+	box-shadow: #666666 0 0 1px 1px;
 }
 #languages .button {
 	height: 31px;
@@ -388,7 +390,7 @@ body {
 	color: white;
 	padding: 5px 0;
 	font-size: 20px;
-	box-shadow: #666666 2px 2px 4px 0px;
+	box-shadow: #666666 2px 2px 4px 0;
 }
 #aboutus .options .button {
 	position: relative;
