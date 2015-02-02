@@ -554,9 +554,13 @@ try {
 					});
 				}
 				$wineDetail.fit.text(temp.join(', '));
-				$wineDetail.place_description.html(winesData[param].vineyard['region_description_'+language].replace(/\n/g, "<br>"));
-				$wineDetail.place.text(winesData[param].vineyard['region_'+language]);
-				$wineDetail.track.text(winesData[param].vineyard['name_'+language]);
+
+				$wineDetail.place_description.parents('.location:first').toggleClass('hide',!winesData[param].vineyard);
+				if (winesData[param].vineyard) {
+					$wineDetail.place_description.html(winesData[param].vineyard['region_description_'+language].replace(/\n/g, "<br>"));
+					$wineDetail.place.text(winesData[param].vineyard['region_'+language]);
+					$wineDetail.track.text(winesData[param].vineyard['name_'+language]);
+				}
 				if (winesData[param].bezcukerny_extrakt) {
 					$wineDetail.bezcukerny_extrakt.text(winesData[param].bezcukerny_extrakt);
 					$wineDetail.bezcukerny_extrakt.parent().removeClass('hide');
@@ -644,7 +648,8 @@ try {
 				var $wines = $winesList.find('.button');
 				$wines.each(function(){
 					var $this = $(this);
-					$this.toggleClass('hide',winesData[$this.data('index')].vineyard.id != param);
+					console.log(winesData[$this.data('index')]);
+					$this.toggleClass('hide',winesData[$this.data('index')].vineyard && winesData[$this.data('index')].vineyard.id != param);
 				});
 				break;
 			case 'stablegroup':
