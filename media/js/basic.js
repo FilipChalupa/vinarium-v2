@@ -648,7 +648,6 @@ try {
 				var $wines = $winesList.find('.button');
 				$wines.each(function(){
 					var $this = $(this);
-					console.log(winesData[$this.data('index')]);
 					$this.toggleClass('hide',winesData[$this.data('index')].vineyard && winesData[$this.data('index')].vineyard.id != param);
 				});
 				break;
