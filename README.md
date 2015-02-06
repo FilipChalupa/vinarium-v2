@@ -1,7 +1,7 @@
 Vinarium v2
 ===========
 
-Tablet application for Android used at Forhaus.cz as substitute for menu.
+Tablet application for Android used at [Forhaus.cz](http://forhaus.cz/) as substitute for menu.
 
 ![Screenshot](https://raw.github.com/Onset/vinarium-v2/master/screenshot.jpg)
 
