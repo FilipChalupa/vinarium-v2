@@ -1,6 +1,6 @@
 var lang = {
 	"cs": {
-		"slogan": "dobře jíst ∙ často se smát ∙ dlouho žít",
+		"slogan": "dobře pít ∙ často se smát ∙ dlouho žít",
 		0: "VINNÝ LÍSTEK",
 		1: "JÍDELNÍ LÍSTEK",
 		2: "AKCE",
@@ -91,7 +91,7 @@ var lang = {
 
 	},
 	"en": {
-		"slogan": "eat well ∙ often laugh ∙ live long",
+		"slogan": "drink well ∙ often laugh ∙ live long",
 		0: "WINE LIST",
 		1: "MENU",
 		2: "EVENTS",
