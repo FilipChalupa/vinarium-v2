@@ -332,7 +332,9 @@ try {
 				break;
 			case 'view':
 				if (arguments[2] !== 'noHistory') {
-					history.pushState({}, param, "#"+param);
+					try {
+						history.pushState({}, param, "#"+param);
+					} catch(e){}
 				}
 				$goHome.removeClass('show');
 				$views.each(function(){
@@ -831,7 +833,11 @@ try {
 
 	onWindowResize();
 }catch(err) {
-    localStorage.clear();
-    location.reload();
+	console.log('Error:')
+	console.log(err)
+  localStorage.clear();
+  setTimeout(function(){
+  	location.reload();
+  }, 1000);
 }
 });
