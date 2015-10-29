@@ -68,55 +68,55 @@ try {
 		apiSource = [
 			{
 				'name': 'events',
-				'url': '/cs/api/event/'
+				'url': 'http://forhaus.cz/api/event/'
 			},
 			{
 				'name': 'videos',
-				'url': '/cs/api/videos/'
+				'url': 'http://beta.forhaus.cz/cs/api/videos/'
 			},
 			{
 				'name': 'weekly_offer',
-				'url': '/cs/api/weekly_offer'
+				'url': 'http://beta.forhaus.cz/cs/api/weekly_offer'
 			},
 			{
 				'name': 'vineyards',
-				'url': '/api/vineyards/'
+				'url': 'http://beta.forhaus.cz/api/vineyards/'
 			},
 			{
 				'name': 'wines',
-				'url': '/api/wines/'
+				'url': 'http://beta.forhaus.cz/api/wines/'
 			},
 			{
 				'name': 'special',
-				'url': '/cs/api/special_offer/'
+				'url': 'http://beta.forhaus.cz/cs/api/special_offer/'
 			},
 			{
 				'name': 'menu_f',
-				'url': '/cs/api/menu_structure/f'
+				'url': 'http://beta.forhaus.cz/cs/api/menu_structure/f'
 			},
 			{
 				'name': 'menu_d',
-				'url': '/cs/api/menu_structure/d'
+				'url': 'http://beta.forhaus.cz/cs/api/menu_structure/d'
 			},
 			{
 				'name': 'feedbackScores',
-				'url': '/api/average_feedback'
+				'url': 'http://beta.forhaus.cz/api/average_feedback'
 			},
 			{
 				'name': 'articles',
-				'url': '/cs/api/blogposts/app'
+				'url': 'http://beta.forhaus.cz/cs/api/blogposts/app'
 			},
 			{
 				'name': 'advices',
-				'url': '/cs/api/blogposts/advice'
+				'url': 'http://beta.forhaus.cz/cs/api/blogposts/advice'
 			},
 			{
 				'name': 'homeslides',
-				'url': '/cs/api/intro_images'
+				'url': 'http://beta.forhaus.cz/cs/api/intro_images'
 			},
 			{
 				'name': 'suppliers',
-				'url': '/api/suppliers'
+				'url': 'http://beta.forhaus.cz/api/suppliers'
 			}
 		],
 		apiIndexUpdate = 0,
@@ -165,7 +165,7 @@ try {
 			if (apiSource[apiIndexUpdate] === undefined) {
 				apiIndexUpdate = 0;
 			}
-			$.get( homepage + apiSource[apiIndexUpdate].url, function(data) {
+			$.get( apiSource[apiIndexUpdate].url+'?'+Date.now(), function(data) {
 				localStorage[apiSource[apiIndexUpdate].name] = JSON.stringify(data);
 				if (apiSource[apiIndexUpdate].name === 'special') {
 					updateHomeSpecialButton();
@@ -405,7 +405,7 @@ try {
 						updateTimer = false;
 					}
 					if (param === 'events') {
-						$.each(getFromStorage('events'),function(key,val){
+						$.each(JSON.parse(getFromStorage('events')),function(key,val){
 							var html = '<div class="button frame" data-action="event-'+val.id+'">'+(val['title_'+language]?val['title_'+language]:val['title_cs'])+'</div>';
 							if (val.is_past) {
 								$eventsListPast.append(html);
@@ -488,7 +488,7 @@ try {
 				if (ajax) {
 					ajax.abort();
 				}
-				ajax = $.getJSON( homepage + '/api/json_event/'+param, function(data) {
+				ajax = $.getJSON( 'http://forhaus.cz/api/json_event/'+param, function(data) {
 					$eventDetailChildren.title.text(data['title_'+language]?data['title_'+language]:data['title_cs']);
 					$eventDetailChildren.date.text(data['date']+' - '+data['date_to']);
 					$eventDetailChildren.wrapper.html(data['content_'+language]?data['content_'+language]:data['content_cs']);
@@ -496,7 +496,7 @@ try {
 					for (var i=1;i<=4;i++) {
 						if (data['photo_'+i]) {
 							countPhotos++;
-							$eventDetailChildren.photos.append('<div class="galleryItem img_'+i+'" style="background-image: url('+homepage+'/media/'+data['photo_'+i]+');" data-url="'+homepage+'/media/'+data['photo_'+i]+'" data-title="'+data['title_'+language]+'"></div>');
+							$eventDetailChildren.photos.append('<div class="galleryItem img_'+i+'" style="background-image: url(http://forhaus.cz/'+data['photo_'+i]+');" data-url="http://forhaus.cz/'+data['photo_'+i]+'" data-title="'+data['title_'+language]+'"></div>');
 						}
 					}
 					$eventDetail.toggleClass('hasPhotos',countPhotos !== 0);
